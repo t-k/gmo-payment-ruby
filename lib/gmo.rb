@@ -1,5 +1,5 @@
 require 'cgi'
-require 'rack'
+require 'rack/utils'
 require 'multi_json'
 
 require 'gmo/errors'
