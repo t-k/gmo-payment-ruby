@@ -1,0 +1,8 @@
+pkg
+.project
+Gemfile.lock
+.rvmrc
+*.rbc
+*~
+.yardoc/
+.DS_Store
