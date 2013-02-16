@@ -76,6 +76,7 @@ module GMO
           "CardNo"   => options[:card_no],
           "Expire"   => options[:expire]
         }
+        args.delete("CardSeq") if options[:card_seq].nil?
         post_request name, args
       end
 

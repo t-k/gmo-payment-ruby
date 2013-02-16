@@ -1,0 +1,34 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pt01.mul-pay.jp/payment/DeleteCard.idPass
+    body:
+      encoding: UTF-8
+      string: MemberID=101&CardSeq=0&SiteID=<SITE_ID>&SitePass=<SITE_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 16 Feb 2013 07:07:03 GMT
+      Connection:
+      - close
+      Content-Type:
+      - text/plain;charset=Windows-31J
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: CardSeq=0
+    http_version: 
+  recorded_at: Sat, 16 Feb 2013 07:07:02 GMT
+recorded_with: VCR 2.4.0
