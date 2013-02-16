@@ -7,6 +7,7 @@ end
 group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
+  gem 'simplecov'
 
   if RUBY_PLATFORM =~ /darwin/
     gem "ruby_gntp"

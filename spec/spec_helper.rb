@@ -4,6 +4,8 @@ rescue LoadError
   puts 'Although not required, bundler is recommended for running the tests.'
 end
 # load the library
+require "simplecov"
+SimpleCov.start
 require 'gmo'
 require 'rspec'
 require 'vcr'
