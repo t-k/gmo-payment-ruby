@@ -7,7 +7,6 @@ end
 require 'gmo'
 require 'rspec'
 require 'vcr'
-require 'rack/test'
 require 'support/config_loader'
 require 'support/factory'
 require 'support/vcr'
