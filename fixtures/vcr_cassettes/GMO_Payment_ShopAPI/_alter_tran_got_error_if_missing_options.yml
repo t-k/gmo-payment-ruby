@@ -1,0 +1,32 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pt01.mul-pay.jp/payment/AlterTran.idPass
+    body:
+      encoding: UTF-8
+      string: AccessID=null&AccessPass=null&JobCd=SALES&Amount=null&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 17 Feb 2013 07:19:20 GMT
+      Connection:
+      - close
+      Content-Type:
+      - text/plain;charset=Windows-31J
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: ErrCode=E01|E01|E01&ErrInfo=E01090008|E01100008|E01110002
+    http_version: 
+  recorded_at: Sun, 17 Feb 2013 07:19:21 GMT
+recorded_with: VCR 2.4.0

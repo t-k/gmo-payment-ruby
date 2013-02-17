@@ -1,0 +1,32 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pt01.mul-pay.jp/payment/SearchTrade.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=1003&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 17 Feb 2013 07:33:03 GMT
+      Connection:
+      - close
+      Content-Type:
+      - text/plain;charset=Windows-31J
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: OrderID=1003&Status=AUTH&ProcessDate=20130217162936&JobCd=AUTH&AccessID=781aaf3823503b49950d7da8952bd50f&AccessPass=e12780a4480ddde5b4e9e054759ee327&ItemCode=0000990&Amount=1000&Tax=0&SiteID=&MemberID=&CardNo=************1111&Expire=1405&Method=1&PayTimes=&Forward=2a99662&TranID=1302171629111111111111197575&Approve=6299693&ClientField1=null&ClientField2=null&ClientField3=null
+    http_version: 
+  recorded_at: Sun, 17 Feb 2013 07:33:03 GMT
+recorded_with: VCR 2.4.0
