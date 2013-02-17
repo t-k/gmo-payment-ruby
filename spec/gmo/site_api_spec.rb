@@ -9,6 +9,12 @@ describe "GMO::Payment::SiteAPI" do
     })
   end
 
+  it "should raise an ArgumentError if no options passed" do
+    lambda {
+      service = GMO::Payment::SiteAPI.new()
+    }.should raise_error(ArgumentError)
+  end
+
   it "has an attr_reader for site_id" do
     @service.site_id.should == SPEC_CONF["site_id"]
   end

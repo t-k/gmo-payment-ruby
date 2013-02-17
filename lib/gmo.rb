@@ -84,7 +84,7 @@ module GMO
       include SiteAPIMethods
     end
 
-    class ShopAndSiteApi < API
+    class ShopAndSiteAPI < API
       include ShopAndSiteAPIMethods
     end
 

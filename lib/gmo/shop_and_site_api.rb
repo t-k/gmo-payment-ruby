@@ -17,12 +17,20 @@ module GMO
 
       # 2.17.2.1.決済後カード登録
       # 指定されたオーダーID の取引に使用したカードを登録します。
+      ### @return ###
+      # CardSeq
+      # CardNo
+      # Forward
       def trade_card(options = {})
         name = "TradedCard.idPass"
         args = {
-          "OrderID"   => options[:order_id],
-          "MemberID"  => options[:member_id]
+          "OrderID"     => options[:order_id],
+          "MemberID"    => options[:member_id],
+          "SeqMode"     => options[:seq_mode] || "0",
+          "DefaultFlag" => options[:default_flag] || "0",
+          "HolderName"  => options[:holder_name]
         }
+        args.delete("HolderName") if options[:holder_name].nil?
         post_request name, args
       end
 
