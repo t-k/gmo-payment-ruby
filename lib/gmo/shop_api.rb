@@ -9,10 +9,6 @@
 #   development:  true
 # })
 # result = gmo.post_request("EntryTran.idPass", options)
-# init
-# gmo = GMO::Payment::ShopAPI.new({
-#         shop_pass: "7w74n3aw",
-#         development: true})
 module GMO
   module Payment
 
@@ -189,6 +185,17 @@ module GMO
         name = "SearchTrade.idPass"
         args = {
           "OrderID" => options[:order_id]
+        }
+        post_request name, args
+      end
+
+      # 13.1.2.1.取引状態参照
+      # 指定したオーダーIDの取引情報を取得します。
+      def search_trade_multi(options = {})
+        name = "SearchTradeMulti.idPass"
+        args = {
+          "OrderID" => options[:order_id],
+          "PayType" => options[:pay_type]
         }
         post_request name, args
       end

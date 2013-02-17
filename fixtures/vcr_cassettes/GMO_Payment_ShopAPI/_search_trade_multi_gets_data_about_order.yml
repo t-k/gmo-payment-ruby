@@ -1,0 +1,34 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pt01.mul-pay.jp/payment/SearchTradeMulti.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=100&PayType=0&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 17 Feb 2013 05:57:06 GMT
+      Connection:
+      - close
+      Content-Type:
+      - text/plain;charset=Windows-31J
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: Status=AUTH&ProcessDate=20130216054346&JobCd=AUTH&AccessID=a41d83f1f4c908baeda04e6dc03e300c&AccessPass=d72eca02e28c88f98b9341a33ba46d5d&ItemCode=0000990&Amount=100&Tax=0&SiteID=&MemberID=&CardNo=************1111&Expire=1405&Method=1&PayTimes=&Forward=2a99662&TranID=1302160543111111111111192829&Approve=6294780&ClientField1=client_field1&ClientField2=&ClientField3=&PayType=0&CvsCode=&CvsConfNo=&CvsReceiptNo=&EdyReceiptNo=&EdyOrderNo=&SuicaOrderNo=&SuicaReceiptNo=&CustID=&BkCode=&ConfNo=&EncryptReceiptNo=&PaymentTerm=&WebMoneyManagementNo=&WebMoneySettleCode=&AuPayInfoNo=&AuPayMethod=&AuCancelAmount=&AuCancelTax=&DocomoSettlementCode=&DocomoCancelAmount=&DocomoCancelTax=&SbTrackingId=&SbCancelAmount=&SbCancelTax=&Currency=JPN
+    http_version: 
+  recorded_at: Sun, 17 Feb 2013 05:57:06 GMT
+recorded_with: VCR 2.4.0

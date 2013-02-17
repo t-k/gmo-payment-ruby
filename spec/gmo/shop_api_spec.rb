@@ -69,4 +69,39 @@ describe "GMO::Payment::ShopAPI" do
     end
   end
 
+  describe "#search_trade_multi" do
+    it "gets data about order", :vcr do
+      client_field1 = "client_field1"
+      result = @service.search_trade_multi({
+        :order_id      => 100,
+        :pay_type      => "0"
+      })
+      result["Status"].nil?.should_not be_true
+      result["ProcessDate"].nil?.should_not be_true
+      result["JobCd"].nil?.should_not be_true
+      result["AccessID"].nil?.should_not be_true
+      result["AccessPass"].nil?.should_not be_true
+      result["ItemCode"].nil?.should_not be_true
+      result["Amount"].nil?.should_not be_true
+      result["Tax"].nil?.should_not be_true
+      result["SiteID"].nil?.should_not be_true
+      result["MemberID"].nil?.should_not be_true
+      result["CardNo"].nil?.should_not be_true
+      result["Expire"].nil?.should_not be_true
+      result["Method"].nil?.should_not be_true
+      result["PayTimes"].nil?.should_not be_true
+      result["Forward"].nil?.should_not be_true
+      result["TranID"].nil?.should_not be_true
+      result["Approve"].nil?.should_not be_true
+      result["PayType"].nil?.should_not be_true
+      result["PaymentTerm"].nil?.should_not be_true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.search_trade_multi()
+      }.should raise_error
+    end
+  end
+
 end
