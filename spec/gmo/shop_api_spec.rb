@@ -69,6 +69,154 @@ describe "GMO::Payment::ShopAPI" do
     end
   end
 
+  describe "#alter_tran" do
+    it "gets data about order", :vcr do
+      order_id = 1001
+      result = @service.entry_tran({
+        :order_id => order_id,
+        :job_cd => "AUTH",
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      result = @service.exec_tran({
+        :order_id      => order_id,
+        :access_id     => access_id,
+        :access_pass   => access_pass,
+        :method        => 1,
+        :pay_times     => 1,
+        :card_no       => "4111111111111111",
+        :expire        => "1405"
+      })
+      result = @service.alter_tran({
+        :access_id      => access_id,
+        :access_pass    => access_pass,
+        :job_cd         => "RETURN",
+        :amount         => 100
+      })
+      result["AccessID"].nil?.should_not be_true
+      result["AccessPass"].nil?.should_not be_true
+      result["Forward"].nil?.should_not be_true
+      result["Approve"].nil?.should_not be_true
+      result["AccessPass"].nil?.should_not be_true
+      result["TranID"].nil?.should_not be_true
+      result["TranDate"].nil?.should_not be_true
+    end
+
+    it "change order auth to sale", :vcr do
+      order_id = 1002
+      result = @service.entry_tran({
+        :order_id => order_id,
+        :job_cd => "AUTH",
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      result = @service.exec_tran({
+        :order_id      => order_id,
+        :access_id     => access_id,
+        :access_pass   => access_pass,
+        :method        => 1,
+        :pay_times     => 1,
+        :card_no       => "4111111111111111",
+        :expire        => "1405"
+      })
+      result = @service.alter_tran({
+        :access_id      => access_id,
+        :access_pass    => access_pass,
+        :job_cd         => "SALES",
+        :amount         => 100
+      })
+      result["AccessID"].nil?.should_not be_true
+      result["AccessPass"].nil?.should_not be_true
+      result["Forward"].nil?.should_not be_true
+      result["Approve"].nil?.should_not be_true
+      result["AccessPass"].nil?.should_not be_true
+      result["TranID"].nil?.should_not be_true
+      result["TranDate"].nil?.should_not be_true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.alter_tran()
+      }.should raise_error
+    end
+  end
+
+  describe "#change_tran" do
+    it "gets data about order", :vcr do
+      order_id = 1003
+      result = @service.entry_tran({
+        :order_id => order_id,
+        :job_cd => "AUTH",
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      result = @service.exec_tran({
+        :order_id      => order_id,
+        :access_id     => access_id,
+        :access_pass   => access_pass,
+        :method        => 1,
+        :pay_times     => 1,
+        :card_no       => "4111111111111111",
+        :expire        => "1405"
+      })
+      result = @service.change_tran({
+        :access_id      => access_id,
+        :access_pass    => access_pass,
+        :job_cd         => "AUTH",
+        :amount         => 1000
+      })
+      result["AccessID"].nil?.should_not be_true
+      result["AccessPass"].nil?.should_not be_true
+      result["Forward"].nil?.should_not be_true
+      result["Approve"].nil?.should_not be_true
+      result["TranID"].nil?.should_not be_true
+      result["TranDate"].nil?.should_not be_true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.search_trade_multi()
+      }.should raise_error
+    end
+  end
+
+
+  describe "#search_trade" do
+    it "gets data about order", :vcr do
+      order_id = 1003
+      result = @service.search_trade({
+        :order_id => order_id
+      })
+      result["OrderID"].nil?.should_not be_true
+      result["Status"].nil?.should_not be_true
+      result["ProcessDate"].nil?.should_not be_true
+      result["JobCd"].nil?.should_not be_true
+      result["AccessID"].nil?.should_not be_true
+      result["AccessPass"].nil?.should_not be_true
+      result["ItemCode"].nil?.should_not be_true
+      result["Amount"].nil?.should_not be_true
+      result["Tax"].nil?.should_not be_true
+      result["SiteID"].nil?.should_not be_true
+      result["MemberID"].nil?.should_not be_true
+      result["CardNo"].nil?.should_not be_true
+      result["Expire"].nil?.should_not be_true
+      result["Method"].nil?.should_not be_true
+      result["PayTimes"].nil?.should_not be_true
+      result["Forward"].nil?.should_not be_true
+      result["TranID"].nil?.should_not be_true
+      result["Approve"].nil?.should_not be_true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.search_trade_multi()
+      }.should raise_error
+    end
+  end
+
   describe "#search_trade_multi" do
     it "gets data about order", :vcr do
       client_field1 = "client_field1"
