@@ -3,13 +3,13 @@ VCR.configure do |c|
   c.hook_into :webmock
   c.allow_http_connections_when_no_cassette = true
   c.default_cassette_options = { :record => :new_episodes }
-   c.filter_sensitive_data('<SHOP_ID>') { SPEC_CONF["shop_id"] }
-   c.filter_sensitive_data('<SHOP_PASS>') { SPEC_CONF["shop_pass"] }
-   c.filter_sensitive_data('<SITE_ID>') { SPEC_CONF["site_id"] }
-   c.filter_sensitive_data('<SITE_PASS>') { SPEC_CONF["site_pass"] }
-   c.filter_sensitive_data('<SITE_PASS>') { SPEC_CONF["site_pass"] }
-   c.filter_sensitive_data('<ACCESS_ID>') { ACCESS_ID }
-   c.filter_sensitive_data('<ACCESS_PASS>') { ACCESS_PASS }
+  c.filter_sensitive_data('<SHOP_ID>') { SPEC_CONF["shop_id"] }
+  c.filter_sensitive_data('<SHOP_PASS>') { SPEC_CONF["shop_pass"] }
+  c.filter_sensitive_data('<SITE_ID>') { SPEC_CONF["site_id"] }
+  c.filter_sensitive_data('<SITE_PASS>') { SPEC_CONF["site_pass"] }
+  c.filter_sensitive_data('<SITE_PASS>') { SPEC_CONF["site_pass"] }
+  c.filter_sensitive_data('<ACCESS_ID>') { ACCESS_ID }
+  c.filter_sensitive_data('<ACCESS_PASS>') { ACCESS_PASS }
 end
 
 RSpec.configure do |c|

@@ -40,7 +40,7 @@ module GMO
       def update_member(options = {})
         name = "UpdateMember.idPass"
         args = {
-          "MemberID" => options[:member_id],
+          "MemberID"   => options[:member_id],
           "MemberName" => options[:member_name]
         }
         post_request name, args
