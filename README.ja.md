@@ -1,5 +1,6 @@
 GMO
 ====
+[![Gem Version](https://badge.fury.io/rb/gmo.png)](https://rubygems.org/gems/gmo)
 [![Build Status](https://travis-ci.org/t-k/gmo-payment-ruby.png)](https://travis-ci.org/t-k/gmo-payment-ruby)
 
 GMO is a Ruby client library for the GMO Payment Platform, supporting the PG Multi Payment API, exec transactions, register users, and so on.
@@ -49,6 +50,3 @@ result = gmo.entry_tran(option)
 Authors and Contributors
 ---
 * [Tatsuo Kaniwa](https://github.com/t-k) - Creator of the project
-
-Copyright
----
