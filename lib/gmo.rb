@@ -43,7 +43,7 @@ module GMO
           raise GMO::Payment::ServerError.new(result.body, error_detail)
         end
         # Parse the body as Query string
-        body = response = Rack::Utils.parse_nested_query result.body.to_s
+        body = response = Rack::Utils.parse_nested_query(result.body.to_s)
         # Check for errors if provided a error_checking_block
         yield(body) if error_checking_block
         # Return result
