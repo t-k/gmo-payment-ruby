@@ -17,21 +17,17 @@ module GMO
 
   module Payment
 
-    DEV_SERVER = "pt01.mul-pay.jp"
-    # TODO: Set production server
-    PRO_SERVER = "pt01.mul-pay.jp"
-
     class API
 
       def initialize(options = {})
-        @development = options[:development] || true
+        @host = options[:host]
       end
-      attr_reader :development
+      attr_reader :host
 
       def api(path, args = {}, verb = "post", options = {}, &error_checking_block)
         # Setup args for make_request
         path = "/payment/#{path}" unless path =~ /^\//
-        options.merge!({ "development" => @development })
+        options.merge!({ :host => @host })
         # Make request via the provided service
         result = GMO.make_request path, args, verb, options
         # Check for any 500 server errors before parsing the body

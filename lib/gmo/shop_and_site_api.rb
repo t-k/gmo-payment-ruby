@@ -4,16 +4,16 @@ module GMO
 
     module ShopAndSiteAPIMethods
       def initialize(options = {})
-        @shop_id     = options[:shop_id]
-        @shop_pass   = options[:shop_pass]
-        @site_id     = options[:site_id]
-        @site_pass   = options[:site_pass]
-        @development = options[:development] || true
-        unless @site_id && @site_pass && @shop_id && @shop_pass
-          raise ArgumentError, "Initialize must receive a hash with :site_id, :site_pass, :shop_id and either :shop_pass! (received #{options.inspect})"
+        @shop_id   = options[:shop_id]
+        @shop_pass = options[:shop_pass]
+        @site_id   = options[:site_id]
+        @site_pass = options[:site_pass]
+        @host      = options[:host]
+        unless @site_id && @site_pass && @shop_id && @shop_pass && @host
+          raise ArgumentError, "Initialize must receive a hash with :site_id, :site_pass, :shop_id, :shop_pass and either :host! (received #{options.inspect})"
         end
       end
-      attr_reader :shop_id, :shop_pass, :site_id, :site_pass, :development
+      attr_reader :shop_id, :shop_pass, :site_id, :site_pass, :host
 
       # 2.17.2.1.決済後カード登録
       # 指定されたオーダーID の取引に使用したカードを登録します。

@@ -2,10 +2,15 @@ require "spec_helper"
 
 describe "GMO::Payment::SiteAPI" do
 
+  before(:all) do
+    @member_id = generate_id
+  end
+
   before(:each) do
     @service ||= GMO::Payment::SiteAPI.new({
       :site_id   => SPEC_CONF["site_id"],
-      :site_pass => SPEC_CONF["site_pass"]
+      :site_pass => SPEC_CONF["site_pass"],
+      :host      => SPEC_CONF["host"]
     })
   end
 
@@ -23,11 +28,15 @@ describe "GMO::Payment::SiteAPI" do
     @service.site_pass.should == SPEC_CONF["site_pass"]
   end
 
+  it "has an attr_reader for host" do
+    @service.host.should == SPEC_CONF["host"]
+  end
+
   describe "#save_member" do
     it "gets data about a transaction", :vcr do
       member_name = "John Smith"
       result = @service.save_member({
-        :member_id => 100,
+        :member_id => @member_id,
         :member_name => member_name
       })
       result["MemberID"].nil?.should_not be_true
@@ -36,34 +45,37 @@ describe "GMO::Payment::SiteAPI" do
 
   describe "#update_member" do
     it "gets data about a transaction", :vcr do
-      member_id = 100
+      member_id = @member_id
       member_name = "John Smith2"
       result = @service.update_member({
         :member_id => member_id,
         :member_name => member_name
       })
       result["MemberID"].nil?.should_not be_true
-      (result["MemberID"].to_i == member_id).should be_true
     end
   end
 
   describe "#delete_member" do
     it "gets data about a member", :vcr do
-      member_id = 100
+      member_id = generate_id
+      member_name = "John Smith"
+      result = @service.save_member({
+        :member_id => member_id,
+        :member_name => member_name
+      })
       result = @service.delete_member({
         :member_id => member_id
       })
       result["MemberID"].nil?.should_not be_true
-      (result["MemberID"].to_i == member_id).should be_true
     end
   end
 
   describe "#search_member" do
     it "gets data about a member", :vcr do
       member_name = "John Smith"
-      member_id = 101
+      member_id = generate_id
       result = @service.save_member({
-        :member_id => 101,
+        :member_id => member_id,
         :member_name => member_name
       })
       result["MemberID"].nil?.should_not be_true
@@ -72,7 +84,6 @@ describe "GMO::Payment::SiteAPI" do
         :member_id => member_id
       })
       result["MemberID"].nil?.should_not be_true
-      (result["MemberID"].to_i == member_id).should be_true
       result["MemberName"].nil?.should_not be_true
       (result["MemberName"].to_s == member_name).should be_true
       result["DeleteFlag"].nil?.should_not be_true
@@ -82,7 +93,7 @@ describe "GMO::Payment::SiteAPI" do
 
   describe "#save_card" do
     it "gets data about a card", :vcr do
-      member_id = 101
+      member_id = @member_id
       card_no = "4111111111111111"
       expire = "1405"
       result = @service.save_card({
@@ -96,7 +107,7 @@ describe "GMO::Payment::SiteAPI" do
 
   describe "#delete_card" do
     it "gets data about a card", :vcr do
-      member_id = 101
+      member_id = @member_id
       card_seq = 0
       result = @service.delete_card({
         :member_id => member_id,
@@ -109,8 +120,8 @@ describe "GMO::Payment::SiteAPI" do
 
   describe "#search_card" do
     it "gets data about a card", :vcr do
-      member_id = 101
-      card_no = "4111111111111111"
+      member_id = generate_id
+      card_no = "4111111111111112"
       expire = "1405"
       result = @service.save_card({
         :member_id => member_id,

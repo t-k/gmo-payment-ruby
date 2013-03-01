@@ -6,7 +6,7 @@
 # gmo = GMO::Payment::SiteAPI.new({
 #   site_id:     "foo",
 #   site_pass:   "bar",
-#   development:  true
+#   host:  "mul-pay.com"
 # })
 # result = gmo.post_request("EntryTran.idPass", options)
 module GMO
@@ -15,14 +15,14 @@ module GMO
     module SiteAPIMethods
 
       def initialize(options = {})
-        @site_id     = options[:site_id]
-        @site_pass   = options[:site_pass]
-        @development = options[:development] || true
-        unless @site_id && @site_pass
-          raise ArgumentError, "Initialize must receive a hash with :site_id and either :site_pass! (received #{options.inspect})"
+        @site_id   = options[:site_id]
+        @site_pass = options[:site_pass]
+        @host      = options[:host]
+        unless @site_id && @site_pass && @host
+          raise ArgumentError, "Initialize must receive a hash with :site_id, :site_pass and either :host! (received #{options.inspect})"
         end
       end
-      attr_reader :site_id, :site_pass, :development
+      attr_reader :site_id, :site_pass, :host
 
       ## 2.3.2.1.会員登録
       # 指定されたサイトに会員を登録します。

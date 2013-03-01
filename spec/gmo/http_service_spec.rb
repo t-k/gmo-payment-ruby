@@ -8,14 +8,9 @@ describe "GMO::HTTPService" do
 
   describe "common methods" do
     describe "server" do
-      it "should return the dev server if options[:development]" do
-        FakeHTTPService.server(:development => true).should == GMO::Payment::DEV_SERVER
+      it "should return the host" do
+        FakeHTTPService.server(:host => SPEC_CONF["host"]).should == SPEC_CONF["host"]
       end
-
-      it "should return the pro server if !options[:development]" do
-        FakeHTTPService.server(:development => false).should == GMO::Payment::PRO_SERVER
-      end
-
     end
 
   end

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://pt01.mul-pay.jp/payment/SearchTradeMulti.idPass
+    uri: https://<HOST>/payment/SearchTradeMulti.idPass
     body:
       encoding: UTF-8
       string: OrderID=null&PayType=null&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
@@ -17,7 +17,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 17 Feb 2013 07:33:04 GMT
+      - Fri, 01 Mar 2013 02:59:40 GMT
       Connection:
       - close
       Content-Type:
@@ -28,5 +28,5 @@ http_interactions:
       encoding: US-ASCII
       string: ErrCode=M01|M01|M01&ErrInfo=M01051005|M01051011|M01004002
     http_version: 
-  recorded_at: Sun, 17 Feb 2013 07:33:04 GMT
+  recorded_at: Fri, 01 Mar 2013 02:59:40 GMT
 recorded_with: VCR 2.4.0

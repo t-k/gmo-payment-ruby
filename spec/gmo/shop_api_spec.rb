@@ -2,10 +2,15 @@ require "spec_helper"
 
 describe "GMO::Payment::ShopAPI" do
 
+  before(:all) do
+    @order_id = generate_id
+  end
+
   before(:each) do
     @service ||= GMO::Payment::ShopAPI.new({
       :shop_id   => SPEC_CONF["shop_id"],
-      :shop_pass => SPEC_CONF["shop_pass"]
+      :shop_pass => SPEC_CONF["shop_pass"],
+      :host      => SPEC_CONF["host"]
     })
   end
 
@@ -23,10 +28,15 @@ describe "GMO::Payment::ShopAPI" do
     @service.shop_pass.should == SPEC_CONF["shop_pass"]
   end
 
+  it "has an attr_reader for host" do
+    @service.host.should == SPEC_CONF["host"]
+  end
+
   describe "#entry_tran" do
     it "gets data about a transaction", :vcr do
+      order_id = @order_id
       result = @service.entry_tran({
-        :order_id => 100,
+        :order_id => order_id,
         :job_cd => "AUTH",
         :amount => 100
       })
@@ -43,11 +53,19 @@ describe "GMO::Payment::ShopAPI" do
 
   describe "#exec_tran" do
     it "gets data about a transaction", :vcr do
+      order_id = generate_id
       client_field1 = "client_field1"
+      result = @service.entry_tran({
+        :order_id => order_id,
+        :job_cd => "AUTH",
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
       result = @service.exec_tran({
-        :order_id      => 100,
-        :access_id     => ACCESS_ID,
-        :access_pass   => ACCESS_PASS,
+        :order_id      => order_id,
+        :access_id     => access_id,
+        :access_pass   => access_pass,
         :method        => 1,
         :pay_times     => 1,
         :card_no       => "4111111111111111",
@@ -77,7 +95,7 @@ describe "GMO::Payment::ShopAPI" do
 
   describe "#alter_tran" do
     it "gets data about order", :vcr do
-      order_id = 1001
+      order_id = generate_id
       result = @service.entry_tran({
         :order_id => order_id,
         :job_cd => "AUTH",
@@ -110,7 +128,7 @@ describe "GMO::Payment::ShopAPI" do
     end
 
     it "change order auth to sale", :vcr do
-      order_id = 1002
+      order_id = generate_id
       result = @service.entry_tran({
         :order_id => order_id,
         :job_cd => "AUTH",
@@ -151,7 +169,7 @@ describe "GMO::Payment::ShopAPI" do
 
   describe "#change_tran" do
     it "gets data about order", :vcr do
-      order_id = 1003
+      order_id = generate_id
       result = @service.entry_tran({
         :order_id => order_id,
         :job_cd => "AUTH",
@@ -192,7 +210,7 @@ describe "GMO::Payment::ShopAPI" do
 
   describe "#search_trade" do
     it "gets data about order", :vcr do
-      order_id = 1003
+      order_id = @order_id
       result = @service.search_trade({
         :order_id => order_id
       })
@@ -227,7 +245,7 @@ describe "GMO::Payment::ShopAPI" do
     it "gets data about order", :vcr do
       client_field1 = "client_field1"
       result = @service.search_trade_multi({
-        :order_id      => 100,
+        :order_id      => @order_id,
         :pay_type      => "0"
       })
       result["Status"].nil?.should_not be_true

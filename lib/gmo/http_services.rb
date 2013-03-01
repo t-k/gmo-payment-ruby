@@ -15,7 +15,7 @@ module GMO
     def self.included(base)
       base.class_eval do
         def self.server(options = {})
-          options[:development] ? Payment::DEV_SERVER : Payment::PRO_SERVER
+          options[:host]
         end
       end# end class_eval
     end

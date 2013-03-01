@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://pt01.mul-pay.jp/payment/EntryTran.idPass
+    uri: https://<HOST>/payment/EntryTran.idPass
     body:
       encoding: UTF-8
-      string: OrderID=1002&JobCd=AUTH&Amount=100&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+      string: OrderID=1362106775&JobCd=AUTH&Amount=100&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept:
       - ! '*/*'
@@ -17,7 +17,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 17 Feb 2013 07:25:23 GMT
+      - Fri, 01 Mar 2013 02:59:35 GMT
       Connection:
       - close
       Content-Type:
@@ -26,15 +26,15 @@ http_interactions:
       - chunked
     body:
       encoding: US-ASCII
-      string: AccessID=b4cc1d826766a26bbcb89f8588efe6bf&AccessPass=62c3e482aae243e02de31c23c77a6c33
+      string: AccessID=675a12f12bb3bbf57aeb67acabfccecf&AccessPass=63144577f7f84c800fa2001cb7495f34
     http_version: 
-  recorded_at: Sun, 17 Feb 2013 07:25:23 GMT
+  recorded_at: Fri, 01 Mar 2013 02:59:35 GMT
 - request:
     method: post
-    uri: https://pt01.mul-pay.jp/payment/ExecTran.idPass
+    uri: https://<HOST>/payment/ExecTran.idPass
     body:
       encoding: UTF-8
-      string: AccessID=b4cc1d826766a26bbcb89f8588efe6bf&AccessPass=62c3e482aae243e02de31c23c77a6c33&OrderID=1002&Method=1&PayTimes=1&CardNo=4111111111111111&Expire=1405&HttpAccept=null&HttpUserAgent=null&DeviceCategory=0&ClientField1=null&ClientField2=null&ClientField3=null&ClientFieldFlag=0&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+      string: AccessID=675a12f12bb3bbf57aeb67acabfccecf&AccessPass=63144577f7f84c800fa2001cb7495f34&OrderID=1362106775&Method=1&PayTimes=1&CardNo=4111111111111111&Expire=1405&HttpAccept=null&HttpUserAgent=null&DeviceCategory=0&ClientField1=null&ClientField2=null&ClientField3=null&ClientFieldFlag=0&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept:
       - ! '*/*'
@@ -46,7 +46,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 17 Feb 2013 07:25:23 GMT
+      - Fri, 01 Mar 2013 02:59:36 GMT
       Connection:
       - close
       Content-Type:
@@ -55,15 +55,15 @@ http_interactions:
       - chunked
     body:
       encoding: US-ASCII
-      string: ACS=0&OrderID=1002&Forward=2a99662&Method=1&PayTimes=&Approve=6299684&TranID=1302171624111111111111197566&TranDate=20130217162524&CheckString=4fec41ca42b3b6bc17bfbabb30a0a68c
+      string: ACS=0&OrderID=1362106775&Forward=2a99662&Method=1&PayTimes=&Approve=6416261&TranID=1303011158111111111111198881&TranDate=20130301115936&CheckString=80fa168870356d57d4e3a755a940dbaf
     http_version: 
-  recorded_at: Sun, 17 Feb 2013 07:25:24 GMT
+  recorded_at: Fri, 01 Mar 2013 02:59:36 GMT
 - request:
     method: post
-    uri: https://pt01.mul-pay.jp/payment/AlterTran.idPass
+    uri: https://<HOST>/payment/AlterTran.idPass
     body:
       encoding: UTF-8
-      string: AccessID=b4cc1d826766a26bbcb89f8588efe6bf&AccessPass=62c3e482aae243e02de31c23c77a6c33&JobCd=SALES&Amount=100&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+      string: AccessID=675a12f12bb3bbf57aeb67acabfccecf&AccessPass=63144577f7f84c800fa2001cb7495f34&JobCd=SALES&Amount=100&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept:
       - ! '*/*'
@@ -75,7 +75,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 17 Feb 2013 07:25:24 GMT
+      - Fri, 01 Mar 2013 02:59:36 GMT
       Connection:
       - close
       Content-Type:
@@ -84,7 +84,7 @@ http_interactions:
       - chunked
     body:
       encoding: US-ASCII
-      string: AccessID=b4cc1d826766a26bbcb89f8588efe6bf&AccessPass=62c3e482aae243e02de31c23c77a6c33&Forward=2a99662&Approve=6299684&TranID=1302171624111111111111197566&TranDate=20130217162524
+      string: AccessID=675a12f12bb3bbf57aeb67acabfccecf&AccessPass=63144577f7f84c800fa2001cb7495f34&Forward=2a99662&Approve=6416261&TranID=1303011158111111111111198881&TranDate=20130301115937
     http_version: 
-  recorded_at: Sun, 17 Feb 2013 07:25:24 GMT
+  recorded_at: Fri, 01 Mar 2013 02:59:37 GMT
 recorded_with: VCR 2.4.0

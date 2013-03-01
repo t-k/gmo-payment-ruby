@@ -2,15 +2,13 @@
 http_interactions:
 - request:
     method: post
-    uri: https://pt01.mul-pay.jp/payment/DeleteMember.idPass
+    uri: https://<HOST>/payment/SaveMember.idPass
     body:
       encoding: UTF-8
-      string: MemberID=100&SiteID=<SITE_ID>&SitePass=<SITE_PASS>
+      string: MemberID=1362106781&MemberName=John+Smith&SiteID=<SITE_ID>&SitePass=<SITE_PASS>
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - '*/*'
+      - ! '*/*'
       User-Agent:
       - Ruby
   response:
@@ -19,7 +17,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sat, 16 Feb 2013 06:51:37 GMT
+      - Fri, 01 Mar 2013 02:59:41 GMT
       Connection:
       - close
       Content-Type:
@@ -27,8 +25,37 @@ http_interactions:
       Transfer-Encoding:
       - chunked
     body:
-      encoding: UTF-8
-      string: MemberID=100
+      encoding: US-ASCII
+      string: MemberID=1362106781
     http_version: 
-  recorded_at: Sat, 16 Feb 2013 06:51:36 GMT
+  recorded_at: Fri, 01 Mar 2013 02:59:41 GMT
+- request:
+    method: post
+    uri: https://<HOST>/payment/DeleteMember.idPass
+    body:
+      encoding: UTF-8
+      string: MemberID=1362106781&SiteID=<SITE_ID>&SitePass=<SITE_PASS>
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 01 Mar 2013 02:59:41 GMT
+      Connection:
+      - close
+      Content-Type:
+      - text/plain;charset=Windows-31J
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: MemberID=1362106781
+    http_version: 
+  recorded_at: Fri, 01 Mar 2013 02:59:41 GMT
 recorded_with: VCR 2.4.0

@@ -6,7 +6,7 @@
 # gmo = GMO::Payment::ShopAPI.new({
 #   shop_id:     "foo",
 #   shop_pass:   "bar",
-#   development:  true
+#   host:  "mul-pay.com"
 # })
 # result = gmo.post_request("EntryTran.idPass", options)
 module GMO
@@ -15,14 +15,14 @@ module GMO
     module ShopAPIMethods
 
       def initialize(options = {})
-        @shop_id     = options[:shop_id]
-        @shop_pass   = options[:shop_pass]
-        @development = options[:development] || true
-        unless @shop_id && @shop_pass
-          raise ArgumentError, "Initialize must receive a hash with :shop_id and either :shop_pass! (received #{options.inspect})"
+        @shop_id   = options[:shop_id]
+        @shop_pass = options[:shop_pass]
+        @host      = options[:host]
+        unless @shop_id && @shop_pass && @host
+          raise ArgumentError, "Initialize must receive a hash with :shop_id, :shop_pass and either :host! (received #{options.inspect})"
         end
       end
-      attr_reader :shop_id, :shop_pass, :development
+      attr_reader :shop_id, :shop_pass, :host
 
       ## 2.1.2.1.取引登録
       # これ以降の決済取引で必要となる取引 ID と取引パスワードの発行を行い、取引を開始します。

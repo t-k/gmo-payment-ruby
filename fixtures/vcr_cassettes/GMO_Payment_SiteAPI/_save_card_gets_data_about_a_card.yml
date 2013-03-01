@@ -2,15 +2,13 @@
 http_interactions:
 - request:
     method: post
-    uri: https://pt01.mul-pay.jp/payment/SaveCard.idPass
+    uri: https://<HOST>/payment/SaveCard.idPass
     body:
       encoding: UTF-8
-      string: MemberID=101&CardNo=4111111111111111&Expire=1405&SiteID=<SITE_ID>&SitePass=<SITE_PASS>
+      string: MemberID=1362106780&CardNo=4111111111111111&Expire=1405&SiteID=<SITE_ID>&SitePass=<SITE_PASS>
     headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
-      - '*/*'
+      - ! '*/*'
       User-Agent:
       - Ruby
   response:
@@ -19,7 +17,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sat, 16 Feb 2013 07:04:21 GMT
+      - Fri, 01 Mar 2013 02:59:42 GMT
       Connection:
       - close
       Content-Type:
@@ -27,8 +25,8 @@ http_interactions:
       Transfer-Encoding:
       - chunked
     body:
-      encoding: UTF-8
+      encoding: US-ASCII
       string: CardSeq=0&CardNo=*************111&Forward=2a99662
     http_version: 
-  recorded_at: Sat, 16 Feb 2013 07:04:21 GMT
+  recorded_at: Fri, 01 Mar 2013 02:59:42 GMT
 recorded_with: VCR 2.4.0

@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://pt01.mul-pay.jp/payment/ExecTran.idPass
+    uri: https://<HOST>/payment/ExecTran.idPass
     body:
       encoding: UTF-8
-      string: AccessID=null&AccessPass=null&OrderID=null&Method=null&PayTimes=null&CardNo=null&Expire=null&HttpAccept=null&HttpUserAgent=null&DeviceCategory=0&ClientField1=null&ClientField2=null&ClientField3=null&ClientFieldFlag=0&ShopID=1&ShopPass=1
+      string: AccessID=null&AccessPass=null&OrderID=null&Method=null&PayTimes=null&CardNo=null&Expire=null&HttpAccept=null&HttpUserAgent=null&DeviceCategory=0&ClientField1=null&ClientField2=null&ClientField3=null&ClientFieldFlag=0&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept:
       - ! '*/*'
@@ -17,7 +17,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sat, 16 Feb 2013 04:47:14 GMT
+      - Fri, 01 Mar 2013 02:59:33 GMT
       Connection:
       - close
       Content-Type:
@@ -27,6 +27,6 @@ http_interactions:
     body:
       encoding: US-ASCII
       string: ErrCode=E01|E01|E01|E01|E01|E01&ErrInfo=E01090008|E01100008|E01110002|E01170011|E01170006|E01180006
-    http_version:
-  recorded_at: Sat, 16 Feb 2013 04:47:14 GMT
+    http_version: 
+  recorded_at: Fri, 01 Mar 2013 02:59:33 GMT
 recorded_with: VCR 2.4.0

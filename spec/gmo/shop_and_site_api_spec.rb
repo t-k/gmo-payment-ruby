@@ -7,7 +7,8 @@ describe "GMO::Payment::ShopAndSiteAPI" do
       :shop_id   => SPEC_CONF["shop_id"],
       :shop_pass => SPEC_CONF["shop_pass"],
       :site_id   => SPEC_CONF["site_id"],
-      :site_pass => SPEC_CONF["site_pass"]
+      :site_pass => SPEC_CONF["site_pass"],
+      :host      => SPEC_CONF["host"]
     })
   end
 
@@ -31,6 +32,10 @@ describe "GMO::Payment::ShopAndSiteAPI" do
 
   it "has an attr_reader for site_pass" do
     @service.site_pass.should == SPEC_CONF["site_pass"]
+  end
+
+  it "has an attr_reader for host" do
+    @service.host.should == SPEC_CONF["host"]
   end
 
   describe "#trade_card" do

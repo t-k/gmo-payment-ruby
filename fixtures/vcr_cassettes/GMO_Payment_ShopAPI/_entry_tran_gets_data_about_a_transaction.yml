@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://pt01.mul-pay.jp/payment/EntryTran.idPass
+    uri: https://<HOST>/payment/EntryTran.idPass
     body:
       encoding: UTF-8
-      string: OrderID=9881&JobCd=AUTH&Amount=100&ShopID=tshop1&ShopPass=1
+      string: OrderID=1362106772&JobCd=AUTH&Amount=100&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept:
       - ! '*/*'
@@ -17,7 +17,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sat, 16 Feb 2013 04:40:59 GMT
+      - Fri, 01 Mar 2013 02:59:32 GMT
       Connection:
       - close
       Content-Type:
@@ -26,7 +26,7 @@ http_interactions:
       - chunked
     body:
       encoding: US-ASCII
-      string: AccessID=ae4e9acdf5c68d901d195ab0d087ec24&AccessPass=3d21f1802db0afb9daef4ba6e2beff0f
-    http_version:
-  recorded_at: Sat, 16 Feb 2013 04:40:58 GMT
+      string: AccessID=3618be802c7ac572414274731e50cb6c&AccessPass=4099664bd4b110800e09805539d1d7b5
+    http_version: 
+  recorded_at: Fri, 01 Mar 2013 02:59:33 GMT
 recorded_with: VCR 2.4.0

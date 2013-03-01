@@ -8,6 +8,7 @@ VCR.configure do |c|
   c.filter_sensitive_data('<SITE_ID>') { SPEC_CONF["site_id"] }
   c.filter_sensitive_data('<SITE_PASS>') { SPEC_CONF["site_pass"] }
   c.filter_sensitive_data('<SITE_PASS>') { SPEC_CONF["site_pass"] }
+  c.filter_sensitive_data('<HOST>') { SPEC_CONF["host"] }
   c.filter_sensitive_data('<ACCESS_ID>') { ACCESS_ID }
   c.filter_sensitive_data('<ACCESS_PASS>') { ACCESS_PASS }
 end

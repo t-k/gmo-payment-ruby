@@ -7,7 +7,7 @@ Gem::Specification.new do |gem|
   gem.name        = "gmo"
   gem.description   = %q{Ruby client library for the GMO Payment Platform.}
   gem.summary       = %q{GMO Payment API client: Ruby client library for the GMO Payment Platform.}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/t-k/gmo-payment-ruby"
   gem.version     = GMO::VERSION
 
   gem.authors       = ["Tatsuo Kaniwa"]
