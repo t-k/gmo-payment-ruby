@@ -25,8 +25,7 @@ Overview
 
 TODO
 ---
-* add tests
-* set production server
+* add supported APIs
 * improve docs
 
 Issues
@@ -46,6 +45,7 @@ option = {
 }
 result = gmo.entry_tran(option)
 ```
+More documentation available <a href="https://github.com/t-k/gmo-payment-ruby/wiki/_pages">on the wiki</a>.
 
 Authors and Contributors
 ---
