@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.2.1
+ * Fix handling of ClientField options on GMO::Payment::ShopAPI#exec_tran
+
 ## 0.2.0
 
  * Use https scheme for rubygems source
