@@ -1,3 +1,5 @@
+# Encoding: UTF-8
+
 require "spec_helper"
 
 describe "GMO::Payment::ShopAPI" do
@@ -51,6 +53,24 @@ describe "GMO::Payment::ShopAPI" do
     end
   end
 
+  describe "#entry_tran_cvs" do
+    it "gets data about a transaction", :vcr do
+      order_id = @order_id
+      result = @service.entry_tran_cvs({
+        :order_id => order_id,
+        :amount => 100
+      })
+      result["AccessID"].nil?.should_not be_true
+      result["AccessPass"].nil?.should_not be_true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.entry_tran_cvs()
+      }.should raise_error
+    end
+  end
+
   describe "#exec_tran" do
     it "gets data about a transaction", :vcr do
       order_id = generate_id
@@ -89,6 +109,48 @@ describe "GMO::Payment::ShopAPI" do
     it "got error if missing options", :vcr do
       lambda {
         result = @service.exec_tran()
+      }.should raise_error
+    end
+  end
+
+  describe "#exec_tran_cvs" do
+    it "gets data about a transaction", :vcr do
+      order_id = generate_id
+      client_field1 = "client_field1"
+      result = @service.entry_tran_cvs({
+        :order_id => order_id,
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      result = @service.exec_tran_cvs({
+        :order_id      => order_id,
+        :access_id     => access_id,
+        :access_pass   => access_pass,
+        :convenience   => '00001',
+        :customer_name => 'コンビニ太郎',
+        :customer_kana => 'コンビニタロウ',
+        :tel_no        => '0300000001',
+        :receipts_disp_11 => 'RSpec Helpdesk',
+        :receipts_disp_12 => 'RSpec hotline',
+        :receipts_disp_13 => '00:00-00:15',
+        :client_field_1 => client_field1
+      })
+      result["OrderID"].nil?.should_not be_true
+      result["Convenience"].nil?.should_not be_true
+      result["ConfNo"].nil?.should_not be_true
+      result["ReceiptNo"].nil?.should_not be_true
+      result["PaymentTerm"].nil?.should_not be_true
+      result["TranDate"].nil?.should_not be_true
+      result["CheckString"].nil?.should_not be_true
+      result["ClientField1"].nil?.should_not be_true
+      (result["ClientField1"] == client_field1).should be_true
+      result["ClientField3"].nil?.should_not be_true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.exec_tran_cvs()
       }.should raise_error
     end
   end

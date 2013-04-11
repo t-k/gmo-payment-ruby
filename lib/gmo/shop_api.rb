@@ -52,6 +52,17 @@ module GMO
         post_request name, args
       end
 
+
+      # 【コンビニ払い】取引登録
+      def entry_tran_cvs(options = {})
+        name = "EntryTranCvs.idPass"
+        args = {
+          "OrderID"  => options[:order_id],
+          "Amount"   => options[:amount]
+        }
+        post_request name, args
+      end
+
       ## 2.2.2.2.決済実行
       # 指定されたサイトに会員を登録します。
       # return
@@ -114,6 +125,52 @@ module GMO
           "ClientField3"    => options[:client_field3],
           "ClientFieldFlag" => client_field_flg
         }
+        post_request name, args
+      end
+
+      def exec_tran_cvs(options = {})
+        name = "ExecTranCvs.idPass"
+        arg_assoc = {
+          access_id: 'AccessID',
+          access_pass: 'AccessPass',
+          order_id: 'OrderID',
+          convenience: 'Convenience',
+          customer_name: 'CustomerName',
+          customer_kana: 'CustomerKana',
+          tel_no: 'TelNo',
+          payment_term_day: 'PaymentTermDay',
+          mail_address: 'MailAddress',
+          shop_mail_address: 'ShopMailAddress',
+          reserve_no: 'ReserveNo',
+          member_no: 'MemberNo',
+          register_disp_1: 'RegisterDisp1',
+          register_disp_2: 'RegisterDisp2',
+          register_disp_3: 'RegisterDisp3',
+          register_disp_4: 'RegisterDisp4',
+          register_disp_5: 'RegisterDisp5',
+          register_disp_6: 'RegisterDisp6',
+          register_disp_7: 'RegisterDisp7',
+          register_disp_8: 'RegisterDisp8',
+          receipts_disp_1: 'ReceiptsDisp1',
+          receipts_disp_2: 'ReceiptsDisp2',
+          receipts_disp_3: 'ReceiptsDisp3',
+          receipts_disp_4: 'ReceiptsDisp4',
+          receipts_disp_5: 'ReceiptsDisp5',
+          receipts_disp_6: 'ReceiptsDisp6',
+          receipts_disp_7: 'ReceiptsDisp7',
+          receipts_disp_8: 'ReceiptsDisp8',
+          receipts_disp_9: 'ReceiptsDisp9',
+          receipts_disp_10: 'ReceiptsDisp10',
+          receipts_disp_11: 'ReceiptsDisp11',
+          receipts_disp_12: 'ReceiptsDisp12',
+          receipts_disp_13: 'ReceiptsDisp13',
+          client_field_1: 'ClientField1',
+          client_field_2: 'ClientField2',
+          client_field_3: 'ClientField3'
+        }
+        required = [ :access_id, :access_pass, :order_id, :convenience, :customer_name, :tel_no, :receipts_disp_11, :receipts_disp_12, :receipts_disp_13 ]
+        required.each { |x| raise ArgumentError("Required #{x} was not provided.") unless options.has_key? x }
+        args = Hash[options.map { |k, v| arg_assoc.has_key?(k) ? [ arg_assoc[k], v ] : [] }]
         post_request name, args
       end
 
