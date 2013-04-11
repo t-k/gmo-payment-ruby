@@ -49,7 +49,7 @@ describe "GMO::Payment::ShopAPI" do
     it "got error if missing options", :vcr do
       lambda {
         result = @service.entry_tran()
-      }.should raise_error
+      }.should raise_error("Required order_id, job_cd were not provided.")
     end
   end
 
@@ -67,7 +67,7 @@ describe "GMO::Payment::ShopAPI" do
     it "got error if missing options", :vcr do
       lambda {
         result = @service.entry_tran_cvs()
-      }.should raise_error
+      }.should raise_error("Required order_id, amount were not provided.")
     end
   end
 
@@ -109,7 +109,7 @@ describe "GMO::Payment::ShopAPI" do
     it "got error if missing options", :vcr do
       lambda {
         result = @service.exec_tran()
-      }.should raise_error
+      }.should raise_error("Required access_id, access_pass, order_id, card_no, expire were not provided.")
     end
   end
 
@@ -151,7 +151,7 @@ describe "GMO::Payment::ShopAPI" do
     it "got error if missing options", :vcr do
       lambda {
         result = @service.exec_tran_cvs()
-      }.should raise_error
+      }.should raise_error("Required access_id, access_pass, order_id, convenience, customer_name, tel_no, receipts_disp_11, receipts_disp_12, receipts_disp_13 were not provided.")
     end
   end
 
@@ -225,7 +225,7 @@ describe "GMO::Payment::ShopAPI" do
     it "got error if missing options", :vcr do
       lambda {
         result = @service.alter_tran()
-      }.should raise_error
+      }.should raise_error("Required access_id, access_pass, job_cd were not provided.")
     end
   end
 
@@ -264,8 +264,8 @@ describe "GMO::Payment::ShopAPI" do
 
     it "got error if missing options", :vcr do
       lambda {
-        result = @service.search_trade_multi()
-      }.should raise_error
+        result = @service.change_tran()
+      }.should raise_error("Required access_id, access_pass, job_cd, amount were not provided.")
     end
   end
 
@@ -298,8 +298,8 @@ describe "GMO::Payment::ShopAPI" do
 
     it "got error if missing options", :vcr do
       lambda {
-        result = @service.search_trade_multi()
-      }.should raise_error
+        result = @service.search_trade()
+      }.should raise_error("Required order_id were not provided.")
     end
   end
 
@@ -334,7 +334,7 @@ describe "GMO::Payment::ShopAPI" do
     it "got error if missing options", :vcr do
       lambda {
         result = @service.search_trade_multi()
-      }.should raise_error
+      }.should raise_error("Required order_id, pay_type were not provided.")
     end
   end
 

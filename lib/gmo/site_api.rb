@@ -28,67 +28,54 @@ module GMO
       # 指定されたサイトに会員を登録します。
       def save_member(options = {})
         name = "SaveMember.idPass"
-        args = {
-          "MemberID"   => options[:member_id],
-          "MemberName" => options[:member_name]
-        }
-        post_request name, args
+        required = [:member_id]
+        assert_required_options(required, options)
+        post_request name, options
       end
 
       ## 2.4.2.1.会員更新
       # 指定されたサイトに会員情報を更新します。
       def update_member(options = {})
         name = "UpdateMember.idPass"
-        args = {
-          "MemberID"   => options[:member_id],
-          "MemberName" => options[:member_name]
-        }
-        post_request name, args
+        required = [:member_id]
+        assert_required_options(required, options)
+        post_request name, options
       end
 
       ## 2.5.2.1.会員削除
       # 指定したサイトから会員情報を削除します。
       def delete_member(options = {})
         name = "DeleteMember.idPass"
-        args = {
-          "MemberID" => options[:member_id]
-        }
-        post_request name, args
+        required = [:member_id]
+        assert_required_options(required, options)
+        post_request name, options
       end
 
       ## 2.6.2.1.会員参照
       # 指定したサイトの会員情報を参照します。
       def search_member(options = {})
         name = "SearchMember.idPass"
-        args = {
-          "MemberID" => options[:member_id]
-        }
-        post_request name, args
+        required = [:member_id]
+        assert_required_options(required, options)
+        post_request name, options
       end
 
       ## 2.7.2.1.カード登録/更新
       # 指定した会員にカード情報を登録します。尚、サイトに設定されたショップ ID を使用してカード会社と通信を行い有効性の確認を行います。
       def save_card(options = {})
         name = "SaveCard.idPass"
-        args = {
-          "MemberID" => options[:member_id],
-          "CardSeq"  => options[:card_seq],
-          "CardNo"   => options[:card_no],
-          "Expire"   => options[:expire]
-        }
-        args.delete("CardSeq") if options[:card_seq].nil?
-        post_request name, args
+        required = [:member_id, :card_no, :expire]
+        assert_required_options(required, options)
+        post_request name, options
       end
 
       ## 2.8.2.1.カード削除
       # 指定した会員のカード情報を削除します。
       def delete_card(options = {})
         name = "DeleteCard.idPass"
-        args = {
-          "MemberID" => options[:member_id],
-          "CardSeq"  => options[:card_seq]
-        }
-        post_request name, args
+        required = [:member_id, :card_seq]
+        assert_required_options(required, options)
+        post_request name, options
       end
 
       ## 2.9.2.1.カード参照
@@ -97,12 +84,9 @@ module GMO
       # /payment/ExecTran.idPass
       def search_card(options = {})
         name = "SearchCard.idPass"
-        args = {
-          "MemberID" => options[:member_id],
-          "CardSeq"  => options[:card_seq],
-          "SeqMode"  => options[:seq_mode]
-        }
-        post_request name, args
+        required = [:member_id, :card_seq, :seq_mode]
+        assert_required_options(required, options)
+        post_request name, options
       end
 
       ## 2.11.2.3. 決済実行
@@ -111,21 +95,9 @@ module GMO
       # /payment/ExecTran.idPass
       def exec_tran(options = {})
         name = "ExecTran.idPass"
-        args = {
-          "AccessID"       => options[:access_id],
-          "AccessPass"     => options[:access_pass],
-          "OrderID"        => options[:order_id],
-          "JobCd"          => "SALES",
-          "Method"         => options[:method],
-          "PayTimes"       => options[:pay_times],
-          "MemberID"       => options[:member_id],
-          "CardSeq"        => options[:card_seq],
-          "Amount"         => options[:amount],
-          "HttpAccept"     => options[:http_accept],
-          "HttpUserAgent"  => options[:http_ua],
-          "DeviceCategory" => "0"
-        }
-        post_request name, args
+        required = [:access_id, :access_pass, :order_id, :member_id, :card_seq]
+        assert_required_options(required, options)
+        post_request name, options
       end
 
       private

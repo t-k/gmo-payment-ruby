@@ -41,6 +41,12 @@ describe "GMO::Payment::SiteAPI" do
       })
       result["MemberID"].nil?.should_not be_true
     end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.save_member()
+      }.should raise_error("Required member_id were not provided.")
+    end
   end
 
   describe "#update_member" do
@@ -52,6 +58,12 @@ describe "GMO::Payment::SiteAPI" do
         :member_name => member_name
       })
       result["MemberID"].nil?.should_not be_true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.update_member()
+      }.should raise_error("Required member_id were not provided.")
     end
   end
 
@@ -67,6 +79,12 @@ describe "GMO::Payment::SiteAPI" do
         :member_id => member_id
       })
       result["MemberID"].nil?.should_not be_true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.delete_member()
+      }.should raise_error("Required member_id were not provided.")
     end
   end
 
@@ -89,6 +107,12 @@ describe "GMO::Payment::SiteAPI" do
       result["DeleteFlag"].nil?.should_not be_true
       (result["DeleteFlag"].to_i == 0).should be_true
     end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.search_member()
+      }.should raise_error("Required member_id were not provided.")
+    end
   end
 
   describe "#save_card" do
@@ -103,6 +127,12 @@ describe "GMO::Payment::SiteAPI" do
       })
       result["CardNo"].nil?.should_not be_true
     end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.save_card()
+      }.should raise_error("Required member_id, card_no, expire were not provided.")
+    end
   end
 
   describe "#delete_card" do
@@ -115,6 +145,12 @@ describe "GMO::Payment::SiteAPI" do
       })
       result["CardSeq"].nil?.should_not be_true
       (result["CardSeq"].to_i == card_seq).should be_true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.delete_card()
+      }.should raise_error("Required member_id, card_seq were not provided.")
     end
   end
 
@@ -145,6 +181,12 @@ describe "GMO::Payment::SiteAPI" do
       (result["Expire"].to_s == expire).should be_true
       result["HolderName"].nil?.should_not be_true
       result["DeleteFlag"].nil?.should_not be_true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.search_card()
+      }.should raise_error("Required member_id, card_seq, seq_mode were not provided.")
     end
   end
 

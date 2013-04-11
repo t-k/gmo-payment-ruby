@@ -44,23 +44,21 @@ module GMO
       # {"AccessID"=>"a41d83f1f4c908baeda04e6dc03e300c", "AccessPass"=>"d72eca02e28c88f98b9341a33ba46d5d"}
       def entry_tran(options = {})
         name = "EntryTran.idPass"
-        args = {
-          "OrderID"  => options[:order_id],
-          "JobCd"    => options[:job_cd],
-          "Amount"   => options[:amount]
-        }
-        post_request name, args
+        required = [:order_id, :job_cd]
+        required << :amount if options[:job_cd] && options[:job_cd] != "CHECK"
+        assert_required_options(required, options)
+        post_request name, options
       end
 
 
-      # 【コンビニ払い】取引登録
+      # 【コンビニ払い】
+      #  2.1.2.1. 取引登録
+      #  これ以降の決済取引で必要となる取引IDと取引パスワードの発行を行い、取引を開始します。
       def entry_tran_cvs(options = {})
         name = "EntryTranCvs.idPass"
-        args = {
-          "OrderID"  => options[:order_id],
-          "Amount"   => options[:amount]
-        }
-        post_request name, args
+        required = [:order_id, :amount]
+        assert_required_options(required, options)
+        post_request name, options
       end
 
       ## 2.2.2.2.決済実行
@@ -105,73 +103,41 @@ module GMO
       def exec_tran(options = {})
         name = "ExecTran.idPass"
         if options[:client_field1] || options[:client_field2] || options[:client_field3]
-          client_field_flg = "1"
+          options[:client_field_flg] = "1"
         else
-          client_field_flg = "0"
+          options[:client_field_flg] = "0"
         end
-        args = {
-          "AccessID"        => options[:access_id],
-          "AccessPass"      => options[:access_pass],
-          "OrderID"         => options[:order_id],
-          "Method"          => options[:method],
-          "PayTimes"        => options[:pay_times],
-          "CardNo"          => options[:card_no],
-          "Expire"          => options[:expire],
-          "HttpAccept"      => options[:http_accept],
-          "HttpUserAgent"   => options[:http_ua],
-          "DeviceCategory"  => "0",
-          "ClientField1"    => options[:client_field1],
-          "ClientField2"    => options[:client_field2],
-          "ClientField3"    => options[:client_field3],
-          "ClientFieldFlag" => client_field_flg
-        }
-        post_request name, args
+        options[:device_category] = "0"
+
+        # args = {
+        #   "AccessID"        => options[:access_id],
+        #   "AccessPass"      => options[:access_pass],
+        #   "OrderID"         => options[:order_id],
+        #   "Method"          => options[:method],
+        #   "PayTimes"        => options[:pay_times],
+        #   "CardNo"          => options[:card_no],
+        #   "Expire"          => options[:expire],
+        #   "HttpAccept"      => options[:http_accept],
+        #   "HttpUserAgent"   => options[:http_ua],
+        #   "DeviceCategory"  => "0",
+        #   "ClientField1"    => options[:client_field1],
+        #   "ClientField2"    => options[:client_field2],
+        #   "ClientField3"    => options[:client_field3],
+        #   "ClientFieldFlag" => client_field_flg
+        # }
+        required = [:access_id, :access_pass, :order_id, :card_no, :expire]
+        assert_required_options(required, options)
+        post_request name, options
       end
 
+      # 【コンビニ払い】
+      # 2.1.2.2. 決済実行
+      # お客様が入力した情報で後続の決済センターと通信を行い決済を実施し、結果を返します。
       def exec_tran_cvs(options = {})
         name = "ExecTranCvs.idPass"
-        arg_assoc = {
-          access_id: 'AccessID',
-          access_pass: 'AccessPass',
-          order_id: 'OrderID',
-          convenience: 'Convenience',
-          customer_name: 'CustomerName',
-          customer_kana: 'CustomerKana',
-          tel_no: 'TelNo',
-          payment_term_day: 'PaymentTermDay',
-          mail_address: 'MailAddress',
-          shop_mail_address: 'ShopMailAddress',
-          reserve_no: 'ReserveNo',
-          member_no: 'MemberNo',
-          register_disp_1: 'RegisterDisp1',
-          register_disp_2: 'RegisterDisp2',
-          register_disp_3: 'RegisterDisp3',
-          register_disp_4: 'RegisterDisp4',
-          register_disp_5: 'RegisterDisp5',
-          register_disp_6: 'RegisterDisp6',
-          register_disp_7: 'RegisterDisp7',
-          register_disp_8: 'RegisterDisp8',
-          receipts_disp_1: 'ReceiptsDisp1',
-          receipts_disp_2: 'ReceiptsDisp2',
-          receipts_disp_3: 'ReceiptsDisp3',
-          receipts_disp_4: 'ReceiptsDisp4',
-          receipts_disp_5: 'ReceiptsDisp5',
-          receipts_disp_6: 'ReceiptsDisp6',
-          receipts_disp_7: 'ReceiptsDisp7',
-          receipts_disp_8: 'ReceiptsDisp8',
-          receipts_disp_9: 'ReceiptsDisp9',
-          receipts_disp_10: 'ReceiptsDisp10',
-          receipts_disp_11: 'ReceiptsDisp11',
-          receipts_disp_12: 'ReceiptsDisp12',
-          receipts_disp_13: 'ReceiptsDisp13',
-          client_field_1: 'ClientField1',
-          client_field_2: 'ClientField2',
-          client_field_3: 'ClientField3'
-        }
-        required = [ :access_id, :access_pass, :order_id, :convenience, :customer_name, :tel_no, :receipts_disp_11, :receipts_disp_12, :receipts_disp_13 ]
-        required.each { |x| raise ArgumentError("Required #{x} was not provided.") unless options.has_key? x }
-        args = Hash[options.map { |k, v| arg_assoc.has_key?(k) ? [ arg_assoc[k], v ] : [] }]
-        post_request name, args
+        required = [:access_id, :access_pass, :order_id, :convenience, :customer_name, :tel_no, :receipts_disp_11, :receipts_disp_12, :receipts_disp_13]
+        assert_required_options(required, options)
+        post_request name, options
       end
 
       ## 2.14.2.1.決済変更
@@ -200,13 +166,9 @@ module GMO
       # {"AccessID"=>"381d84ae4e6fc37597482573a9569f10", "AccessPass"=>"cc0093ca8758c6616fa0ab9bf6a43e8d", "Forward"=>"2a99662", "Approve"=>"6284199", "TranID"=>"1302140555111111111111193536", "TranDate"=>"20130215110651"}
       def alter_tran(options = {})
         name = "AlterTran.idPass"
-        args = {
-          "AccessID"   => options[:access_id],
-          "AccessPass" => options[:access_pass],
-          "JobCd"      => options[:job_cd] || "SALES",
-          "Amount"     => options[:amount]
-        }
-        post_request name, args
+        required = [:access_id, :access_pass, :job_cd]
+        assert_required_options(required, options)
+        post_request name, options
       end
 
       ## 2.15.2.1.金額変更
@@ -227,34 +189,27 @@ module GMO
       # })
       def change_tran(options = {})
         name = "ChangeTran.idPass"
-        args = {
-          "AccessID"   => options[:access_id],
-          "AccessPass" => options[:access_pass],
-          "JobCd"      => options[:job_cd],
-          "Amount"     => options[:amount]
-        }
-        post_request name, args
+        required = [:access_id, :access_pass, :job_cd, :amount]
+        assert_required_options(required, options)
+        post_request name, options
       end
 
       ## 2.16.2.1.取引状態参照
       # 指定したオーダーID の取引情報を取得します。
       def search_trade(options = {})
         name = "SearchTrade.idPass"
-        args = {
-          "OrderID" => options[:order_id]
-        }
-        post_request name, args
+        required = [:order_id]
+        assert_required_options(required, options)
+        post_request name, options
       end
 
       # 13.1.2.1.取引状態参照
       # 指定したオーダーIDの取引情報を取得します。
       def search_trade_multi(options = {})
         name = "SearchTradeMulti.idPass"
-        args = {
-          "OrderID" => options[:order_id],
-          "PayType" => options[:pay_type]
-        }
-        post_request name, args
+        required = [:order_id, :pay_type]
+        assert_required_options(required, options)
+        post_request name, options
       end
 
       private

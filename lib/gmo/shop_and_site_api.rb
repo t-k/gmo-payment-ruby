@@ -23,15 +23,9 @@ module GMO
       # Forward
       def trade_card(options = {})
         name = "TradedCard.idPass"
-        args = {
-          "OrderID"     => options[:order_id],
-          "MemberID"    => options[:member_id],
-          "SeqMode"     => options[:seq_mode] || "0",
-          "DefaultFlag" => options[:default_flag] || "0",
-          "HolderName"  => options[:holder_name]
-        }
-        args.delete("HolderName") if options[:holder_name].nil?
-        post_request name, args
+        required = [:order_id, :member_id]
+        assert_required_options(required, options)
+        post_request name, options
       end
 
       private

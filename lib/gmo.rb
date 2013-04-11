@@ -2,6 +2,7 @@ require 'cgi'
 require 'rack/utils'
 require 'multi_json'
 
+require "gmo/const"
 require 'gmo/errors'
 require 'gmo/http_services'
 require 'gmo/shop_api'
@@ -60,11 +61,21 @@ module GMO
       # gmo.post_request("EntryTran.idPass", {:foo => "bar"})
       # POST /EntryTran.idPass with params foo=bar
       def post_request(name, args = {}, options = {})
+        args = assciate_options_to_gmo_params args
         api_call(name, args, "post", options)
       end
       alias :post! :post_request
 
       private
+
+        def assert_required_options(required, options)
+          missing = required.select { |param| options[param].nil? }
+          raise ArgumentError, "Required #{missing.join(', ')} were not provided." unless missing.empty?
+        end
+
+        def assciate_options_to_gmo_params(options)
+          Hash[options.map { |k, v| [GMO::Const::INPUT_PARAMS[k], v] }]
+        end
 
         def api_call(*args)
           raise "Called abstract method: api_call"
