@@ -74,7 +74,7 @@ describe "GMO::Payment::ShopAPI" do
   describe "#exec_tran" do
     it "gets data about a transaction", :vcr do
       order_id = generate_id
-      client_field1 = "client_field1"
+      client_field_1 = "client_field1"
       result = @service.entry_tran({
         :order_id => order_id,
         :job_cd => "AUTH",
@@ -90,7 +90,7 @@ describe "GMO::Payment::ShopAPI" do
         :pay_times     => 1,
         :card_no       => "4111111111111111",
         :expire        => "1405",
-        :client_field1 => client_field1
+        :client_field_1 => client_field_1
       })
       result["ACS"].nil?.should_not be_true
       result["OrderID"].nil?.should_not be_true
@@ -102,7 +102,7 @@ describe "GMO::Payment::ShopAPI" do
       result["TranDate"].nil?.should_not be_true
       result["CheckString"].nil?.should_not be_true
       result["ClientField1"].nil?.should_not be_true
-      (result["ClientField1"] == client_field1).should be_true
+      (result["ClientField1"] == client_field_1).should be_true
       result["ClientField3"].nil?.should_not be_true
     end
 
@@ -116,7 +116,7 @@ describe "GMO::Payment::ShopAPI" do
   describe "#exec_tran_cvs" do
     it "gets data about a transaction", :vcr do
       order_id = generate_id
-      client_field1 = "client_field1"
+      client_field_1 = "client_field1"
       result = @service.entry_tran_cvs({
         :order_id => order_id,
         :amount => 100
@@ -134,7 +134,7 @@ describe "GMO::Payment::ShopAPI" do
         :receipts_disp_11 => 'RSpec Helpdesk',
         :receipts_disp_12 => 'RSpec hotline',
         :receipts_disp_13 => '00:00-00:15',
-        :client_field_1 => client_field1
+        :client_field_1 => client_field_1
       })
       result["OrderID"].nil?.should_not be_true
       result["Convenience"].nil?.should_not be_true
@@ -144,7 +144,7 @@ describe "GMO::Payment::ShopAPI" do
       result["TranDate"].nil?.should_not be_true
       result["CheckString"].nil?.should_not be_true
       result["ClientField1"].nil?.should_not be_true
-      (result["ClientField1"] == client_field1).should be_true
+      (result["ClientField1"] == client_field_1).should be_true
       result["ClientField3"].nil?.should_not be_true
     end
 
@@ -305,7 +305,7 @@ describe "GMO::Payment::ShopAPI" do
 
   describe "#search_trade_multi" do
     it "gets data about order", :vcr do
-      client_field1 = "client_field1"
+      client_field_1 = "client_field1"
       result = @service.search_trade_multi({
         :order_id      => @order_id,
         :pay_type      => "0"

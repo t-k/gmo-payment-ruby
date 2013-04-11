@@ -97,12 +97,12 @@ module GMO
       #   pay_times:     1,
       #   card_no:       "4111111111111111",
       #   expire:        "1405", #format YYMM
-      #   client_field1: "client_field1"
+      #   client_field_1: "client_field1"
       # })
       # {"ACS"=>"0", "OrderID"=>"100", "Forward"=>"2a99662", "Method"=>"1", "PayTimes"=>"", "Approve"=>"6294780", "TranID"=>"1302160543111111111111192829", "TranDate"=>"20130216054346", "CheckString"=>"3e455a2168fefc90dbb7db7ef7b0fe82", "ClientField1"=>"client_field1", "ClientField2"=>"", "ClientField3"=>""}
       def exec_tran(options = {})
         name = "ExecTran.idPass"
-        if options[:client_field1] || options[:client_field2] || options[:client_field3]
+        if options[:client_field_1] || options[:client_field_2] || options[:client_field_3]
           options[:client_field_flg] = "1"
         else
           options[:client_field_flg] = "0"
@@ -120,9 +120,9 @@ module GMO
         #   "HttpAccept"      => options[:http_accept],
         #   "HttpUserAgent"   => options[:http_ua],
         #   "DeviceCategory"  => "0",
-        #   "ClientField1"    => options[:client_field1],
-        #   "ClientField2"    => options[:client_field2],
-        #   "ClientField3"    => options[:client_field3],
+        #   "ClientField1"    => options[:client_field_1],
+        #   "ClientField2"    => options[:client_field_2],
+        #   "ClientField3"    => options[:client_field_3],
         #   "ClientFieldFlag" => client_field_flg
         # }
         required = [:access_id, :access_pass, :order_id, :card_no, :expire]
