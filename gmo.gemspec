@@ -4,12 +4,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'gmo/version'
 
 Gem::Specification.new do |gem|
-  gem.name        = "gmo"
+  gem.name          = "gmo"
   gem.description   = %q{Ruby client library for the GMO Payment Platform.}
   gem.summary       = %q{GMO Payment API client: Ruby client library for the GMO Payment Platform.}
   gem.homepage      = "https://github.com/t-k/gmo-payment-ruby"
-  gem.version     = GMO::VERSION
-
+  gem.version       = GMO::VERSION
+  gem.license       = "MIT"
   gem.authors       = ["Tatsuo Kaniwa"]
   gem.email         = ["tatsuo@kaniwa.biz"]
 
