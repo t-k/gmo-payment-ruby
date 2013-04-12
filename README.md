@@ -20,16 +20,10 @@ gem "gmo"
 ```
 and run bundle install to install the dependency.
 
-Overview
----
-
 TODO
 ---
 * add supported APIs
 * improve docs
-
-Issues
----
 
 Usage
 ---
@@ -47,6 +41,6 @@ result = gmo.entry_tran(option)
 ```
 More documentation available <a href="https://github.com/t-k/gmo-payment-ruby/wiki/_pages">on the wiki</a>.
 
-Authors and Contributors
+Contributors
 ---
-* [Tatsuo Kaniwa](https://github.com/t-k) - Creator of the project
+Patches contributed by [those people](https://github.com/t-k/gmo-payment-ruby/contributors).
