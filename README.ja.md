@@ -3,9 +3,9 @@ GMO
 [![Gem Version](https://badge.fury.io/rb/gmo.png)](https://rubygems.org/gems/gmo)
 [![Build Status](https://travis-ci.org/t-k/gmo-payment-ruby.png)](https://travis-ci.org/t-k/gmo-payment-ruby)
 
-GMO is a Ruby client library for the GMO Payment Platform, supporting the PG Multi Payment API, exec transactions, register users, and so on.
+RubyからGMOペイメント(PGマルチペイメントサービス)のAPIを扱うためのGemです。
 
-Installation
+インストール方法
 ---
 
 Install GMO as a gem:
@@ -25,7 +25,7 @@ TODO
 * add supported APIs
 * improve docs
 
-Usage
+使い方
 ---
 ```ruby
 require 'gmo'
@@ -39,7 +39,7 @@ option = {
 }
 result = gmo.entry_tran(option)
 ```
-More documentation available <a href="https://github.com/t-k/gmo-payment-ruby/wiki/_pages">on the wiki</a>.
+その他、詳細な使い方は<a href="https://github.com/t-k/gmo-payment-ruby/wiki/_pages">wiki</a>で説明しています。
 
 Contributors
 ---
