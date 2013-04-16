@@ -50,7 +50,7 @@ module GMO
           def self.encode_params(param_hash)
             ((param_hash || {}).collect do |key_and_value|
               key_and_value[1] = MultiJson.dump(key_and_value[1]) if key_and_value[1].class != String
-              "#{key_and_value[0].to_s}=#{CGI.escape key_and_value[1]}"
+              "#{key_and_value[0].to_s}=#{CGI.escape key_and_value[1].encode('Shift_JIS')}"
             end).join("&")
           end
 
