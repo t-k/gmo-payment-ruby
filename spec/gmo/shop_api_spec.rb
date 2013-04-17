@@ -111,6 +111,45 @@ describe "GMO::Payment::ShopAPI" do
         result = @service.exec_tran()
       }.should raise_error("Required access_id, access_pass, order_id, card_no, expire were not provided.")
     end
+
+    context "parameter contains Japanese characters" do
+      before { require "kconv" unless defined?(Kconv) }
+
+      it "should correctly handle Japanese", :vcr do
+        order_id = generate_id
+        client_field_1 = "〜−¢£¬−‖①ほげほげhogehoge"
+        result = @service.entry_tran({
+          :order_id => order_id,
+          :job_cd => "AUTH",
+          :amount => 100
+        })
+        access_id = result["AccessID"]
+        access_pass = result["AccessPass"]
+        result = @service.exec_tran({
+          :order_id       => order_id,
+          :access_id      => access_id,
+          :access_pass    => access_pass,
+          :method         => 1,
+          :pay_times      => 1,
+          :card_no        => "4111111111111111",
+          :expire         => "1405",
+          :client_field_1 => client_field_1
+        })
+        result["ACS"].nil?.should_not be_true
+        result["OrderID"].nil?.should_not be_true
+        result["Forward"].nil?.should_not be_true
+        result["Method"].nil?.should_not be_true
+        result["PayTimes"].nil?.should_not be_true
+        result["Approve"].nil?.should_not be_true
+        result["TranID"].nil?.should_not be_true
+        result["TranDate"].nil?.should_not be_true
+        result["CheckString"].nil?.should_not be_true
+        result["ClientField1"].nil?.should_not be_true
+        (result["ClientField1"] == client_field_1).should be_true
+        (result["ClientField1"].encoding.to_s == "UTF-8").should be_true
+        result["ClientField3"].nil?.should_not be_true
+      end
+    end
   end
 
   describe "#exec_tran_cvs" do

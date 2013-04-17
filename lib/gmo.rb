@@ -1,6 +1,7 @@
 require 'cgi'
 require 'rack/utils'
 require 'multi_json'
+require 'nkf'
 
 require "gmo/const"
 require 'gmo/errors'
@@ -40,7 +41,9 @@ module GMO
           raise GMO::Payment::ServerError.new(result.body, error_detail)
         end
         # Parse the body as Query string
-        body = response = Rack::Utils.parse_nested_query(result.body.to_s)
+        response = Rack::Utils.parse_nested_query(result.body.to_s)
+        # converting to UTF-8
+        body = response = Hash[response.map { |k,v| [k, NKF.nkf('-w',v)] }]
         # Check for errors if provided a error_checking_block
         yield(body) if error_checking_block
         # Return result
