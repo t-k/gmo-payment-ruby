@@ -13,6 +13,10 @@ require 'support/config_loader'
 require 'support/factory'
 require 'support/vcr'
 
+if RUBY_VERSION < '1.9.0'
+  require 'support/encoding'
+end
+
 RSpec.configure do |config|
   config.mock_with :rspec
   config.treat_symbols_as_metadata_keys_with_true_values = true
