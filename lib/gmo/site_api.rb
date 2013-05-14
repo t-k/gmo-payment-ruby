@@ -79,9 +79,8 @@ module GMO
       end
 
       ## 2.9.2.1.カード参照
-      # お客様が選択したカード登録連番のカード情報を取得します。
-      # カード情報が本人認証サービスに対応していない場合は、カード会社との通信を行い決済を実行します。その際の出力パラメータは「2.10.2.3決済実行」の出力パラメータと同じになります。
-      # /payment/ExecTran.idPass
+      # 指定した会員のカード情報を参照します。
+      # /payment/SearchCard.idPass
       def search_card(options = {})
         name = "SearchCard.idPass"
         required = [:member_id, :card_seq, :seq_mode]
