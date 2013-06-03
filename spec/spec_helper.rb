@@ -5,7 +5,9 @@ rescue LoadError
 end
 # load the library
 require "simplecov"
-SimpleCov.start
+SimpleCov.start :test_frameworks do
+  add_filter "/vendor/bundle/"
+end
 require 'gmo'
 require 'rspec'
 require 'vcr'
