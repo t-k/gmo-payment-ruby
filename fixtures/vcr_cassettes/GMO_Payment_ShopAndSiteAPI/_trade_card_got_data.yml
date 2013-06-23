@@ -1,0 +1,127 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://<HOST>/payment/EntryTran.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=1371958258&JobCd=AUTH&Amount=100&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 23 Jun 2013 03:30:58 GMT
+      Connection:
+      - close
+      Content-Type:
+      - text/plain;charset=Windows-31J
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: AccessID=1da06187345d613ce206f4cd05bc5322&AccessPass=45a21e63323c3795d26e22338eaa6b7f
+    http_version:
+  recorded_at: Sun, 23 Jun 2013 03:30:59 GMT
+- request:
+    method: post
+    uri: https://<HOST>/payment/ExecTran.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=1371958258&AccessID=1da06187345d613ce206f4cd05bc5322&AccessPass=45a21e63323c3795d26e22338eaa6b7f&Method=1&PayTimes=1&CardNo=4111111111111111&Expire=1405&ClientFieldFlag=0&DeviceCategory=0&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 23 Jun 2013 03:30:59 GMT
+      Connection:
+      - close
+      Content-Type:
+      - text/plain;charset=Windows-31J
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: ACS=0&OrderID=1371958258&Forward=2a99662&Method=1&PayTimes=&Approve=7214787&TranID=1306231226111111111111199359&TranDate=20130623123059&CheckString=74f54b788565f291e65f67c606f90ca2
+    http_version:
+  recorded_at: Sun, 23 Jun 2013 03:30:59 GMT
+- request:
+    method: post
+    uri: https://<HOST>/payment/SaveMember.idPass
+    body:
+      encoding: UTF-8
+      string: MemberID=1371958259&MemberName=John+Smith&SiteID=<SITE_ID>&SitePass=<SITE_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 23 Jun 2013 03:30:59 GMT
+      Connection:
+      - close
+      Content-Type:
+      - text/plain;charset=Windows-31J
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: MemberID=1371958259
+    http_version:
+  recorded_at: Sun, 23 Jun 2013 03:30:59 GMT
+- request:
+    method: post
+    uri: https://<HOST>/payment/TradedCard.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=1371958258&MemberID=1371958259&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>&SiteID=<SITE_ID>&SitePass=<SITE_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 23 Jun 2013 03:30:59 GMT
+      Connection:
+      - close
+      Content-Type:
+      - text/plain;charset=Windows-31J
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: CardSeq=0&CardNo=************1111&Forward=2a99662
+    http_version:
+  recorded_at: Sun, 23 Jun 2013 03:31:00 GMT
+recorded_with: VCR 2.4.0

@@ -10,6 +10,16 @@ describe "GMO::Payment::ShopAndSiteAPI" do
       :site_pass => SPEC_CONF["site_pass"],
       :host      => SPEC_CONF["host"]
     })
+    @shop_api ||= GMO::Payment::ShopAPI.new({
+      :shop_id   => SPEC_CONF["shop_id"],
+      :shop_pass => SPEC_CONF["shop_pass"],
+      :host      => SPEC_CONF["host"]
+    })
+    @site_api ||= GMO::Payment::SiteAPI.new({
+      :site_id   => SPEC_CONF["site_id"],
+      :site_pass => SPEC_CONF["site_pass"],
+      :host      => SPEC_CONF["host"]
+    })
   end
 
   it "should raise an ArgumentError if no options passed" do
@@ -39,6 +49,40 @@ describe "GMO::Payment::ShopAndSiteAPI" do
   end
 
   describe "#trade_card" do
+
+    it "got data", :vcr do
+      order_id = generate_id
+      result = @shop_api.entry_tran({
+        :order_id => order_id,
+        :job_cd => "AUTH",
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      card_no = "4111111111111111"
+      result = @shop_api.exec_tran({
+        :order_id      => order_id,
+        :access_id     => access_id,
+        :access_pass   => access_pass,
+        :method        => 1,
+        :pay_times     => 1,
+        :card_no       => card_no,
+        :expire        => "1405"
+      })
+      member_id = generate_id
+      member_name = "John Smith"
+      result = @site_api.save_member({
+        :member_id   => member_id,
+        :member_name => member_name
+      })
+      result = @service.trade_card({
+        :order_id      => order_id,
+        :member_id     => member_id
+      })
+      result["CardSeq"].nil?.should_not be_true
+      result["CardNo"].nil?.should_not be_true
+      result["Forward"].nil?.should_not be_true
+    end
 
     it "got error if missing options", :vcr do
       lambda {
