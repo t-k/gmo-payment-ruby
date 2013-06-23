@@ -1,6 +1,5 @@
 require 'cgi'
 require 'rack/utils'
-require 'multi_json'
 require 'nkf'
 
 require "gmo/const"
