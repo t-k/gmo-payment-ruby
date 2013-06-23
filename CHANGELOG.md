@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.2.3 (Unreleased)
+ * Added module GMO::JSON to blur the differences between the different MultiJson
+ * Added test for ShopAndSiteAPI#trade_card
+ * Fix typo and comment #4, #3 (Thanks @toshiwo, @fukayatsu)
+
 ## 0.2.2
  * Changed POST data encoding to Shift-JIS #2 (Thanks @keichan34)
 
