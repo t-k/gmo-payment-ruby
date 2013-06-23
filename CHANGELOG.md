@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.2.3 (Unreleased)
+## 0.2.3
  * Added module GMO::JSON to blur the differences between the different MultiJson
  * Added test for ShopAndSiteAPI#trade_card
  * Fix typo and comment #4, #3 (Thanks @toshiwo, @fukayatsu)
