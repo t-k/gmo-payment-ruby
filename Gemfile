@@ -5,8 +5,10 @@ group :development do
 end
 
 group :development, :test do
-  gem 'guard'
-  gem 'guard-rspec'
+  if RUBY_VERSION >= "1.9.3"
+    gem 'guard'
+    gem 'guard-rspec'
+  end
   gem 'simplecov'
 
   if RUBY_PLATFORM =~ /darwin/
