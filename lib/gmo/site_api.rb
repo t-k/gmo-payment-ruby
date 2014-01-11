@@ -83,7 +83,7 @@ module GMO
       # /payment/SearchCard.idPass
       def search_card(options = {})
         name = "SearchCard.idPass"
-        required = [:member_id, :card_seq, :seq_mode]
+        required = [:member_id, :seq_mode]
         assert_required_options(required, options)
         post_request name, options
       end

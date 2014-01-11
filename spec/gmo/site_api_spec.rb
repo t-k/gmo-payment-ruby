@@ -186,7 +186,7 @@ describe "GMO::Payment::SiteAPI" do
     it "got error if missing options", :vcr do
       lambda {
         result = @service.search_card()
-      }.should raise_error("Required member_id, card_seq, seq_mode were not provided.")
+      }.should raise_error("Required member_id, seq_mode were not provided.")
     end
   end
 
