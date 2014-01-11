@@ -1,3 +1,4 @@
+require "cgi"
 require "gmo/json"
 
 module GMO

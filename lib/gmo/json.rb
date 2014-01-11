@@ -2,11 +2,11 @@ require "multi_json"
 module GMO
   module JSON
 
-    def self.dump(message)
+    def self.dump(*args)
       if MultiJson.respond_to?(:dump)
-        MultiJson.dump(message)
+        MultiJson.dump(*args)
       else
-        MultiJson.encode(message)
+        MultiJson.encode(*args)
       end
     end
 

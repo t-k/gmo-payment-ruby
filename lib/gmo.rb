@@ -1,18 +1,15 @@
-require 'cgi'
-require 'rack/utils'
-require 'nkf'
+require "rack/utils"
+require "nkf"
 
 require "gmo/const"
-require 'gmo/errors'
-require 'gmo/http_services'
-require 'gmo/shop_api'
-require 'gmo/site_api'
-require 'gmo/shop_and_site_api'
+require "gmo/errors"
+require "gmo/http_services"
+require "gmo/shop_api"
+require "gmo/site_api"
+require "gmo/shop_and_site_api"
 require "gmo/version"
 
 # Ruby client library for the GMO Payment Platform.
-# Copyright 2013 Tatsuo Kaniwa
-# tatsuo[at]kaniwa.biz
 
 module GMO
 
