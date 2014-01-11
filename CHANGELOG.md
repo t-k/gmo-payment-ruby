@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.4
+ * Fix SiteAPI search_card required params (:card_seq is not required field)
+ * Some refactoring
+
 ## 0.2.3
  * Added module GMO::JSON to blur the differences between the different MultiJson
  * Added test for ShopAndSiteAPI#trade_card
