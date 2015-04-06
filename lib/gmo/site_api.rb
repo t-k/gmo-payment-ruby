@@ -64,7 +64,7 @@ module GMO
       # 指定した会員にカード情報を登録します。尚、サイトに設定されたショップ ID を使用してカード会社と通信を行い有効性の確認を行います。
       def save_card(options = {})
         name = "SaveCard.idPass"
-        required = [:member_id, :card_no, :expire, default_flag]
+        required = [:member_id, :card_no, :expire, :default_flag]
         assert_required_options(required, options)
         post_request name, options
       end
