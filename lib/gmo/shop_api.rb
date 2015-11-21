@@ -61,6 +61,16 @@ module GMO
         post_request name, options
       end
 
+      # 【Pay-easy決済】
+      #  5.1.2.1. 取引登録
+      #  これ以降の決済取引で必要となる取引IDと取引パスワードの発行を行い、取引を開始します。
+      def entry_tran_pay_easy(options = {})
+        name = "EntryTranPayEasy.idPass"
+        required = [:order_id, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       ## 2.2.2.2.決済実行
       # 指定されたサイトに会員を登録します。
       # return
@@ -136,6 +146,16 @@ module GMO
       def exec_tran_cvs(options = {})
         name = "ExecTranCvs.idPass"
         required = [:access_id, :access_pass, :order_id, :convenience, :customer_name, :tel_no, :receipts_disp_11, :receipts_disp_12, :receipts_disp_13]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      # 【Pay-easy決済】
+      # 5.1.2.2. 決済実行
+      # お客様が入力した情報で後続の決済センターと通信を行い決済を実施し、結果を返します。
+      def exec_tran_pay_easy(options = {})
+        name = "ExecTranPayEasy.idPass"
+        required = [:access_id, :access_pass, :order_id, :customer_name, :customer_kana, :tel_no, :receipts_disp_11, :receipts_disp_12, :receipts_disp_13]
         assert_required_options(required, options)
         post_request name, options
       end

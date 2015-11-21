@@ -71,6 +71,24 @@ describe "GMO::Payment::ShopAPI" do
     end
   end
 
+  describe "#entry_tran_pay_easy" do
+    it "gets data about a transaction", :vcr do
+      order_id = @order_id
+      result = @service.entry_tran_pay_easy({
+        :order_id => order_id,
+        :amount => 100
+      })
+      result["AccessID"].nil?.should_not be_true
+      result["AccessPass"].nil?.should_not be_true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.entry_tran_pay_easy()
+      }.should raise_error("Required order_id, amount were not provided.")
+    end
+  end
+
   describe "#exec_tran" do
     it "gets data about a transaction", :vcr do
       order_id = generate_id
@@ -191,6 +209,43 @@ describe "GMO::Payment::ShopAPI" do
       lambda {
         result = @service.exec_tran_cvs()
       }.should raise_error("Required access_id, access_pass, order_id, convenience, customer_name, tel_no, receipts_disp_11, receipts_disp_12, receipts_disp_13 were not provided.")
+    end
+  end
+
+  describe "#exec_tran_pay_easy" do
+    it "gets data about a transaction", :vcr do
+      order_id = generate_id
+      result = @service.entry_tran_pay_easy({
+        :order_id => order_id,
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      result = @service.exec_tran_pay_easy({
+        :order_id      => order_id,
+        :access_id     => access_id,
+        :access_pass   => access_pass,
+        :customer_name => 'ペイ太郎',
+        :customer_kana => 'ペイタロウ',
+        :tel_no        => '0300000001',
+        :receipts_disp_11 => 'RSpec Helpdesk',
+        :receipts_disp_12 => '0300000001',
+        :receipts_disp_13 => '00:00-00:15'
+      })
+      result["OrderID"].nil?.should_not be_true
+      result["CustID"].nil?.should_not be_true
+      result["BkCode"].nil?.should_not be_true
+      result["ConfNo"].nil?.should_not be_true
+      result["EncryptReceiptNo"].nil?.should_not be_true
+      result["PaymentTerm"].nil?.should_not be_true
+      result["TranDate"].nil?.should_not be_true
+      result["CheckString"].nil?.should_not be_true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.exec_tran_pay_easy()
+      }.should raise_error("Required access_id, access_pass, order_id, customer_name, customer_kana, tel_no, receipts_disp_11, receipts_disp_12, receipts_disp_13 were not provided.")
     end
   end
 
