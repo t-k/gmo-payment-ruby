@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.2.5
+ * Support Pay-easy payment #7 (Thanks @ryooob)
+
 ## 0.2.4
  * Fix SiteAPI search_card required params (:card_seq is not required field)
  * Some refactoring
