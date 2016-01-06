@@ -38,8 +38,8 @@ module GMO
           http = create_http(server(options), options)
           http.use_ssl = true
 
-          result = http.start do |h|
-            response, body = if verb == "post"
+          http.start do |h|
+            response = if verb == "post"
               h.post(path, encode_params(args))
             else
               h.get("#{path}?#{encode_params(args)}")
