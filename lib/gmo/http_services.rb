@@ -38,11 +38,11 @@ module GMO
           http = create_http(server(options), options)
           http.use_ssl = true
 
-          result = http.start do |http|
+          result = http.start do |h|
             response, body = if verb == "post"
-              http.post(path, encode_params(args))
+              h.post(path, encode_params(args))
             else
-              http.get("#{path}?#{encode_params(args)}")
+              h.get("#{path}?#{encode_params(args)}")
             end
             GMO::Response.new(response.code.to_i, response.body, response)
           end

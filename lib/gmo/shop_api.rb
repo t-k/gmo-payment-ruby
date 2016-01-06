@@ -236,12 +236,11 @@ module GMO
 
         def api_call(name, args = {}, verb = "post", options = {})
           args.merge!({ "ShopID" => @shop_id, "ShopPass" => @shop_pass })
-          response = api(name, args, verb, options) do |response|
+          api(name, args, verb, options) do |response|
             if response.is_a?(Hash) && !response["ErrInfo"].nil?
               raise APIError.new(response)
             end
           end
-          response
         end
 
     end
