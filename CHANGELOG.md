@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.2.6
+ * Fixes several Ruby warnings #8 (Thanks @amatsuda)
+
 ## 0.2.5
  * Support Pay-easy payment #7 (Thanks @ryooob)
 
