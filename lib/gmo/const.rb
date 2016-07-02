@@ -101,7 +101,15 @@ module GMO
       :td_flag               => "TdFlag",
       :td_tenant_name        => "TdTenantName",
       :tel_no                => "TelNo",
-      :token                 => "Token"
+      :token                 => "Token",
+      :error_rcv_url         => "ErrorRcvURL",
+      :product_name          => "ProductName",
+      :product_image_url     => "ProductImageUrl",
+      :mid                   => "Mid",
+      :delivery_place_phone  => "DeliveryPlacePhone",
+      :lang_cd               => "LangCd",
+      :user_info             => "UserInfo",
+      :package_name          => "PackageName"
     }
   end
 end

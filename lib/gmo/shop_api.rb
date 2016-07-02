@@ -71,6 +71,16 @@ module GMO
         post_request name, options
       end
 
+      # 【LINE Pay決済】
+      #  20.1.2.1. 取引登録
+      #  これ以降の決済取引で必要となる取引IDと取引パスワードの発行を行い、取引を開始します。
+      def entry_tran_linepay(options = {})
+        name = "EntryTranLinepay.idPass"
+        required = [:order_id, :job_cd, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       ## 2.2.2.2.決済実行
       # 指定されたサイトに会員を登録します。
       # return
@@ -156,6 +166,15 @@ module GMO
       def exec_tran_pay_easy(options = {})
         name = "ExecTranPayEasy.idPass"
         required = [:access_id, :access_pass, :order_id, :customer_name, :customer_kana, :tel_no, :receipts_disp_11, :receipts_disp_12, :receipts_disp_13]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      # 【LINE Pay決済】
+      # 20.1.2.2. 決済実行
+      def exec_tran_linepay(options = {})
+        name = "ExecTranLinepay.idPass"
+        required = [:access_id, :access_pass, :order_id, :ret_url, :error_rcv_url, :product_name]
         assert_required_options(required, options)
         post_request name, options
       end
