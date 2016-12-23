@@ -223,8 +223,8 @@ module GMO
       # gmo.change_tran({
       #   access_id:    "a41d83f1f4c908baeda04e6dc03e300c",
       #   access_pass:  "d72eca02e28c88f98b9341a33ba46d5d",
-      #   JobCd: 100,
-      #   Amount: 100
+      #   job_cd: "CAPTURE",
+      #   amount: 100
       # })
       def change_tran(options = {})
         name = "ChangeTran.idPass"
