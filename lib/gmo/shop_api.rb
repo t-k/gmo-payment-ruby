@@ -155,7 +155,7 @@ module GMO
       # お客様が入力した情報で後続の決済センターと通信を行い決済を実施し、結果を返します。
       def exec_tran_cvs(options = {})
         name = "ExecTranCvs.idPass"
-        required = [:access_id, :access_pass, :order_id, :convenience, :customer_name, :tel_no, :receipts_disp_11, :receipts_disp_12, :receipts_disp_13]
+        required = [:access_id, :access_pass, :order_id, :convenience, :customer_name, :customer_kana, :tel_no, :receipts_disp_11, :receipts_disp_12, :receipts_disp_13]
         assert_required_options(required, options)
         post_request name, options
       end
