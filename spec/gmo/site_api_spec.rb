@@ -120,10 +120,12 @@ describe "GMO::Payment::SiteAPI" do
       member_id = @member_id
       card_no = "4111111111111111"
       expire = "1405"
+      defaultflag = "0"
       result = @service.save_card({
         :member_id => member_id,
         :card_no   => card_no,
-        :expire    => expire
+        :expire    => expire,
+        :default_flag => defalut_flag
       })
       result["CardNo"].nil?.should_not be_true
     end
