@@ -135,8 +135,8 @@ describe "GMO::Payment::SiteAPI" do
     end
 
     it "doesn't require card info if token is present", :vcr do
-      member_id = @member_id
-      token = "asdfasdfasdfasdfa"
+      member_id = SPEC_CONF["token_member_id"]
+      token = SPEC_CONF["token"]
       result = @service.save_card({
         :member_id => member_id,
         :token     => token

@@ -3,3 +3,5 @@ shop_pass: hoge
 site_id: tsitehoge
 site_pass: hoge
 host: pt01.mul-pay.jp
+token: token
+token_member_id: 1
