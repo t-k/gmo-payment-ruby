@@ -449,7 +449,6 @@ describe "GMO::Payment::ShopAPI" do
 
   describe "#search_trade_multi" do
     it "gets data about order", :vcr do
-      client_field_1 = "client_field1"
       result = @service.search_trade_multi({
         :order_id      => @order_id,
         :pay_type      => "0"
