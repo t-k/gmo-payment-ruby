@@ -133,6 +133,16 @@ describe "GMO::Payment::SiteAPI" do
         result = @service.save_card()
       }.should raise_error("Required member_id, card_no, expire were not provided.")
     end
+
+    it "doesn't require card info if token is present", :vcr do
+      member_id = SPEC_CONF["token_member_id"]
+      token = SPEC_CONF["token"]
+      result = @service.save_card({
+        :member_id => member_id,
+        :token     => token
+      })
+      result["CardNo"].nil?.should_not be_true
+    end
   end
 
   describe "#delete_card" do
