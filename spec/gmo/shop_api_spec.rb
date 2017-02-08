@@ -227,7 +227,7 @@ describe "GMO::Payment::ShopAPI" do
     it "got error if missing options", :vcr do
       lambda {
         result = @service.exec_tran_cvs()
-      }.should raise_error("Required access_id, access_pass, order_id, convenience, customer_name, tel_no, receipts_disp_11, receipts_disp_12, receipts_disp_13 were not provided.")
+      }.should raise_error(ArgumentError, "Required access_id, access_pass, order_id, convenience, customer_name, customer_kana, tel_no, receipts_disp_11, receipts_disp_12, receipts_disp_13 were not provided.")
     end
   end
 
