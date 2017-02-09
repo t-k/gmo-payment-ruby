@@ -3,3 +3,5 @@ shop_pass: 1
 site_id: tsite0001
 site_pass: 1
 host: pt01.mul-pay.jp
+token_member_id: 1
+token: 1
