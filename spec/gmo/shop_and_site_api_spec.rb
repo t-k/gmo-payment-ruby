@@ -79,9 +79,9 @@ describe "GMO::Payment::ShopAndSiteAPI" do
         :order_id      => order_id,
         :member_id     => member_id
       })
-      result["CardSeq"].nil?.should_not be_true
-      result["CardNo"].nil?.should_not be_true
-      result["Forward"].nil?.should_not be_true
+      result["CardSeq"].nil?.should_not be_truthy
+      result["CardNo"].nil?.should_not be_truthy
+      result["Forward"].nil?.should_not be_truthy
     end
 
     it "got error if missing options", :vcr do
