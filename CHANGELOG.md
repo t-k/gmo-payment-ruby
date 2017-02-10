@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## 0.3.0
+ * ShopAPI
+   * Support LINE Pay payment #13 (Thanks @ryooob)
+
+     ShopAPI#entry_tran_linepay, ShopAPI#exec_tran_linepay were added
+   * Update required item on ShopAPI#exec_tran_cvs #15 (Thanks @pyonnuka)
+ * SiteAPI
+   * card_no and expire are not required for save_card if a token is used #17 (Thanks @mcfiredrill)
+ * Testing
+   * fix Spec and upgrade RSpec to v3 #14, #16, #18, #19 (Thanks @htz @cameluby @kazuooooo @mcfiredrill)
+
 ## 0.2.6
  * Fixes several Ruby warnings #8 (Thanks @amatsuda)
 
