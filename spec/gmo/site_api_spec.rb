@@ -39,7 +39,7 @@ describe "GMO::Payment::SiteAPI" do
         :member_id => @member_id,
         :member_name => member_name
       })
-      result["MemberID"].nil?.should_not be_true
+      result["MemberID"].nil?.should_not be_truthy
     end
 
     it "got error if missing options", :vcr do
@@ -57,7 +57,7 @@ describe "GMO::Payment::SiteAPI" do
         :member_id => member_id,
         :member_name => member_name
       })
-      result["MemberID"].nil?.should_not be_true
+      result["MemberID"].nil?.should_not be_truthy
     end
 
     it "got error if missing options", :vcr do
@@ -78,7 +78,7 @@ describe "GMO::Payment::SiteAPI" do
       result = @service.delete_member({
         :member_id => member_id
       })
-      result["MemberID"].nil?.should_not be_true
+      result["MemberID"].nil?.should_not be_truthy
     end
 
     it "got error if missing options", :vcr do
@@ -96,16 +96,16 @@ describe "GMO::Payment::SiteAPI" do
         :member_id => member_id,
         :member_name => member_name
       })
-      result["MemberID"].nil?.should_not be_true
+      result["MemberID"].nil?.should_not be_truthy
 
       result = @service.search_member({
         :member_id => member_id
       })
-      result["MemberID"].nil?.should_not be_true
-      result["MemberName"].nil?.should_not be_true
-      (result["MemberName"].to_s == member_name).should be_true
-      result["DeleteFlag"].nil?.should_not be_true
-      (result["DeleteFlag"].to_i == 0).should be_true
+      result["MemberID"].nil?.should_not be_truthy
+      result["MemberName"].nil?.should_not be_truthy
+      (result["MemberName"].to_s == member_name).should be_truthy
+      result["DeleteFlag"].nil?.should_not be_truthy
+      (result["DeleteFlag"].to_i == 0).should be_truthy
     end
 
     it "got error if missing options", :vcr do
@@ -125,7 +125,7 @@ describe "GMO::Payment::SiteAPI" do
         :card_no   => card_no,
         :expire    => expire
       })
-      result["CardNo"].nil?.should_not be_true
+      result["CardNo"].nil?.should_not be_truthy
     end
 
     it "got error if missing options", :vcr do
@@ -141,7 +141,7 @@ describe "GMO::Payment::SiteAPI" do
         :member_id => member_id,
         :token     => token
       })
-      result["CardNo"].nil?.should_not be_true
+      result["CardNo"].nil?.should_not be_truthy
     end
   end
 
@@ -153,8 +153,8 @@ describe "GMO::Payment::SiteAPI" do
         :member_id => member_id,
         :card_seq   => card_seq
       })
-      result["CardSeq"].nil?.should_not be_true
-      (result["CardSeq"].to_i == card_seq).should be_true
+      result["CardSeq"].nil?.should_not be_truthy
+      (result["CardSeq"].to_i == card_seq).should be_truthy
     end
 
     it "got error if missing options", :vcr do
@@ -181,16 +181,16 @@ describe "GMO::Payment::SiteAPI" do
         :card_seq  => card_seq,
         :seq_mode  => seq_mode
       })
-      result["CardSeq"].nil?.should_not be_true
-      (result["CardSeq"].to_i == card_seq).should be_true
-      result["DefaultFlag"].nil?.should_not be_true
-      (result["DefaultFlag"].to_i == 0).should be_true
-      result["CardName"].nil?.should_not be_true
-      result["CardNo"].nil?.should_not be_true
-      result["Expire"].nil?.should_not be_true
-      (result["Expire"].to_s == expire).should be_true
-      result["HolderName"].nil?.should_not be_true
-      result["DeleteFlag"].nil?.should_not be_true
+      result["CardSeq"].nil?.should_not be_truthy
+      (result["CardSeq"].to_i == card_seq).should be_truthy
+      result["DefaultFlag"].nil?.should_not be_truthy
+      (result["DefaultFlag"].to_i == 0).should be_truthy
+      result["CardName"].nil?.should_not be_truthy
+      result["CardNo"].nil?.should_not be_truthy
+      result["Expire"].nil?.should_not be_truthy
+      (result["Expire"].to_s == expire).should be_truthy
+      result["HolderName"].nil?.should_not be_truthy
+      result["DeleteFlag"].nil?.should_not be_truthy
     end
 
     it "got error if missing options", :vcr do

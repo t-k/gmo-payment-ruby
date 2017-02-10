@@ -42,8 +42,8 @@ describe "GMO::Payment::ShopAPI" do
         :job_cd => "AUTH",
         :amount => 100
       })
-      result["AccessID"].nil?.should_not be_true
-      result["AccessPass"].nil?.should_not be_true
+      result["AccessID"].nil?.should_not be_truthy
+      result["AccessPass"].nil?.should_not be_truthy
     end
 
     it "got error if missing options", :vcr do
@@ -60,8 +60,8 @@ describe "GMO::Payment::ShopAPI" do
         :order_id => order_id,
         :amount => 100
       })
-      result["AccessID"].nil?.should_not be_true
-      result["AccessPass"].nil?.should_not be_true
+      result["AccessID"].nil?.should_not be_truthy
+      result["AccessPass"].nil?.should_not be_truthy
     end
 
     it "got error if missing options", :vcr do
@@ -78,8 +78,8 @@ describe "GMO::Payment::ShopAPI" do
         :order_id => order_id,
         :amount => 100
       })
-      result["AccessID"].nil?.should_not be_true
-      result["AccessPass"].nil?.should_not be_true
+      result["AccessID"].nil?.should_not be_truthy
+      result["AccessPass"].nil?.should_not be_truthy
     end
 
     it "got error if missing options", :vcr do
@@ -97,8 +97,8 @@ describe "GMO::Payment::ShopAPI" do
         :job_cd => 'CAPTURE',
         :amount => 100
       })
-      result["AccessID"].nil?.should_not be_true
-      result["AccessPass"].nil?.should_not be_true
+      result["AccessID"].nil?.should_not be_truthy
+      result["AccessPass"].nil?.should_not be_truthy
     end
 
     it "got error if missing options", :vcr do
@@ -129,18 +129,18 @@ describe "GMO::Payment::ShopAPI" do
         :expire        => "1405",
         :client_field_1 => client_field_1
       })
-      result["ACS"].nil?.should_not be_true
-      result["OrderID"].nil?.should_not be_true
-      result["Forward"].nil?.should_not be_true
-      result["Method"].nil?.should_not be_true
-      result["PayTimes"].nil?.should_not be_true
-      result["Approve"].nil?.should_not be_true
-      result["TranID"].nil?.should_not be_true
-      result["TranDate"].nil?.should_not be_true
-      result["CheckString"].nil?.should_not be_true
-      result["ClientField1"].nil?.should_not be_true
-      (result["ClientField1"] == client_field_1).should be_true
-      result["ClientField3"].nil?.should_not be_true
+      result["ACS"].nil?.should_not be_truthy
+      result["OrderID"].nil?.should_not be_truthy
+      result["Forward"].nil?.should_not be_truthy
+      result["Method"].nil?.should_not be_truthy
+      result["PayTimes"].nil?.should_not be_truthy
+      result["Approve"].nil?.should_not be_truthy
+      result["TranID"].nil?.should_not be_truthy
+      result["TranDate"].nil?.should_not be_truthy
+      result["CheckString"].nil?.should_not be_truthy
+      result["ClientField1"].nil?.should_not be_truthy
+      (result["ClientField1"] == client_field_1).should be_truthy
+      result["ClientField3"].nil?.should_not be_truthy
     end
 
     it "got error if missing options", :vcr do
@@ -172,19 +172,19 @@ describe "GMO::Payment::ShopAPI" do
           :expire         => "1405",
           :client_field_1 => client_field_1
         })
-        result["ACS"].nil?.should_not be_true
-        result["OrderID"].nil?.should_not be_true
-        result["Forward"].nil?.should_not be_true
-        result["Method"].nil?.should_not be_true
-        result["PayTimes"].nil?.should_not be_true
-        result["Approve"].nil?.should_not be_true
-        result["TranID"].nil?.should_not be_true
-        result["TranDate"].nil?.should_not be_true
-        result["CheckString"].nil?.should_not be_true
-        result["ClientField1"].nil?.should_not be_true
-        (result["ClientField1"] == client_field_1).should be_true
-        (result["ClientField1"].encoding.to_s == "UTF-8").should be_true
-        result["ClientField3"].nil?.should_not be_true
+        result["ACS"].nil?.should_not be_truthy
+        result["OrderID"].nil?.should_not be_truthy
+        result["Forward"].nil?.should_not be_truthy
+        result["Method"].nil?.should_not be_truthy
+        result["PayTimes"].nil?.should_not be_truthy
+        result["Approve"].nil?.should_not be_truthy
+        result["TranID"].nil?.should_not be_truthy
+        result["TranDate"].nil?.should_not be_truthy
+        result["CheckString"].nil?.should_not be_truthy
+        result["ClientField1"].nil?.should_not be_truthy
+        (result["ClientField1"] == client_field_1).should be_truthy
+        (result["ClientField1"].encoding.to_s == "UTF-8").should be_truthy
+        result["ClientField3"].nil?.should_not be_truthy
       end
     end
   end
@@ -212,16 +212,16 @@ describe "GMO::Payment::ShopAPI" do
         :receipts_disp_13 => '00:00-00:15',
         :client_field_1 => client_field_1
       })
-      result["OrderID"].nil?.should_not be_true
-      result["Convenience"].nil?.should_not be_true
-      result["ConfNo"].nil?.should_not be_true
-      result["ReceiptNo"].nil?.should_not be_true
-      result["PaymentTerm"].nil?.should_not be_true
-      result["TranDate"].nil?.should_not be_true
-      result["CheckString"].nil?.should_not be_true
-      result["ClientField1"].nil?.should_not be_true
-      (result["ClientField1"] == client_field_1).should be_true
-      result["ClientField3"].nil?.should_not be_true
+      result["OrderID"].nil?.should_not be_truthy
+      result["Convenience"].nil?.should_not be_truthy
+      result["ConfNo"].nil?.should_not be_truthy
+      result["ReceiptNo"].nil?.should_not be_truthy
+      result["PaymentTerm"].nil?.should_not be_truthy
+      result["TranDate"].nil?.should_not be_truthy
+      result["CheckString"].nil?.should_not be_truthy
+      result["ClientField1"].nil?.should_not be_truthy
+      (result["ClientField1"] == client_field_1).should be_truthy
+      result["ClientField3"].nil?.should_not be_truthy
     end
 
     it "got error if missing options", :vcr do
@@ -251,14 +251,14 @@ describe "GMO::Payment::ShopAPI" do
         :receipts_disp_12 => '0300000001',
         :receipts_disp_13 => '00:00-00:15'
       })
-      result["OrderID"].nil?.should_not be_true
-      result["CustID"].nil?.should_not be_true
-      result["BkCode"].nil?.should_not be_true
-      result["ConfNo"].nil?.should_not be_true
-      result["EncryptReceiptNo"].nil?.should_not be_true
-      result["PaymentTerm"].nil?.should_not be_true
-      result["TranDate"].nil?.should_not be_true
-      result["CheckString"].nil?.should_not be_true
+      result["OrderID"].nil?.should_not be_truthy
+      result["CustID"].nil?.should_not be_truthy
+      result["BkCode"].nil?.should_not be_truthy
+      result["ConfNo"].nil?.should_not be_truthy
+      result["EncryptReceiptNo"].nil?.should_not be_truthy
+      result["PaymentTerm"].nil?.should_not be_truthy
+      result["TranDate"].nil?.should_not be_truthy
+      result["CheckString"].nil?.should_not be_truthy
     end
 
     it "got error if missing options", :vcr do
@@ -286,10 +286,10 @@ describe "GMO::Payment::ShopAPI" do
         :error_rcv_url => 'https://example.com/path/to/return/failure',
         :product_name  => '購入する商品名'
       })
-      result["Start"].nil?.should_not be_true
-      result["AccessID"].nil?.should_not be_true
-      result["Token"].nil?.should_not be_true
-      result["StartURL"].nil?.should_not be_true
+      result["Start"].nil?.should_not be_truthy
+      result["AccessID"].nil?.should_not be_truthy
+      result["Token"].nil?.should_not be_truthy
+      result["StartURL"].nil?.should_not be_truthy
     end
 
     it "got error if missing options", :vcr do
@@ -324,13 +324,13 @@ describe "GMO::Payment::ShopAPI" do
         :job_cd         => "RETURN",
         :amount         => 100
       })
-      result["AccessID"].nil?.should_not be_true
-      result["AccessPass"].nil?.should_not be_true
-      result["Forward"].nil?.should_not be_true
-      result["Approve"].nil?.should_not be_true
-      result["AccessPass"].nil?.should_not be_true
-      result["TranID"].nil?.should_not be_true
-      result["TranDate"].nil?.should_not be_true
+      result["AccessID"].nil?.should_not be_truthy
+      result["AccessPass"].nil?.should_not be_truthy
+      result["Forward"].nil?.should_not be_truthy
+      result["Approve"].nil?.should_not be_truthy
+      result["AccessPass"].nil?.should_not be_truthy
+      result["TranID"].nil?.should_not be_truthy
+      result["TranDate"].nil?.should_not be_truthy
     end
 
     it "change order auth to sale", :vcr do
@@ -357,13 +357,13 @@ describe "GMO::Payment::ShopAPI" do
         :job_cd         => "SALES",
         :amount         => 100
       })
-      result["AccessID"].nil?.should_not be_true
-      result["AccessPass"].nil?.should_not be_true
-      result["Forward"].nil?.should_not be_true
-      result["Approve"].nil?.should_not be_true
-      result["AccessPass"].nil?.should_not be_true
-      result["TranID"].nil?.should_not be_true
-      result["TranDate"].nil?.should_not be_true
+      result["AccessID"].nil?.should_not be_truthy
+      result["AccessPass"].nil?.should_not be_truthy
+      result["Forward"].nil?.should_not be_truthy
+      result["Approve"].nil?.should_not be_truthy
+      result["AccessPass"].nil?.should_not be_truthy
+      result["TranID"].nil?.should_not be_truthy
+      result["TranDate"].nil?.should_not be_truthy
     end
 
     it "got error if missing options", :vcr do
@@ -398,12 +398,12 @@ describe "GMO::Payment::ShopAPI" do
         :job_cd         => "AUTH",
         :amount         => 1000
       })
-      result["AccessID"].nil?.should_not be_true
-      result["AccessPass"].nil?.should_not be_true
-      result["Forward"].nil?.should_not be_true
-      result["Approve"].nil?.should_not be_true
-      result["TranID"].nil?.should_not be_true
-      result["TranDate"].nil?.should_not be_true
+      result["AccessID"].nil?.should_not be_truthy
+      result["AccessPass"].nil?.should_not be_truthy
+      result["Forward"].nil?.should_not be_truthy
+      result["Approve"].nil?.should_not be_truthy
+      result["TranID"].nil?.should_not be_truthy
+      result["TranDate"].nil?.should_not be_truthy
     end
 
     it "got error if missing options", :vcr do
@@ -420,24 +420,24 @@ describe "GMO::Payment::ShopAPI" do
       result = @service.search_trade({
         :order_id => order_id
       })
-      result["OrderID"].nil?.should_not be_true
-      result["Status"].nil?.should_not be_true
-      result["ProcessDate"].nil?.should_not be_true
-      result["JobCd"].nil?.should_not be_true
-      result["AccessID"].nil?.should_not be_true
-      result["AccessPass"].nil?.should_not be_true
-      result["ItemCode"].nil?.should_not be_true
-      result["Amount"].nil?.should_not be_true
-      result["Tax"].nil?.should_not be_true
-      result["SiteID"].nil?.should_not be_true
-      result["MemberID"].nil?.should_not be_true
-      result["CardNo"].nil?.should_not be_true
-      result["Expire"].nil?.should_not be_true
-      result["Method"].nil?.should_not be_true
-      result["PayTimes"].nil?.should_not be_true
-      result["Forward"].nil?.should_not be_true
-      result["TranID"].nil?.should_not be_true
-      result["Approve"].nil?.should_not be_true
+      result["OrderID"].nil?.should_not be_truthy
+      result["Status"].nil?.should_not be_truthy
+      result["ProcessDate"].nil?.should_not be_truthy
+      result["JobCd"].nil?.should_not be_truthy
+      result["AccessID"].nil?.should_not be_truthy
+      result["AccessPass"].nil?.should_not be_truthy
+      result["ItemCode"].nil?.should_not be_truthy
+      result["Amount"].nil?.should_not be_truthy
+      result["Tax"].nil?.should_not be_truthy
+      result["SiteID"].nil?.should_not be_truthy
+      result["MemberID"].nil?.should_not be_truthy
+      result["CardNo"].nil?.should_not be_truthy
+      result["Expire"].nil?.should_not be_truthy
+      result["Method"].nil?.should_not be_truthy
+      result["PayTimes"].nil?.should_not be_truthy
+      result["Forward"].nil?.should_not be_truthy
+      result["TranID"].nil?.should_not be_truthy
+      result["Approve"].nil?.should_not be_truthy
     end
 
     it "got error if missing options", :vcr do
@@ -453,25 +453,25 @@ describe "GMO::Payment::ShopAPI" do
         :order_id      => @order_id,
         :pay_type      => "0"
       })
-      result["Status"].nil?.should_not be_true
-      result["ProcessDate"].nil?.should_not be_true
-      result["JobCd"].nil?.should_not be_true
-      result["AccessID"].nil?.should_not be_true
-      result["AccessPass"].nil?.should_not be_true
-      result["ItemCode"].nil?.should_not be_true
-      result["Amount"].nil?.should_not be_true
-      result["Tax"].nil?.should_not be_true
-      result["SiteID"].nil?.should_not be_true
-      result["MemberID"].nil?.should_not be_true
-      result["CardNo"].nil?.should_not be_true
-      result["Expire"].nil?.should_not be_true
-      result["Method"].nil?.should_not be_true
-      result["PayTimes"].nil?.should_not be_true
-      result["Forward"].nil?.should_not be_true
-      result["TranID"].nil?.should_not be_true
-      result["Approve"].nil?.should_not be_true
-      result["PayType"].nil?.should_not be_true
-      result["PaymentTerm"].nil?.should_not be_true
+      result["Status"].nil?.should_not be_truthy
+      result["ProcessDate"].nil?.should_not be_truthy
+      result["JobCd"].nil?.should_not be_truthy
+      result["AccessID"].nil?.should_not be_truthy
+      result["AccessPass"].nil?.should_not be_truthy
+      result["ItemCode"].nil?.should_not be_truthy
+      result["Amount"].nil?.should_not be_truthy
+      result["Tax"].nil?.should_not be_truthy
+      result["SiteID"].nil?.should_not be_truthy
+      result["MemberID"].nil?.should_not be_truthy
+      result["CardNo"].nil?.should_not be_truthy
+      result["Expire"].nil?.should_not be_truthy
+      result["Method"].nil?.should_not be_truthy
+      result["PayTimes"].nil?.should_not be_truthy
+      result["Forward"].nil?.should_not be_truthy
+      result["TranID"].nil?.should_not be_truthy
+      result["Approve"].nil?.should_not be_truthy
+      result["PayType"].nil?.should_not be_truthy
+      result["PaymentTerm"].nil?.should_not be_truthy
     end
 
     it "got error if missing options", :vcr do
