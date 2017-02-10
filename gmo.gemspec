@@ -23,7 +23,7 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency "rack"
   gem.add_runtime_dependency "multi_json"
-  gem.add_development_dependency "rspec", "~> 2"
+  gem.add_development_dependency "rspec", "~> 3"
   gem.add_development_dependency "rake"
   gem.add_development_dependency "vcr"
   gem.add_development_dependency "webmock"
