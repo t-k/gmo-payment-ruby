@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## master
+
+* AccountAPI
+  * Add support for registering payment accounts
+  * Add support for registering payment deposits to accounts
+
+* Add error messages to GMO API response along with error code and info.
+
 ## 0.3.0
  * ShopAPI
    * Support LINE Pay payment #13 (Thanks @ryooob)
