@@ -1,0 +1,243 @@
+# Encoding: UTF-8
+
+require "spec_helper"
+
+describe "GMO::Payment::AccountAPI" do
+
+  before(:each) do
+    @service ||= GMO::Payment::AccountAPI.new({
+      :shop_id   => SPEC_CONF["remittance"]["shop_id"],
+      :shop_pass => SPEC_CONF["remittance"]["shop_pass"],
+      :host      => SPEC_CONF["remittance"]["host"]
+    })
+  end
+
+  it "should raise an ArgumentError if no options passed" do
+    lambda {
+      service = GMO::Payment::AccountAPI.new()
+    }.should raise_error(ArgumentError)
+  end
+
+  it "has an attr_reader for shop_id" do
+    @service.shop_id.should == SPEC_CONF["remittance"]["shop_id"]
+  end
+
+  it "has an attr_reader for shop_pass" do
+    @service.shop_pass.should == SPEC_CONF["remittance"]["shop_pass"]
+  end
+
+  it "has an attr_reader for host" do
+    @service.host.should == SPEC_CONF["remittance"]["host"]
+  end
+
+  describe "#register_account" do
+    let(:do_api_call) {
+      @service.register_account({
+        :method            => 1,
+        :bank_id           => "bank00001",
+        :bank_code         => "0001",
+        :branch_code       => "813",
+        :account_type      => 1,
+        :account_name      => "An Yutzy",
+        :account_number    => "0012345",
+        :branch_code_jp    => "00567",
+        :account_number_jp => "01234567",
+        :free              => "foobar"
+      })
+    }
+
+    it "gets data about an account", :vcr do
+      result = do_api_call
+      result["Bank_ID"].nil?.should_not be_truthy
+      result["Method"].nil?.should_not be_truthy
+    end
+
+    context 'with all required options' do
+      let(:response) { OpenStruct.new(status: 200, body: nil ) }
+      before { allow(GMO).to receive(:make_request) { response } }
+
+      it "makes request with correct parameters", :vcr do
+        path = "/api/AccountRegistration.idPass"
+        args = {
+          "Method"                => 1,
+          "Bank_ID"               => "bank00001",
+          "Bank_Code"             => "0001",
+          "Branch_Code"           => "813",
+          "Account_Type"          => 1,
+          "Account_Name"          => "An Yutzy",
+          "Account_Number"        => "0012345",
+          "Branch_Code_Jpbank"    => "00567",
+          "Account_Number_Jpbank" => "01234567",
+          "Free"                  => "foobar",
+          "Shop_ID"               => @service.shop_id,
+          "Shop_Pass"             => @service.shop_pass
+        }
+        verb = "post"
+        options = { :host => @service.host }
+        expect(GMO).to receive(:make_request).with(path, args, verb, options)
+      end
+
+      after { do_api_call }
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.register_account()
+      }.should raise_error("Required method, bank_id, bank_code, branch_code, account_type, account_name, account_number were not provided.")
+    end
+  end
+
+  describe "#search_account" do
+    let(:do_api_call) { @service.search_account(:bank_id => "bank00001") }
+
+    it "gets data about an account", :vcr do
+      result = do_api_call
+      result["Bank_ID"].nil?.should_not be_truthy
+      result["Delete_Flag"].nil?.should_not be_truthy
+      result["Bank_Name"].nil?.should_not be_truthy
+      result["Bank_Code"].nil?.should_not be_truthy
+      result["Branch_Name"].nil?.should_not be_truthy
+      result["Branch_Code"].nil?.should_not be_truthy
+      result["Account_Type"].nil?.should_not be_truthy
+      result["Account_Number"].nil?.should_not be_truthy
+      result["Account_Name"].nil?.should_not be_truthy
+      result["Free"].nil?.should_not be_truthy
+      result["Branch_Code_Jpbank"].nil?.should_not be_truthy
+      result["Account_Number_Jpbank"].nil?.should_not be_truthy
+    end
+
+    context 'with all required options' do
+      let(:response) { OpenStruct.new(status: 200, body: nil ) }
+      before { allow(GMO).to receive(:make_request) { response } }
+
+      it "makes request with correct parameters", :vcr do
+        path = "/api/AccountSearch.idPass"
+        args = {
+          "Bank_ID"   => "bank00001",
+          "Shop_ID"   => @service.shop_id,
+          "Shop_Pass" => @service.shop_pass
+        }
+        verb = "post"
+        options = { :host => @service.host }
+        expect(GMO).to receive(:make_request).with(path, args, verb, options)
+      end
+
+      after { do_api_call }
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.search_account()
+      }.should raise_error("Required bank_id were not provided.")
+    end
+  end
+
+  describe "#register_deposit" do
+    let(:do_api_call) {
+      @service.register_deposit({
+        :method     => 1,
+        :bank_id    => "bank00001",
+        :deposit_id => "dep00001",
+        :amount     => "1000"
+      })
+    }
+
+    it "gets data about a deposit", :vcr do
+      result = do_api_call
+      result["Bank_ID"].nil?.should_not be_truthy
+      result["Deposit_ID"].nil?.should_not be_truthy
+      result["Method"].nil?.should_not be_truthy
+      result["Amount"].nil?.should_not be_truthy
+      result["Bank_Fee"].nil?.should_not be_truthy
+    end
+
+    context 'with all required options' do
+      let(:response) { OpenStruct.new(status: 200, body: nil ) }
+      before { allow(GMO).to receive(:make_request) { response } }
+
+      it "makes request with correct parameters", :vcr do
+        path = "/api/DepositRegistration.idPass"
+        args = {
+          "Method"     => 1,
+          "Bank_ID"    => "bank00001",
+          "Deposit_ID" => "dep00001",
+          "Amount"     => "1000",
+          "Shop_ID"    => @service.shop_id,
+          "Shop_Pass"  => @service.shop_pass
+        }
+        verb = "post"
+        options = { :host => @service.host }
+        expect(GMO).to receive(:make_request).with(path, args, verb, options)
+      end
+
+      after { do_api_call }
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.register_deposit()
+      }.should raise_error("Required method, bank_id, deposit_id, amount were not provided.")
+    end
+  end
+
+  describe "#search_deposit" do
+    let(:do_api_call) { @service.search_deposit(:deposit_id => "dep00001") }
+
+    it "gets data about a deposit", :vcr do
+      result = do_api_call
+      result["Bank_ID"].nil?.should_not be_truthy
+      result["Deposit_ID"].nil?.should_not be_truthy
+      result["Bank_Name"].nil?.should_not be_truthy
+      result["Bank_Code"].nil?.should_not be_truthy
+      result["Branch_Name"].nil?.should_not be_truthy
+      result["Branch_Code"].nil?.should_not be_truthy
+      result["Account_Type"].nil?.should_not be_truthy
+      result["Account_Number"].nil?.should_not be_truthy
+      result["Account_Name"].nil?.should_not be_truthy
+      result["Free"].nil?.should_not be_truthy
+      result["Amount"].nil?.should_not be_truthy
+      result["Bank_Fee"].nil?.should_not be_truthy
+      result["Result"].nil?.should_not be_truthy
+      result["Branch_Code_Jpbank"].nil?.should_not be_truthy
+      result["Account_Number_Jpbank"].nil?.should_not be_truthy
+      result["Deposit_Date"].nil?.should_not be_truthy
+      result["Result_Detail"].nil?.should_not be_truthy
+    end
+
+    context 'with all required options' do
+      let(:response) { OpenStruct.new(status: 200, body: nil ) }
+      before { allow(GMO).to receive(:make_request) { response } }
+
+      it "makes request with correct parameters", :vcr do
+        path = "/api/DepositSearch.idPass"
+        args = {
+          "Deposit_ID" => "dep00001",
+          "Shop_ID"    => @service.shop_id,
+          "Shop_Pass"  => @service.shop_pass
+        }
+        verb = "post"
+        options = { :host => @service.host }
+        expect(GMO).to receive(:make_request).with(path, args, verb, options)
+      end
+
+      after { do_api_call }
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.search_deposit()
+      }.should raise_error("Required deposit_id were not provided.")
+    end
+  end
+
+  describe "#search_balance" do
+    let(:do_api_call) { @service.search_balance }
+    it "gets data about balance", :vcr do
+      result = do_api_call
+      result["Shop_ID"].nil?.should_not be_truthy
+      result["Balance"].nil?.should_not be_truthy
+      result["Balance_Forecast"].nil?.should_not be_truthy
+    end
+  end
+
+end

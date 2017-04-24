@@ -57,7 +57,7 @@ module GMO
       private
 
         def set_error_messages
-          error_messages = self.error_info['ErrInfo'].split(ERROR_INFO_SEPARATOR)
+          error_messages = self.error_info['ErrInfo'].to_s.split(ERROR_INFO_SEPARATOR)
                                                      .map { |e| error_message(e) || e }
                                                      .join(ERROR_INFO_SEPARATOR)
           self.response_body += "&ErrMessage=#{error_messages}"

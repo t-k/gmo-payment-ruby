@@ -1,0 +1,38 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test-remittance.gmopg.jp/api/DepositRegistration.idPass
+    body:
+      encoding: UTF-8
+      string: Method=<SHOP_PASS>&Bank_ID=bank0000<SHOP_PASS>&Deposit_ID=dep0000<SHOP_PASS>&Amount=<SHOP_PASS>000&Shop_ID=rshop0000000<SHOP_PASS>&Shop_Pass=<SHOP_PASS>234abcd
+    headers:
+      Accept-Encoding:
+      - gzip;q=<SHOP_PASS>.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 24 Apr 20<SHOP_PASS>7 <SHOP_PASS><SHOP_PASS>:<SHOP_PASS>8:02 GMT
+      Content-Type:
+      - text/plain;charset=Windows-3<SHOP_PASS>J
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: Deposit_ID=dep00000&Bank_ID=bank00000&Method=1&Amount=1000&Bank_Fee=27
+    http_version:
+  recorded_at: Mon, 24 Apr 2017 11:18:02 GMT
+recorded_with: VCR 3.0.3

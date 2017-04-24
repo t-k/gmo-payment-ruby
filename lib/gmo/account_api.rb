@@ -21,6 +21,7 @@ module GMO
           raise ArgumentError, "Initialize must receive a hash with :shop_id, :shop_pass and either :host! (received #{options.inspect})"
         end
       end
+      attr_reader :shop_id, :shop_pass, :host
 
       #########
       # Method
@@ -112,8 +113,8 @@ module GMO
         post_request name, options
       end
 
-      #########
-      # Bank_ID
+      #############
+      # Deposit_ID
       ### @return ###
       # Deposit_ID
       # Bank_ID

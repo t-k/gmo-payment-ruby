@@ -1,0 +1,38 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test-remittance.gmopg.jp/api/DepositSearch.idPass
+    body:
+      encoding: UTF-8
+      string: Deposit_ID=dep0000<SHOP_PASS>&Shop_ID=rshop0000000<SHOP_PASS>&Shop_Pass=<SHOP_PASS>234abcd
+    headers:
+      Accept-Encoding:
+      - gzip;q=<SHOP_PASS>.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 24 Apr 20<SHOP_PASS>7 <SHOP_PASS><SHOP_PASS>:2<SHOP_PASS>:46 GMT
+      Content-Type:
+      - text/plain;charset=Windows-3<SHOP_PASS>J
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: UTF-8
+      string: Deposit_ID=dep00000&Bank_ID=bank163144&Bank_Name=みずほ銀行&Bank_Code=0001&Branch_Name=札幌支店&Branch_Code=813&Account_Type=1&Account_Number=0012345&Account_Name=An Yutzy&Free=&Amount=181035&Bank_Fee=270&Result=0&Branch_Code_Jpbank=&Account_Number_Jpbank=&Deposit_Date=&Result_Detail=
+    http_version:
+  recorded_at: Mon, 24 Apr 2017 11:21:46 GMT
+recorded_with: VCR 3.0.3
