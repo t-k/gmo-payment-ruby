@@ -2,7 +2,7 @@
 
 ## master
 
-* AccountAPI
+* DepositAPI
   * Add support for registering payment accounts
   * Add support for registering payment deposits to accounts
 
