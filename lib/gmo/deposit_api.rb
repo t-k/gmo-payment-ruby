@@ -40,12 +40,11 @@ module GMO
       # ErrCode
       # ErrInfo
       ### example ###
-      # gmo.register_account({
-      #   method:            1,
+      # gmo.create_account({
       #   bank_id:           'bank00000',
       #   bank_code:         '0001',
       #   branch_code:       '813',
-      #   account_type:      1,
+      #   account_type:      :normal,
       #   account_name:      'An Yutzy',
       #   account_number:    '0012345',
       #   branch_code_jp:    '00567',
@@ -53,9 +52,70 @@ module GMO
       #   free:              'foobar'      # Metadata
       # })
       # {"Bank_ID"=>"bank00000", "Method"=>"1"}
-      def register_account(options = {})
+      def create_account(options = {})
         name = "/api/AccountRegistration.idPass"
-        required = %i(method bank_id bank_code branch_code account_type account_name account_number)
+        options[:method] = 1
+        options[:account_type] = GMO::Const::ACCOUNT_TYPES_MAP[options[:account_type]]
+        required = %i(bank_id bank_code branch_code account_type account_name account_number)
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      #########
+      # Method
+      # Bank_ID
+      # Bank_Code
+      # Branch_Code
+      # Account_Type
+      # Account_Name
+      # Account_Number
+      # Branch_Code_Jpbank
+      # Account_Number_Jpbank
+      # Free
+      ### @return ###
+      # Bank_ID
+      # Method
+      # ErrCode
+      # ErrInfo
+      ### example ###
+      # gmo.update_account({
+      #   bank_id:           'bank00000',
+      #   bank_code:         '0001',
+      #   branch_code:       '813',
+      #   account_type:      :normal,
+      #   account_name:      'An Yutzy',
+      #   account_number:    '0012345',
+      #   branch_code_jp:    '00567',
+      #   account_number_jp: '01234567',
+      #   free:              'foobar'      # Metadata
+      # })
+      # {"Bank_ID"=>"bank00000", "Method"=>"2"}
+      def update_account(options = {})
+        name = "/api/AccountRegistration.idPass"
+        options[:method] = 2
+        options[:account_type] = GMO::Const::ACCOUNT_TYPES_MAP[options[:account_type]]
+        required = %i(bank_id bank_code branch_code account_type account_name account_number)
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      #########
+      # Method
+      # Bank_ID
+      ### @return ###
+      # Bank_ID
+      # Method
+      # ErrCode
+      # ErrInfo
+      ### example ###
+      # gmo.delete_account({
+      #   bank_id: 'bank00000',
+      # })
+      # {"Bank_ID"=>"bank00000", "Method"=>"3"}
+      def delete_account(options = {})
+        name = "/api/AccountRegistration.idPass"
+        options[:method] = 3
+        required = %i(bank_id)
         assert_required_options(required, options)
         post_request name, options
       end
@@ -99,16 +159,38 @@ module GMO
       # Amount
       # Bank_Fee
       ### example ###
-      # gmo.register_deposit({
-      #   method:     1,
+      # gmo.create_deposit({
       #   deposit_id: 'dep00000',
       #   bank_id:    'bank00000',
       #   amount:     '1000'
       # })
       # {"Deposit_ID"=>"dep00000", "Bank_ID"=>"bank00000", "Method"=>"1", "Amount"=>"1000", "Bank_Fee"=>"27"}
-      def register_deposit(options = {})
+      def create_deposit(options = {})
         name = "/api/DepositRegistration.idPass"
-        required = %i(method bank_id deposit_id amount)
+        options[:method] = 1
+        required = %i(bank_id deposit_id amount)
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      #########
+      # Method
+      # Deposit_ID
+      # Bank_ID
+      ### @return ###
+      # Deposit_ID
+      # Bank_ID
+      # Method
+      ### example ###
+      # gmo.cancel_deposit({
+      #   deposit_id: 'dep00000',
+      #   bank_id:    'bank00000',
+      # })
+      # {"Deposit_ID"=>"dep00000", "Bank_ID"=>"bank00000", "Method"=>"2"}
+      def cancel_deposit(options = {})
+        name = "/api/DepositRegistration.idPass"
+        options[:method] = 2
+        required = %i(bank_id deposit_id)
         assert_required_options(required, options)
         post_request name, options
       end
@@ -155,6 +237,78 @@ module GMO
       # {"Shop_ID"=>"rshop00000071", "Balance"=>"9818965", "Balance_Forecast"=>"9818965"}
       def search_balance(options = {})
         name = "/api/BalanceSearch.idPass"
+        post_request name, options
+      end
+
+      ###########
+      # Method
+      # Deposit_ID
+      # Mail_Address
+      # Amount
+      # Mail_Deposit_Account_Name
+      # Expire
+      # Shop_Mail_Address
+      ### @return ###
+      # Method
+      # Amount
+      # Deposit_ID
+      # Expire
+      ### example ###
+      # gmo.create_mail_deposit({
+      #   deposit_id: 'dep00001',
+      #   deposit_mail_address: 'foobar',
+      #   amount: 1000,
+      #   deposit_account_name: 'An Yutzy',
+      #   expire: 5,
+      #   deposit_shop_mail_address: 'foobar'
+      # })
+      # {"Deposit_ID"=>"dep00009", "Method"=>"1", "Amount"=>"1200", "Expire"=>"20170503"}
+      def create_mail_deposit(options = {})
+        name = "/api/MailDepositRegistration.idPass"
+        options[:method] = 1
+        required = %i(deposit_id deposit_mail_address amount deposit_account_name expire deposit_shop_mail_address)
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      ###########
+      # Method
+      # Deposit_ID
+      ### @return ###
+      # Deposit_ID
+      # Method
+      ### example ###
+      # gmo.cancel_mail_deposit({
+      #   deposit_id: 'dep00001',
+      # })
+      # {"Deposit_ID"=>"dep00001", "Method"=>"2"}
+      def cancel_mail_deposit(options = {})
+        name = "/api/MailDepositRegistration.idPass"
+        options[:method] = 2
+        required = %i(deposit_id)
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      #########
+      # Deposit_ID
+      ### @return ###
+      # Deposit_ID
+      # Mail_Address
+      # Shop_Mail_Address
+      # Account_Name
+      # Amount
+      # Expire
+      # Status
+      ### example ###
+      # gmo.search_mail_deposit({
+      #   deposit_id: 'dep00001'
+      # })
+      # {"Deposit_ID"=>"dep0001516", "Mail_Address"=>"anyutzy@demo.com", "Shop_Mail_Address"=>"anyutzy@demo.com", "Account_Name"=>"An Yutzy", "Amount"=>"1000", "Expire"=>"20170503", "Status"=>"0"}
+      def search_mail_deposit(options = {})
+        name = "/api/MailDepositSearch.idPass"
+        required = %i(deposit_id)
+        assert_required_options(required, options)
         post_request name, options
       end
 
