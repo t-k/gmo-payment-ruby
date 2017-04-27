@@ -3,11 +3,11 @@
 ## master
 
 * DepositAPI
-  * Add support to register payment accounts #20
-  * Add support to register deposits #20
-  * Add support to register mail deposits #20
+  * Add support to register payment accounts [#20](https://github.com/t-k/gmo-payment-ruby/pull/20) ([@jagdeepsingh](https://github.com/JagdeepSingh))
+  * Add support to register deposits [#20](https://github.com/t-k/gmo-payment-ruby/pull/20) ([@jagdeepsingh](https://github.com/JagdeepSingh))
+  * Add support to register mail deposits [#20](https://github.com/t-k/gmo-payment-ruby/pull/20) ([@jagdeepsingh](https://github.com/JagdeepSingh))
 
-* Add error messages to GMO API response along with error code and info. #20
+* Add error messages to GMO API response along with error code and info [#20](https://github.com/t-k/gmo-payment-ruby/pull/20) ([@jagdeepsingh](https://github.com/JagdeepSingh))
 
 ## 0.3.0
  * ShopAPI
