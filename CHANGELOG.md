@@ -3,10 +3,11 @@
 ## master
 
 * DepositAPI
-  * Add support for registering payment accounts
-  * Add support for registering payment deposits to accounts
+  * Add support to register payment accounts #20
+  * Add support to register deposits #20
+  * Add support to register mail deposits #20
 
-* Add error messages to GMO API response along with error code and info.
+* Add error messages to GMO API response along with error code and info. #20
 
 ## 0.3.0
  * ShopAPI
