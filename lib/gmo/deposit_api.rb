@@ -256,17 +256,17 @@ module GMO
       ### example ###
       # gmo.create_mail_deposit({
       #   deposit_id: 'dep00001',
-      #   deposit_mail_address: 'foobar',
+      #   deposit_email: 'anyutzy@demo.com',
       #   amount: 1000,
       #   deposit_account_name: 'An Yutzy',
       #   expire: 5,
-      #   deposit_shop_mail_address: 'foobar'
+      #   deposit_shop_email: 'anyutzy@demo.com'
       # })
       # {"Deposit_ID"=>"dep00009", "Method"=>"1", "Amount"=>"1200", "Expire"=>"20170503"}
       def create_mail_deposit(options = {})
         name = "/api/MailDepositRegistration.idPass"
         options[:method] = 1
-        required = %i(deposit_id deposit_mail_address amount deposit_account_name expire deposit_shop_mail_address)
+        required = %i(deposit_id deposit_email amount deposit_account_name expire deposit_shop_email)
         assert_required_options(required, options)
         post_request name, options
       end
