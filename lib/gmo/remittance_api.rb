@@ -3,7 +3,7 @@
 # A client for the GMO Payment API.
 #
 # example
-# gmo = GMO::Payment::DepositAPI.new({
+# gmo = GMO::Payment::RemittanceAPI.new({
 #   shop_id:     "foo",
 #   shop_pass:   "bar",
 #   host:  "test-remittance.gmopg.jp"
@@ -11,7 +11,7 @@
 module GMO
   module Payment
 
-    module DepositAPIMethods
+    module RemittanceAPIMethods
 
       def initialize(options = {})
         @shop_id   = options[:shop_id]

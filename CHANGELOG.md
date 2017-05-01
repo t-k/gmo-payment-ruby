@@ -2,7 +2,7 @@
 
 ## master
 
-* DepositAPI
+* RemittanceAPI
   * Add support to register payment accounts [#20](https://github.com/t-k/gmo-payment-ruby/pull/20) ([@jagdeepsingh](https://github.com/JagdeepSingh))
   * Add support to register deposits [#20](https://github.com/t-k/gmo-payment-ruby/pull/20) ([@jagdeepsingh](https://github.com/JagdeepSingh))
   * Add support to register mail deposits [#20](https://github.com/t-k/gmo-payment-ruby/pull/20) ([@jagdeepsingh](https://github.com/JagdeepSingh))

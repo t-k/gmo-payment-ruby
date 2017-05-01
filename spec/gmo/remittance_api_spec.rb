@@ -2,10 +2,10 @@
 
 require "spec_helper"
 
-describe "GMO::Payment::DepositAPI" do
+describe "GMO::Payment::RemittanceAPI" do
 
   before(:each) do
-    @service ||= GMO::Payment::DepositAPI.new({
+    @service ||= GMO::Payment::RemittanceAPI.new({
       :shop_id   => SPEC_CONF["remittance"]["shop_id"],
       :shop_pass => SPEC_CONF["remittance"]["shop_pass"],
       :host      => SPEC_CONF["remittance"]["host"]
@@ -14,7 +14,7 @@ describe "GMO::Payment::DepositAPI" do
 
   it "should raise an ArgumentError if no options passed" do
     lambda {
-      service = GMO::Payment::DepositAPI.new()
+      service = GMO::Payment::RemittanceAPI.new()
     }.should raise_error(ArgumentError)
   end
 
