@@ -1,6 +1,6 @@
 # coding: utf-8
 
-# A client for the GMO Payment API.
+# A client for the GMO Remittance API.
 #
 # example
 # gmo = GMO::Payment::RemittanceAPI.new({

@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://test-remittance.gmopg.jp/api/AccountRegistration.idPass
+    uri: https://<REMITTANCE_HOST>/api/AccountRegistration.idPass
     body:
       encoding: UTF-8
-      string: Method=<SHOP_PASS>&Bank_ID=bank0000<SHOP_PASS>&Bank_Code=000<SHOP_PASS>&Branch_Code=8<SHOP_PASS>3&Account_Type=<SHOP_PASS>&Account_Name=An+Yutzy&Account_Number=00<SHOP_PASS>2345&Branch_Code_Jpbank=00567&Account_Number_Jpbank=0<SHOP_PASS>234567&Free=foobar&Shop_ID=rshop0000000<SHOP_PASS>&Shop_Pass=<SHOP_PASS>234abcd
+      string: Bank_ID=bank0000<SHOP_PASS>&Bank_Code=000<SHOP_PASS>&Branch_Code=8<SHOP_PASS>3&Account_Type=<SHOP_PASS>&Account_Name=An+Yutzy&Account_Number=00<SHOP_PASS>2345&Branch_Code_Jpbank=00567&Account_Number_Jpbank=0<SHOP_PASS>234567&Free=foobar&Method=2&Shop_ID=<REMITTANCE_SHOP_ID>&Shop_Pass=<REMITTANCE_SHOP_PASS>
     headers:
       Accept-Encoding:
       - gzip;q=<SHOP_PASS>.0,deflate;q=0.6,identity;q=0.3
@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 24 Apr 20<SHOP_PASS>7 06:54:<SHOP_PASS><SHOP_PASS> GMT
+      - Mon, 0<SHOP_PASS> May 20<SHOP_PASS>7 05:58:<SHOP_PASS>9 GMT
       Content-Type:
       - text/plain;charset=Windows-3<SHOP_PASS>J
       Transfer-Encoding:
@@ -34,5 +34,5 @@ http_interactions:
       encoding: UTF-8
       string: Bank_ID=bank00001&Method=2
     http_version:
-  recorded_at: Mon, 24 Apr 2017 06:54:11 GMT
+  recorded_at: Mon, 01 May 2017 05:58:19 GMT
 recorded_with: VCR 3.0.3

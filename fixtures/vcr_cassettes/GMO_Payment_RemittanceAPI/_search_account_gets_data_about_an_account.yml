@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://test-remittance.gmopg.jp/api/AccountSearch.idPass
+    uri: https://<REMITTANCE_HOST>/api/AccountSearch.idPass
     body:
       encoding: UTF-8
-      string: Bank_ID=bank0000<SHOP_PASS>&Shop_ID=rshop0000000<SHOP_PASS>&Shop_Pass=<SHOP_PASS>234abcd
+      string: Bank_ID=bank0000<SHOP_PASS>&Shop_ID=<REMITTANCE_SHOP_ID>&Shop_Pass=<REMITTANCE_SHOP_PASS>
     headers:
       Accept-Encoding:
       - gzip;q=<SHOP_PASS>.0,deflate;q=0.6,identity;q=0.3
@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 24 Apr 20<SHOP_PASS>7 <SHOP_PASS><SHOP_PASS>:<SHOP_PASS>0:53 GMT
+      - Mon, 0<SHOP_PASS> May 20<SHOP_PASS>7 05:58:2<SHOP_PASS> GMT
       Content-Type:
       - text/plain;charset=Windows-3<SHOP_PASS>J
       Transfer-Encoding:
@@ -34,5 +34,5 @@ http_interactions:
       encoding: UTF-8
       string: Bank_ID=bank12345&Delete_Flag=0&Bank_Name=みずほ銀行&Bank_Code=0001&Branch_Name=札幌支店&Branch_Code=813&Account_Type=1&Account_Number=0012345&Account_Name=An Yutzy&Free=&Branch_Code_Jpbank=&Account_Number_Jpbank=
     http_version:
-  recorded_at: Mon, 24 Apr 2017 11:10:53 GMT
+  recorded_at: Mon, 01 May 2017 05:58:21 GMT
 recorded_with: VCR 3.0.3
