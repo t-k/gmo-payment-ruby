@@ -9,7 +9,15 @@
 
 module GMO
 
-  class GMOError < StandardError; end
+  class GMOError < StandardError
+    ERROR_INFO_SEPARATOR = '|'.freeze
+
+    private
+
+      def error_message(info)
+        ::GMO::Const::ERRORS[info] || info
+      end
+  end
 
   module Payment
     class Error < ::GMO::GMOError
@@ -41,9 +49,19 @@ module GMO
       def initialize(error_info = {})
         self.error_info = error_info
         self.response_body = "ErrCode=#{error_info["ErrCode"]}&ErrInfo=#{error_info["ErrInfo"]}"
+        set_error_messages
         message = self.response_body
         super(message)
       end
+
+      private
+
+        def set_error_messages
+          error_messages = self.error_info['ErrInfo'].to_s.split(ERROR_INFO_SEPARATOR)
+                                                     .map { |e| error_message(e) || e }
+                                                     .join(ERROR_INFO_SEPARATOR)
+          self.response_body += "&ErrMessage=#{error_messages}"
+        end
     end
 
   end

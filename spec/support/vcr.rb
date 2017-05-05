@@ -3,6 +3,13 @@ VCR.configure do |c|
   c.hook_into :webmock
   c.allow_http_connections_when_no_cassette = true
   c.default_cassette_options = { :record => :new_episodes }
+
+  # Filter remittance config before others to correctly hide config from vcr cassettes
+  #   as its values are bigger in length than others and should completely be replaced with given strings.
+  c.filter_sensitive_data('<REMITTANCE_SHOP_ID>') { SPEC_CONF["remittance"]["shop_id"] }
+  c.filter_sensitive_data('<REMITTANCE_SHOP_PASS>') { SPEC_CONF["remittance"]["shop_pass"] }
+  c.filter_sensitive_data('<REMITTANCE_HOST>') { SPEC_CONF["remittance"]["host"] }
+
   c.filter_sensitive_data('<SHOP_ID>') { SPEC_CONF["shop_id"] }
   c.filter_sensitive_data('<SHOP_PASS>') { SPEC_CONF["shop_pass"] }
   c.filter_sensitive_data('<SITE_ID>') { SPEC_CONF["site_id"] }
