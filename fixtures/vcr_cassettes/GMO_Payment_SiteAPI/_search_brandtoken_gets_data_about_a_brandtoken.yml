@@ -1,0 +1,74 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://<HOST>/payment/TradedBrandtoken.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=<SHOP_PASS>502<SHOP_PASS>90974&MemberID=<SHOP_PASS>502<SHOP_PASS>90974&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>&SiteID=<SITE_ID>&SitePass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=<SHOP_PASS>.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 08 Aug 20<SHOP_PASS>7 <SHOP_PASS><SHOP_PASS>:<SHOP_PASS>6:<SHOP_PASS>5
+        GMT
+      Content-Type:
+      - text/plain;charset=Shift_JIS
+      Content-Length:
+      - '29'
+      Connection:
+      - close
+      Content-Language:
+      - ja-JP
+    body:
+      encoding: UTF-8
+      string: TokenSeq=0&CardNoToken=*************<SHOP_PASS><SHOP_PASS><SHOP_PASS>&Forward=2a99663
+    http_version:
+  recorded_at: Tue, 08 Aug 2017 11:16:15 GMT
+- request:
+    method: post
+    uri: https://<HOST>/payment/SearchBrandtoken.idPass
+    body:
+      encoding: UTF-8
+      string: MemberID=<SHOP_PASS>502<SHOP_PASS>9<SHOP_PASS><SHOP_PASS><SHOP_PASS>7&SeqMode=0&SiteID=<SITE_ID>&SitePass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=<SHOP_PASS>.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 08 Aug 20<SHOP_PASS>7 <SHOP_PASS><SHOP_PASS>:<SHOP_PASS>8:37 GMT
+      Content-Type:
+      - text/plain;charset=Shift_JIS
+      Content-Length:
+      - '29'
+      Connection:
+      - close
+      Content-Language:
+      - ja-JP
+    body:
+      encoding: UTF-8
+      string: TokenSeq=0&DefaultFlag=0&CardName=&CardNoToken=*************111&Expire=2212&HolderName=&DeleteFlag=0
+    http_version:
+  recorded_at: Tue, 08 Aug 2017 11:18:38 GMT
+recorded_with: VCR 3.0.3

@@ -9,6 +9,13 @@ describe "GMO::Payment::ShopAPI" do
   end
 
   before(:each) do
+    @shop_site ||= GMO::Payment::ShopAndSiteAPI.new({
+      :site_id   => SPEC_CONF["site_id"],
+      :site_pass => SPEC_CONF["site_pass"],
+      :shop_id   => SPEC_CONF["shop_id"],
+      :shop_pass => SPEC_CONF["shop_pass"],
+      :host      => SPEC_CONF["host"]
+    })
     @service ||= GMO::Payment::ShopAPI.new({
       :shop_id   => SPEC_CONF["shop_id"],
       :shop_pass => SPEC_CONF["shop_pass"],
@@ -105,6 +112,25 @@ describe "GMO::Payment::ShopAPI" do
       lambda {
         result = @service.entry_tran_linepay()
       }.should raise_error("Required order_id, job_cd, amount were not provided.")
+    end
+  end
+
+  describe "#entry_tran_brandtoken" do
+    it "gets data about a transaction", :vcr do
+      order_id = @order_id
+      result = @service.entry_tran_brandtoken({
+        :order_id => order_id,
+        :job_cd => "AUTH",
+        :amount => 100
+      })
+      result["AccessID"].nil?.should_not be true
+      result["AccessPass"].nil?.should_not be true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.entry_tran_brandtoken()
+      }.should raise_error('Required order_id, job_cd, amount were not provided.')
     end
   end
 
@@ -299,6 +325,77 @@ describe "GMO::Payment::ShopAPI" do
     end
   end
 
+  describe "#exec_tran_brandtoken" do
+    it "gets data about a transaction", :vcr do
+      order_id = generate_id
+      client_field_1 = "client_field1"
+      result = @service.entry_tran_brandtoken({
+        :order_id => order_id,
+        :job_cd => "AUTH",
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      result = @service.exec_tran_brandtoken({
+        :order_id    => order_id,
+        :access_id   => access_id,
+        :access_pass => access_pass,
+        :token_type  => :apple_pay,
+        :token       => 'base64encodedtoken',
+        :client_field_1 => client_field_1
+      })
+      result["Status"].nil?.should_not be true
+      result["OrderID"].nil?.should_not be true
+      result["Forward"].nil?.should_not be true
+      result["Approve"].nil?.should_not be true
+      result["TranID"].nil?.should_not be true
+      result["TranDate"].nil?.should_not be true
+      (result["ClientField1"] == client_field_1).should be true
+      result["ClientField2"].nil?.should_not be true
+      result["ClientField3"].nil?.should_not be true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.exec_tran_brandtoken()
+      }.should raise_error("Required access_id, access_pass, order_id were not provided.")
+    end
+
+    context "parameter contains Japanese characters" do
+      before { require "kconv" unless defined?(Kconv) }
+
+      it "should correctly handle Japanese", :vcr do
+        order_id = generate_id
+        client_field_1 = "〜−¢£¬−‖①ほげほげhogehoge"
+        result = @service.entry_tran_brandtoken({
+          :order_id => order_id,
+          :job_cd => "AUTH",
+          :amount => 100
+        })
+        access_id = result["AccessID"]
+        access_pass = result["AccessPass"]
+        result = @service.exec_tran_brandtoken({
+          :order_id    => order_id,
+          :access_id   => access_id,
+          :access_pass => access_pass,
+          :token_type  => :apple_pay,
+          :token       => 'base64encodedtoken',
+          :client_field_1 => client_field_1
+        })
+        result["Status"].nil?.should_not be true
+        result["OrderID"].nil?.should_not be true
+        result["Forward"].nil?.should_not be true
+        result["Approve"].nil?.should_not be true
+        result["TranID"].nil?.should_not be true
+        result["TranDate"].nil?.should_not be true
+        (result["ClientField1"] == client_field_1).should be true
+        (result["ClientField1"].encoding.to_s == "UTF-8").should be true
+        result["ClientField2"].nil?.should_not be true
+        result["ClientField3"].nil?.should_not be true
+      end
+    end
+  end
+
   describe "#alter_tran" do
     it "gets data about order", :vcr do
       order_id = generate_id
@@ -413,6 +510,166 @@ describe "GMO::Payment::ShopAPI" do
     end
   end
 
+  describe "#change_tran_brandtoken" do
+    it "gets data about order", :vcr do
+      order_id = generate_id
+      result = @service.entry_tran_brandtoken({
+        :order_id => order_id,
+        :job_cd => "AUTH",
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      @service.exec_tran_brandtoken({
+        :order_id    => order_id,
+        :access_id   => access_id,
+        :access_pass => access_pass,
+        :token_type  => :apple_pay,
+        :token       => 'base64encodedtoken'
+      })
+      result = @service.change_tran_brandtoken({
+        :order_id    => order_id,
+        :access_id   => access_id,
+        :access_pass => access_pass,
+        :job_cd      => "CAPTURE",
+        :amount      => 1500
+      })
+      result["AccessID"].nil?.should_not be true
+      result["AccessPass"].nil?.should_not be true
+      result["Status"].nil?.should_not be true
+      result["Forward"].nil?.should_not be true
+      result["Approve"].nil?.should_not be true
+      result["TranID"].nil?.should_not be true
+      result["TranDate"].nil?.should_not be true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.change_tran_brandtoken()
+      }.should raise_error('Required access_id, access_pass, order_id, job_cd, amount were not provided.')
+    end
+  end
+
+  describe "#void_tran_brandtoken" do
+    it "gets data about order", :vcr do
+      order_id = generate_id
+      result = @service.entry_tran_brandtoken({
+        :order_id => order_id,
+        :job_cd => "AUTH",
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      @service.exec_tran_brandtoken({
+        :order_id    => order_id,
+        :access_id   => access_id,
+        :access_pass => access_pass,
+        :token_type  => :apple_pay,
+        :token       => 'base64encodedtoken'
+      })
+      result = @service.void_tran_brandtoken({
+        :order_id    => order_id,
+        :access_id   => access_id,
+        :access_pass => access_pass
+      })
+      result["AccessID"].nil?.should_not be true
+      result["AccessPass"].nil?.should_not be true
+      result["Status"].nil?.should_not be true
+      result["Forward"].nil?.should_not be true
+      result["Approve"].nil?.should_not be true
+      result["TranID"].nil?.should_not be true
+      result["TranDate"].nil?.should_not be true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.void_tran_brandtoken()
+      }.should raise_error('Required access_id, access_pass, order_id were not provided.')
+    end
+  end
+
+  describe "#sales_tran_brandtoken" do
+    it "gets data about a transaction", :vcr do
+      order_id = generate_id
+      result = @service.entry_tran_brandtoken({
+        :order_id => order_id,
+        :job_cd => "AUTH",
+        :amount => 1000
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      @service.exec_tran_brandtoken({
+        :order_id    => order_id,
+        :access_id   => access_id,
+        :access_pass => access_pass,
+        :token_type  => :apple_pay,
+        :token       => 'base64encodedtoken'
+      })
+      member_id = generate_id
+      @shop_site.trade_brandtoken({
+        :member_id => member_id,
+        :order_id  => order_id
+      })
+      result = @service.sales_tran_brandtoken({
+        :access_id   => access_id,
+        :access_pass => access_pass,
+        :order_id    => order_id,
+        :amount      => 1000
+      })
+      result["AccessID"].nil?.should_not be true
+      result["AccessPass"].nil?.should_not be true
+      result["Status"].nil?.should_not be true
+      result["Forward"].nil?.should_not be true
+      result["Approve"].nil?.should_not be true
+      result["TranID"].nil?.should_not be true
+      result["TranDate"].nil?.should_not be true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.sales_tran_brandtoken()
+      }.should raise_error('Required access_id, access_pass, order_id, amount were not provided.')
+    end
+  end
+
+  describe "#refund_tran_brandtoken" do
+    it "gets data about a transaction", :vcr do
+      order_id = generate_id
+      result = @service.entry_tran_brandtoken({
+        :order_id => order_id,
+        :job_cd   => "CAPTURE",
+        :amount   => 1000
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      @service.exec_tran_brandtoken({
+        :order_id    => order_id,
+        :access_id   => access_id,
+        :access_pass => access_pass,
+        :token_type  => :apple_pay,
+        :token       => 'base64encodedtoken'
+      })
+      result = @service.refund_tran_brandtoken({
+        :access_id   => access_id,
+        :access_pass => access_pass,
+        :order_id    => order_id,
+        :amount      => 1000
+      })
+      result["AccessID"].nil?.should_not be true
+      result["AccessPass"].nil?.should_not be true
+      result["Status"].nil?.should_not be true
+      result["Forward"].nil?.should_not be true
+      result["Approve"].nil?.should_not be true
+      result["TranID"].nil?.should_not be true
+      result["TranDate"].nil?.should_not be true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.refund_tran_brandtoken()
+      }.should raise_error('Required access_id, access_pass, order_id, amount were not provided.')
+    end
+  end
 
   describe "#search_trade" do
     it "gets data about order", :vcr do

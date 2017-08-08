@@ -5,3 +5,8 @@ site_pass: hoge
 host: pt01.mul-pay.jp
 token: token
 token_member_id: 1
+
+remittance:
+  shop_id: tshophoge
+  shop_pass: hoge
+  host: test-remittance.gmopg.jp

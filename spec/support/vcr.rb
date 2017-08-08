@@ -10,12 +10,12 @@ VCR.configure do |c|
   c.filter_sensitive_data('<REMITTANCE_SHOP_PASS>') { SPEC_CONF["remittance"]["shop_pass"] }
   c.filter_sensitive_data('<REMITTANCE_HOST>') { SPEC_CONF["remittance"]["host"] }
 
-  c.filter_sensitive_data('<SHOP_ID>') { SPEC_CONF["shop_id"] }
-  c.filter_sensitive_data('<SHOP_PASS>') { SPEC_CONF["shop_pass"] }
-  c.filter_sensitive_data('<SITE_ID>') { SPEC_CONF["site_id"] }
-  c.filter_sensitive_data('<SITE_PASS>') { SPEC_CONF["site_pass"] }
-  c.filter_sensitive_data('<SITE_PASS>') { SPEC_CONF["site_pass"] }
   c.filter_sensitive_data('<HOST>') { SPEC_CONF["host"] }
+  c.filter_sensitive_data('<SHOP_ID>') { SPEC_CONF["shop_id"] }
+  c.filter_sensitive_data('<SITE_ID>') { SPEC_CONF["site_id"] }
+  c.filter_sensitive_data('<SHOP_PASS>') { SPEC_CONF["shop_pass"] }
+  c.filter_sensitive_data('<SITE_PASS>') { SPEC_CONF["site_pass"] }
+  c.filter_sensitive_data('<SITE_PASS>') { SPEC_CONF["site_pass"] }
   c.filter_sensitive_data('<TOKEN>') { SPEC_CONF["token"] }
   c.filter_sensitive_data('<TOKEN_MEMBER_ID>') { SPEC_CONF["token_member_id"] }
   c.filter_sensitive_data('<ACCESS_ID>') { ACCESS_ID }
