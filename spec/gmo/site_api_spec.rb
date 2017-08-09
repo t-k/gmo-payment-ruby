@@ -200,4 +200,28 @@ describe "GMO::Payment::SiteAPI" do
     end
   end
 
+  describe "#search_card_detail_by_member_id" do
+    it "gets data about card detail", :vcr do
+      member_id = generate_id
+      seq_mode = 0
+      result = @service.search_card_detail_by_member_id({
+        :member_id => member_id,
+        :seq_mode  => seq_mode
+      })
+      result["CardNo"].nil?.should_not be_truthy
+      result["Brand"].nil?.should_not be_truthy
+      result["DomesticFlag"].nil?.should_not be_truthy
+      result["IssuerCode"].nil?.should_not be_truthy
+      result["DebitPrepaidFlag"].nil?.should_not be_truthy
+      result["DebitPrepaidIssuerName"].nil?.should_not be_truthy
+      result["ForwardFinal"].nil?.should_not be_truthy
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.search_card_detail_by_member_id()
+      }.should raise_error("Required member_id, seq_mode were not provided.")
+    end
+  end
+
 end

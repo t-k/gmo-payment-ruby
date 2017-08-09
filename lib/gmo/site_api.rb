@@ -103,6 +103,16 @@ module GMO
         post_request name, options
       end
 
+      ## 2.19.2.1.カード属性照会（サイトID+会員ID(+カード登録連番モード・カード登録連番)を指定して呼び出す場合）
+      # 指定したクレジットカードの属性情報を取得します。
+      # /payment/SearchCardDetail.idPass
+      def search_card_detail_by_member_id(options = {})
+        name = "SearchCardDetail.idPass"
+        required = [:member_id, :seq_mode]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       private
 
         def api_call(name, args = {}, verb = "post", options = {})

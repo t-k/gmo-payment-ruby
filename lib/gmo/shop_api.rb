@@ -251,21 +251,10 @@ module GMO
         post_request name, options
       end
 
-      ## 2.19.2.1.カード属性照会（サイトID+会員ID(+カード登録連番モード・カード登録連番)を指定して呼び出す場合）
-      # 指定したクレジットカードの属性情報を取得します。
-      # ショップAPIだが、ShopId, ShopPassは送信しない仕様になっている
-      def search_card_detail_by_member_id(options = {})
-        name = "SearchCardDetail.idPass"
-        required = [:site_id, :site_pass, :member_id, :seq_mode]
-        assert_required_options(required, options)
-        options.merge!({ shop_parameters_unnecessary: '1' })
-        post_request name, options
-      end
-
       private
 
         def api_call(name, args = {}, verb = "post", options = {})
-          args.merge!({ "ShopID" => @shop_id, "ShopPass" => @shop_pass }) if options.has_key?(:shop_parameters_unnecessary)
+          args.merge!({ "ShopID" => @shop_id, "ShopPass" => @shop_pass })
           api(name, args, verb, options) do |response|
             if response.is_a?(Hash) && !response["ErrInfo"].nil?
               raise APIError.new(response)

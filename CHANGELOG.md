@@ -9,6 +9,9 @@
 
 * Add error messages to GMO API response along with error code and info [#20](https://github.com/t-k/gmo-payment-ruby/pull/20) ([@jagdeepsingh](https://github.com/JagdeepSingh))
 
+* SiteAPI
+  * Add support to search card detail by member_id
+
 ## 0.3.0
  * ShopAPI
    * Support LINE Pay payment #13 (Thanks @ryooob)

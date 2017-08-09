@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pt0<SHOP_PASS>.mul-pay.jp/payment/SearchCardDetail.idPass
+    body:
+      encoding: UTF-8
+      string: MemberID=50292464&SeqMode=0&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=<SHOP_PASS>.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sat, 29 Jul 20<SHOP_PASS>7 0<SHOP_PASS>:4<SHOP_PASS>:05 GMT
+      Content-Type:
+      - text/plain;charset=Windows-3<SHOP_PASS>J
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+    body:
+      encoding: US-ASCII
+      string: CardNo=*************111&Brand=VISA&DomesticFlag=1&IssuerCode=1&DebitPrepaidFlag=0&DebitPrepaidIssuerName=dummy&ForwardFinal=dummy
+    http_version: 
+  recorded_at: Sat, 29 Jul 2017 01:41:05 GMT
+recorded_with: VCR 3.0.3
