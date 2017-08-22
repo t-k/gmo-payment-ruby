@@ -15,7 +15,7 @@ module GMO
     private
 
       def error_message(info)
-        ::GMO::Const::ERRORS[info] || info
+        ::GMO::Const::API_ERROR_MESSAGES[:en][info] || info
       end
   end
 

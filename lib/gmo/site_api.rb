@@ -26,6 +26,15 @@ module GMO
 
       ## 2.3.2.1.会員登録
       # 指定されたサイトに会員を登録します。
+      ### @params ###
+      # MemberID
+      ### @return ###
+      # MemberID
+      ### example ###
+      # gmo.save_member({
+      #   member_id: 'mem10001'
+      # })
+      # => {"MemberID"=>"mem10001"}
       def save_member(options = {})
         name = "SaveMember.idPass"
         required = [:member_id]
@@ -88,6 +97,51 @@ module GMO
       def search_card(options = {})
         name = "SearchCard.idPass"
         required = [:member_id, :seq_mode]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      ### @params ###
+      # MemberID
+      # SeqMode
+      # TokenSeq
+      ### @return ###
+      # TokenSeq
+      # DefaultFlag
+      # CardName
+      # CardNoToken
+      # Expire
+      # HolderName
+      # DeleteFlag
+      ### example ###
+      # gmo.search_brandtoken({
+      #   member_id: '598066176120b2235300020b',
+      #   seq_mode: 0
+      # })
+      # => {"TokenSeq"=>"0", "DefaultFlag"=>"0", "CardName"=>"", "CardNoToken"=>"*************111", "Expire"=>"2212", "HolderName"=>"", "DeleteFlag"=>"0"}
+      def search_brandtoken(options = {})
+        name = "SearchBrandtoken.idPass"
+        required = [:member_id, :seq_mode]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      ### @params ###
+      # MemberID
+      # SeqMode
+      # TokenSeq
+      ### @return ###
+      # TokenSeq
+      ### example ###
+      # gmo.delete_brandtoken({
+      #   member_id: '598066176120b2235300020b',
+      #   seq_mode: 0,
+      #   token_seq: 0
+      # })
+      # => {"TokenSeq"=>"0"}
+      def delete_brandtoken(options = {})
+        name = "DeleteBrandtoken.idPass"
+        required = [:member_id, :seq_mode, :token_seq]
         assert_required_options(required, options)
         post_request name, options
       end

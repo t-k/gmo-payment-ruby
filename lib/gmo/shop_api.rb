@@ -50,7 +50,6 @@ module GMO
         post_request name, options
       end
 
-
       # 【コンビニ払い】
       #  2.1.2.1. 取引登録
       #  これ以降の決済取引で必要となる取引IDと取引パスワードの発行を行い、取引を開始します。
@@ -76,6 +75,31 @@ module GMO
       #  これ以降の決済取引で必要となる取引IDと取引パスワードの発行を行い、取引を開始します。
       def entry_tran_linepay(options = {})
         name = "EntryTranLinepay.idPass"
+        required = [:order_id, :job_cd, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      ### @params ###
+      # OrderID
+      # JobCd
+      # Amount
+      # ItemCode
+      # Tax
+      ### @return ###
+      # AccessID
+      # AccessPass
+      ### example ###
+      # gmo.entry_tran_brandtoken({
+      #   order_id: "ord12345",
+      #   job_cd: "AUTH",
+      #   item_code: "1000001",
+      #   tax: "0001001",
+      #   amount: 100
+      # })
+      # => {"AccessID"=>"139f8ec33a07c55f406937c52ce4473d", "AccessPass"=>"2689b204d2c17192fa35f9269fa7e744"}
+      def entry_tran_brandtoken(options = {})
+        name = "EntryTranBrandtoken.idPass"
         required = [:order_id, :job_cd, :amount]
         assert_required_options(required, options)
         post_request name, options
@@ -179,6 +203,50 @@ module GMO
         post_request name, options
       end
 
+      ### @params ###
+      # AccessID
+      # AccessPass
+      # OrderID
+      # TokenType
+      # Token
+      # MemberID
+      # SeqMode
+      # TokenSeq
+      # ClientField1
+      # ClientField2
+      # ClientField3
+      ### @return ###
+      # Status
+      # OrderID
+      # Forward
+      # Approve
+      # TranID
+      # TranDate
+      # ClientField1
+      # ClientField2
+      # ClientField3
+      ### example ###
+      # gmo.exec_tran_brandtoken({
+      #   order_id: "597ae8c36120b23a3c00014e",
+      #   access_id: "139f8ec33a07c55f406937c52ce4473d",
+      #   access_pass: "2689b204d2c17192fa35f9269fa7e744",
+      #   token_type: :apple_pay,
+      #   token: <Base64 encoded payment data>,
+      #   seq_mode: "1",
+      #   token_seq: 1001,
+      #   client_field_1: "Custom field value 1",
+      #   client_field_2: "Custom field value 2",
+      #   client_field_3: "Custom field value 3"
+      # })
+      # => {"Status"=>"CAPTURE", "OrderID"=>"597ae8c36120b23a3c00014e", "Forward"=>"2a99663", "Approve"=>"5487394", "TranID"=>"1707281634111111111111771216", "TranDate"=>"20170728163453", "ClientField1"=>"Custom field value 1", "ClientField2"=>"Custom field value 2", "ClientField3"=>"Custom field value 3"}
+      def exec_tran_brandtoken(options = {})
+        name = "ExecTranBrandtoken.idPass"
+        options[:token_type] = GMO::Const::TOKEN_TYPES_MAP[options[:token_type]]
+        required = [:access_id, :access_pass, :order_id]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       ## 2.14.2.1.決済変更
       # 仮売上の決済に対して実売上を行います。尚、実行時に仮売上時との金額チェックを行います。
       # /payment/AlterTran.idPass
@@ -233,6 +301,123 @@ module GMO
         post_request name, options
       end
 
+      ### @params ###
+      # AccessID
+      # AccessPass
+      # OrderID
+      # JobCd
+      # Amount
+      # Tax
+      ### @return ###
+      # AccessID
+      # AccessPass
+      # Status
+      # Forward
+      # Approve
+      # TranID
+      # TranDate
+      ### example ###
+      # gmo.change_tran_brandtoken({
+      #   access_id: "21170701482c86c3b88ff72b83bfd363",
+      #   access_pass: "51f36feba120de1e6e29532e5a3a5e3e",
+      #   order_id: "ord10001",
+      #   job_cd: "CAPTURE",
+      #   amount: 2000
+      # })
+      # => {"AccessID"=>"21170701482c86c3b88ff72b83bfd363", "AccessPass"=>"51f36feba120de1e6e29532e5a3a5e3e", "Status"=>"CAPTURE", "Forward"=>"2a99663", "Approve"=>"5538477", "TranID"=>"1707311633111111111111771224", "TranDate"=>"20170731163343"}
+      def change_tran_brandtoken(options = {})
+        name = "ChangeTranBrandtoken.idPass"
+        required = [:access_id, :access_pass, :order_id, :job_cd, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      ### @params ###
+      # AccessID
+      # AccessPass
+      # OrderID
+      ### @return ###
+      # AccessID
+      # AccessPass
+      # Status
+      # Forward
+      # Approve
+      # TranID
+      # TranDate
+      ### example ###
+      # gmo.void_tran_brandtoken({
+      #   access_id: "139f8ec33a07c55f406937c52ce4473d",
+      #   access_pass: "2689b204d2c17192fa35f9269fa7e744",
+      #   order_id: "597ae8c36120b23a3c00014e"
+      # })
+      # => {"AccessID"=>"139f8ec33a07c55f406937c52ce4473d", "AccessPass"=>"2689b204d2c17192fa35f9269fa7e744", "Status"=>"VOID", "Forward"=>"2a99663", "Approve"=>"5537590", "TranID"=>"1707311610111111111111771219", "TranDate"=>"20170731161007"}
+      def void_tran_brandtoken(options = {})
+        name = "VoidTranBrandtoken.idPass"
+        required = [:access_id, :access_pass, :order_id]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      ### @params ###
+      # AccessID
+      # AccessPass
+      # OrderID
+      # Amount
+      # Tax
+      ### @return ###
+      # AccessID
+      # AccessPass
+      # Status
+      # Forward
+      # Approve
+      # TranID
+      # TranDate
+      ### example ###
+      # gmo.sales_tran_brandtoken({
+      #   access_id: "139f8ec33a07c55f406937c52ce4473d",
+      #   access_pass: "2689b204d2c17192fa35f9269fa7e744",
+      #   order_id: "597ae8c36120b23a3c00014e",
+      #   amount: 1000,
+      #   tax: "0001001"
+      # })
+      # => {"AccessID"=>"139f8ec33a07c55f406937c52ce4473d", "AccessPass"=>"2689b204d2c17192fa35f9269fa7e744", "Status"=>"SALES", "Forward"=>"2a99663", "Approve"=>"5537883", "TranID"=>"1707311620111111111111771220", "TranDate"=>"20170731162256"}
+      def sales_tran_brandtoken(options = {})
+        name = "SalesTranBrandtoken.idPass"
+        required = [:access_id, :access_pass, :order_id, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      ### @params ###
+      # AccessID
+      # AccessPass
+      # OrderID
+      # Amount
+      # Tax
+      ### @return ###
+      # AccessID
+      # AccessPass
+      # Status
+      # Forward
+      # Approve
+      # TranID
+      # TranDate
+      ### example ###
+      # gmo.refund_tran_brandtoken({
+      #   access_id: "139f8ec33a07c55f406937c52ce4473d",
+      #   access_pass: "2689b204d2c17192fa35f9269fa7e744",
+      #   order_id: "597ae8c36120b23a3c00014e",
+      #   amount: 1000,
+      #   tax: "0001001"
+      # })
+      # => {"AccessID"=>"139f8ec33a07c55f406937c52ce4473d", "AccessPass"=>"2689b204d2c17192fa35f9269fa7e744", "Status"=>"RETURN", "Forward"=>"2a99663", "Approve"=>"5537883", "TranID"=>"1707311620111111111111771220", "TranDate"=>"20170731162256"}
+      def refund_tran_brandtoken(options = {})
+        name = "RefundTranBrandtoken.idPass"
+        required = [:access_id, :access_pass, :order_id, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       ## 2.16.2.1.取引状態参照
       # 指定したオーダーID の取引情報を取得します。
       def search_trade(options = {})
@@ -244,6 +429,38 @@ module GMO
 
       # 13.1.2.1.取引状態参照
       # 指定したオーダーIDの取引情報を取得します。
+      ### @params ###
+      # OrderID
+      # PayType
+      ### @return ###
+      # OrderID
+      # Status
+      # ProcessDate
+      # JobCd
+      # AccessID
+      # AccessPass
+      # ItemCode
+      # Amount
+      # Tax
+      # SiteID
+      # MemberID
+      # CardNoToken
+      # Expire
+      # Method
+      # PayTimes
+      # Forward
+      # TranID
+      # Approve
+      # ClientField1
+      # ClientField2
+      # ClientField3
+      # PayType
+      ### example ###
+      # gmo.search_trade_multi({
+      #   order_id: '598066176120b2235300020b',
+      #   pay_type: 27
+      # })
+      # => {"OrderID"=>"598066176120b2235300020b", "Status"=>"CAPTURE", "ProcessDate"=>"20170801202929", "JobCd"=>"CAPTURE", "AccessID"=>"228fc5bc02da46943300c12706d325a2", "AccessPass"=>"090a50ec2f77d92184a18018f07906e5", "ItemCode"=>"0000990", "Amount"=>"557", "Tax"=>"0", "SiteID"=>"", "MemberID"=>"", "CardNoToken"=>"************1111", "Expire"=>"2212", "Method"=>"1", "PayTimes"=>"", "Forward"=>"2a99663", "TranID"=>"1708012029111111111111771228", "Approve"=>"5689128", "ClientField1"=>"", "ClientField2"=>"", "ClientField3"=>"", "PayType"=>"27"}
       def search_trade_multi(options = {})
         name = "SearchTradeMulti.idPass"
         required = [:order_id, :pay_type]
