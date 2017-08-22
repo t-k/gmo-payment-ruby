@@ -196,7 +196,7 @@ module GMO
       '42G300000' => 'Card is not valid for transactions',
       '42G420000' => 'PIN is incorrect',
       '42G440000' => 'Security code is incorrect',
-      '42G030000' => 'Security code not provided',
+      '42G450000' => 'Security code not provided',
       '42G540000' => 'Card is not valid for transactions',
       '42G550000' => 'Card limit has been exceeded',
       '42G560000' => 'Card is not valid for transactions',
