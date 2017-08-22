@@ -7,6 +7,13 @@ describe "GMO::Payment::SiteAPI" do
   end
 
   before(:each) do
+    @shop_site ||= GMO::Payment::ShopAndSiteAPI.new({
+      :site_id   => SPEC_CONF["site_id"],
+      :site_pass => SPEC_CONF["site_pass"],
+      :shop_id   => SPEC_CONF["shop_id"],
+      :shop_pass => SPEC_CONF["shop_pass"],
+      :host      => SPEC_CONF["host"]
+    })
     @service ||= GMO::Payment::SiteAPI.new({
       :site_id   => SPEC_CONF["site_id"],
       :site_pass => SPEC_CONF["site_pass"],
@@ -200,4 +207,56 @@ describe "GMO::Payment::SiteAPI" do
     end
   end
 
+  describe "#search_brandtoken" do
+    it "gets data about a brandtoken", :vcr do
+      order_id = generate_id
+      member_id = generate_id
+      @shop_site.trade_brandtoken({
+        :order_id  => order_id,
+        :member_id => member_id
+      })
+
+      result = @service.search_brandtoken({
+        :member_id => member_id,
+        :seq_mode  => 0
+      })
+      result["TokenSeq"].nil?.should_not be true
+      result["DefaultFlag"].nil?.should_not be true
+      result["CardName"].nil?.should_not be true
+      result["CardNoToken"].nil?.should_not be true
+      result["Expire"].nil?.should_not be true
+      result["HolderName"].nil?.should_not be true
+      result["DeleteFlag"].nil?.should_not be true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.search_brandtoken()
+      }.should raise_error("Required member_id, seq_mode were not provided.")
+    end
+  end
+
+  describe "#delete_brandtoken" do
+    it "gets data about a brandtoken", :vcr do
+      order_id = generate_id
+      member_id = generate_id
+      @shop_site.trade_brandtoken({
+        :order_id  => order_id,
+        :member_id => member_id
+      })
+
+      result = @service.delete_brandtoken({
+        :member_id => member_id,
+        :seq_mode  => 0,
+        :token_seq => 0
+      })
+      result["TokenSeq"].nil?.should_not be true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.delete_brandtoken()
+      }.should raise_error('Required member_id, seq_mode, token_seq were not provided.')
+    end
+  end
 end

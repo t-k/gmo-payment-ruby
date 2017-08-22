@@ -1,0 +1,73 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://<HOST>/payment/EntryTranBrandtoken.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=<SHOP_PASS>502<SHOP_PASS>77398&JobCd=AUTH&Amount=<SHOP_PASS>00&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=<SHOP_PASS>.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 08 Aug 20<SHOP_PASS>7 07:29:58 GMT
+      Content-Type:
+      - text/plain;charset=Shift_JIS
+      Content-Length:
+      - '29'
+      Connection:
+      - close
+      Content-Language:
+      - ja-JP
+    body:
+      encoding: UTF-8
+      string: AccessID=<SHOP_PASS>da06<SHOP_PASS>87345d6<SHOP_PASS>3ce206f4cd05bc5322&AccessPass=45a2<SHOP_PASS>e63323c3795d26e22338eaa6b7f
+    http_version:
+  recorded_at: Tue, 08 Aug 2017 07:29:59 GMT
+- request:
+    method: post
+    uri: https://<HOST>/payment/ExecTranBrandtoken.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=<SHOP_PASS>502<SHOP_PASS>77572&AccessID=<SHOP_PASS>da06<SHOP_PASS>87345d6<SHOP_PASS>3ce206f4cd05bc5322&AccessPass=45a2<SHOP_PASS>e63323c3795d26e22338eaa6b7f&TokenType=APay&Token=base64encodedtoken&MemberID=<SHOP_PASS>502<SHOP_PASS>77572&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>&SiteID=<SITE_ID>&SitePass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=<SHOP_PASS>.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 08 Aug 20<SHOP_PASS>7 07:32:53 GMT
+      Content-Type:
+      - text/plain;charset=Shift_JIS
+      Content-Length:
+      - '29'
+      Connection:
+      - close
+      Content-Language:
+      - ja-JP
+    body:
+      encoding: UTF-8
+      string: Status=AUTH&OrderID=<SHOP_PASS>502<SHOP_PASS>77572&Forward=2a99663&Approve=5487394&TranID=<SHOP_PASS>70728<SHOP_PASS>634<SHOP_PASS><SHOP_PASS><SHOP_PASS><SHOP_PASS><SHOP_PASS><SHOP_PASS><SHOP_PASS><SHOP_PASS><SHOP_PASS><SHOP_PASS><SHOP_PASS><SHOP_PASS>77<SHOP_PASS>2<SHOP_PASS>6&TranDate=20<SHOP_PASS>70728<SHOP_PASS>63453&ClientField<SHOP_PASS>=&ClientField2=&ClientField3=
+    http_version:
+  recorded_at: Tue, 08 Aug 2017 07:32:53 GMT
+recorded_with: VCR 3.0.3

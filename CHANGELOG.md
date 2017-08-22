@@ -2,6 +2,10 @@
 
 ## master
 
+* Multipayment API
+  * Add end points to manage brandtoken [#22](https://github.com/t-k/gmo-payment-ruby/pull/22) ([@jagdeepsingh](https://github.com/JagdeepSingh))
+  * Add end points to make payments and refunds using brandtoken [#22](https://github.com/t-k/gmo-payment-ruby/pull/22) ([@jagdeepsingh](https://github.com/JagdeepSingh))
+
 * RemittanceAPI
   * Add support to register payment accounts [#20](https://github.com/t-k/gmo-payment-ruby/pull/20) ([@jagdeepsingh](https://github.com/JagdeepSingh))
   * Add support to register deposits [#20](https://github.com/t-k/gmo-payment-ruby/pull/20) ([@jagdeepsingh](https://github.com/JagdeepSingh))
