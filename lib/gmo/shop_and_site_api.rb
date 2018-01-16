@@ -8,7 +8,8 @@
 #   site_pass:   "bar",
 #   shop_id:     "baz",
 #   shop_pass:   "bax",
-#   host:        "p01.mul-pay.jp"
+#   host:        "p01.mul-pay.jp",
+#   locale:      "ja"
 # })
 module GMO
   module Payment
@@ -20,11 +21,12 @@ module GMO
         @site_id   = options[:site_id]
         @site_pass = options[:site_pass]
         @host      = options[:host]
+        @locale    = options.fetch(:locale, :en)
         unless @site_id && @site_pass && @shop_id && @shop_pass && @host
           raise ArgumentError, "Initialize must receive a hash with :site_id, :site_pass, :shop_id, :shop_pass and either :host! (received #{options.inspect})"
         end
       end
-      attr_reader :shop_id, :shop_pass, :site_id, :site_pass, :host
+      attr_reader :shop_id, :shop_pass, :site_id, :site_pass, :host, :locale
 
       # 2.17.2.1.決済後カード登録
       # 指定されたオーダーID の取引に使用したカードを登録します。
@@ -112,7 +114,7 @@ module GMO
           })
           api(name, args, verb, options) do |response|
             if response.is_a?(Hash) && !response["ErrInfo"].nil?
-              raise APIError.new(response)
+              raise APIError.new(response, locale)
             end
           end
         end

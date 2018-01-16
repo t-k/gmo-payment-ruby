@@ -6,7 +6,9 @@
 # gmo = GMO::Payment::SiteAPI.new({
 #   site_id:     "foo",
 #   site_pass:   "bar",
-#   host:  "mul-pay.com"
+#   host:        "mul-pay.com",
+#   locale:      "ja"
+
 # })
 # result = gmo.post_request("EntryTran.idPass", options)
 module GMO
@@ -18,11 +20,12 @@ module GMO
         @site_id   = options[:site_id]
         @site_pass = options[:site_pass]
         @host      = options[:host]
+        @locale    = options.fetch(:locale, :en)
         unless @site_id && @site_pass && @host
           raise ArgumentError, "Initialize must receive a hash with :site_id, :site_pass and either :host! (received #{options.inspect})"
         end
       end
-      attr_reader :site_id, :site_pass, :host
+      attr_reader :site_id, :site_pass, :host, :locale
 
       ## 2.3.2.1.会員登録
       # 指定されたサイトに会員を登録します。
@@ -173,7 +176,7 @@ module GMO
           args.merge!({ "SiteID" => @site_id, "SitePass" => @site_pass })
           api(name, args, verb, options) do |response|
             if response.is_a?(Hash) && !response["ErrInfo"].nil?
-              raise APIError.new(response)
+              raise APIError.new(response, locale)
             end
           end
         end

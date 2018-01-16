@@ -12,12 +12,16 @@ describe "GMO::Payment::SiteAPI" do
       :site_pass => SPEC_CONF["site_pass"],
       :shop_id   => SPEC_CONF["shop_id"],
       :shop_pass => SPEC_CONF["shop_pass"],
-      :host      => SPEC_CONF["host"]
+      :host      => SPEC_CONF["host"],
+      :locale    => :ja
+
     })
     @service ||= GMO::Payment::SiteAPI.new({
       :site_id   => SPEC_CONF["site_id"],
       :site_pass => SPEC_CONF["site_pass"],
-      :host      => SPEC_CONF["host"]
+      :host      => SPEC_CONF["host"],
+      :locale    => :ja
+
     })
   end
 

@@ -6,7 +6,9 @@
 # gmo = GMO::Payment::ShopAPI.new({
 #   shop_id:     "foo",
 #   shop_pass:   "bar",
-#   host:  "mul-pay.com"
+#   host:        "mul-pay.com",
+#   locale:      "ja"
+
 # })
 # result = gmo.post_request("EntryTran.idPass", options)
 module GMO
@@ -18,11 +20,12 @@ module GMO
         @shop_id   = options[:shop_id]
         @shop_pass = options[:shop_pass]
         @host      = options[:host]
+        @locale    = options.fetch(:locale, :en)
         unless @shop_id && @shop_pass && @host
           raise ArgumentError, "Initialize must receive a hash with :shop_id, :shop_pass and either :host! (received #{options.inspect})"
         end
       end
-      attr_reader :shop_id, :shop_pass, :host
+      attr_reader :shop_id, :shop_pass, :host, :locale
 
       ## 2.1.2.1.取引登録
       # これ以降の決済取引で必要となる取引 ID と取引パスワードの発行を行い、取引を開始します。
@@ -474,7 +477,7 @@ module GMO
           args.merge!({ "ShopID" => @shop_id, "ShopPass" => @shop_pass })
           api(name, args, verb, options) do |response|
             if response.is_a?(Hash) && !response["ErrInfo"].nil?
-              raise APIError.new(response)
+              raise APIError.new(response, locale)
             end
           end
         end

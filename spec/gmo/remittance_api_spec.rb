@@ -8,7 +8,9 @@ describe "GMO::Payment::RemittanceAPI" do
     @service ||= GMO::Payment::RemittanceAPI.new({
       :shop_id   => SPEC_CONF["remittance"]["shop_id"],
       :shop_pass => SPEC_CONF["remittance"]["shop_pass"],
-      :host      => SPEC_CONF["remittance"]["host"]
+      :host      => SPEC_CONF["remittance"]["host"],
+      :locale    => :ja
+
     })
   end
 

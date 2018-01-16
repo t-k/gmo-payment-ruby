@@ -6,7 +6,8 @@
 # gmo = GMO::Payment::RemittanceAPI.new({
 #   shop_id:     "foo",
 #   shop_pass:   "bar",
-#   host:  "test-remittance.gmopg.jp"
+#   host:        "test-remittance.gmopg.jp",
+#   locale:      "ja"
 # })
 module GMO
   module Payment
@@ -17,11 +18,12 @@ module GMO
         @shop_id   = options[:shop_id]
         @shop_pass = options[:shop_pass]
         @host      = options[:host]
+        @locale    = options.fetch(:locale, :en)
         unless @shop_id && @shop_pass && @host
           raise ArgumentError, "Initialize must receive a hash with :shop_id, :shop_pass and either :host! (received #{options.inspect})"
         end
       end
-      attr_reader :shop_id, :shop_pass, :host
+      attr_reader :shop_id, :shop_pass, :host, :locale
 
       #########
       # Method
@@ -318,7 +320,7 @@ module GMO
           args.merge!({ "Shop_ID" => @shop_id, "Shop_Pass" => @shop_pass })
           api(name, args, verb, options) do |response|
             if response.is_a?(Hash) && !response["ErrInfo"].nil?
-              raise APIError.new(response)
+              raise APIError.new(response, locale)
             end
           end
         end
