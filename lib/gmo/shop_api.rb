@@ -172,7 +172,8 @@ module GMO
         #   "ClientField3"    => options[:client_field_3],
         #   "ClientFieldFlag" => client_field_flg
         # }
-        required = [:access_id, :access_pass, :order_id, :card_no, :expire]
+        required = [:access_id, :access_pass, :order_id]
+        required += [:card_no, :expire] unless options[:token]
         assert_required_options(required, options)
         post_request name, options
       end

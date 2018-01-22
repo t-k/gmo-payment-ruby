@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://<HOST>/payment/EntryTran.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=1362106991&JobCd=AUTH&Amount=100&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 01 Mar 2013 03:03:11 GMT
+      Connection:
+      - close
+      Content-Type:
+      - text/plain;charset=Windows-31J
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: AccessID=e65385d62b5e5e9be64d2c8cecdb24f2&AccessPass=a79882df473a228fd2a00051e72642be
+    http_version: 
+  recorded_at: Fri, 01 Mar 2013 03:03:11 GMT
+- request:
+    method: post
+    uri: https://<HOST>/payment/ExecTran.idPass
+    body:
+      encoding: UTF-8
+      string: AccessID=e65385d62b5e5e9be64d2c8cecdb24f2&AccessPass=a79882df473a228fd2a00051e72642be&OrderID=1362106991&Method=1&PayTimes=1&CardNo=4111111111111111&Expire=1405&HttpAccept=null&HttpUserAgent=null&DeviceCategory=0&ClientField1=client_field1&ClientField2=null&ClientField3=null&ClientFieldFlag=1&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 01 Mar 2013 03:03:12 GMT
+      Connection:
+      - close
+      Content-Type:
+      - text/plain;charset=Windows-31J
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: ACS=0&OrderID=1362106991&Forward=2a99662&Method=1&PayTimes=&Approve=6416276&TranID=1303011202111111111111198895&TranDate=20130301120312&CheckString=2d8fa5d3a220a34161d18a87e9cbfd75&ClientField1=client_field1&ClientField2=null&ClientField3=null
+    http_version: 
+  recorded_at: Fri, 01 Mar 2013 03:03:12 GMT
+recorded_with: VCR 2.4.0

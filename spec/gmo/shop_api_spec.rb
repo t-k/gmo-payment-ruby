@@ -171,6 +171,39 @@ describe "GMO::Payment::ShopAPI" do
       result["ClientField3"].nil?.should_not be_truthy
     end
 
+    it "gets data about a transaction using token", :vcr do
+      order_id = generate_id
+      client_field_1 = "client_field1"
+      result = @service.entry_tran({
+        :order_id => order_id,
+        :job_cd => "AUTH",
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      result = @service.exec_tran({
+        :order_id      => order_id,
+        :access_id     => access_id,
+        :access_pass   => access_pass,
+        :method        => 1,
+        :pay_times     => 1,
+        :token         => 'asdf',
+        :client_field_1 => client_field_1
+      })
+      result["ACS"].nil?.should_not be_truthy
+      result["OrderID"].nil?.should_not be_truthy
+      result["Forward"].nil?.should_not be_truthy
+      result["Method"].nil?.should_not be_truthy
+      result["PayTimes"].nil?.should_not be_truthy
+      result["Approve"].nil?.should_not be_truthy
+      result["TranID"].nil?.should_not be_truthy
+      result["TranDate"].nil?.should_not be_truthy
+      result["CheckString"].nil?.should_not be_truthy
+      result["ClientField1"].nil?.should_not be_truthy
+      (result["ClientField1"] == client_field_1).should be_truthy
+      result["ClientField3"].nil?.should_not be_truthy
+    end
+
     it "got error if missing options", :vcr do
       lambda {
         result = @service.exec_tran()
