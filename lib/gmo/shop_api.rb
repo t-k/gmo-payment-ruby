@@ -472,6 +472,192 @@ module GMO
         post_request name, options
       end
 
+      ### @params ###
+      # RecurringID
+      # Amount
+      # Tax
+      # ChargeDay
+      # ChargeMonth
+      # ChargeStartDate
+      # ChargeStopDate
+      # CardNo
+      # Expire
+      # SrcOrderID
+      # ClientField1
+      # ClientField2
+      # ClientField3
+      ### @return ###
+      # ShopID
+      # RecurringID
+      # Amount
+      # Tax
+      # ChargeDay
+      # ChargeMonth
+      # ChargeStartDate
+      # ChargeStopDate
+      # NextChargeDate
+      # Method
+      # CardNo
+      # Expire
+      def register_recurring_credit(options)
+        name = "RegisterRecurringCredit.idPass"
+        required = [:recurring_id, :amount, :charge_day]
+        if options[:src_order_id]
+          options[:regist_type] = 3
+        else
+          required += [:card_no, :expire]
+          options[:regist_type] = 2
+        end
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      ### @param ###
+      # RecurringID
+      # Amount
+      # Tax
+      # ChargeMonth
+      # ChargeStartDate
+      # ChargeStopDate
+      # PrintStr
+      # ClientField1
+      # ClientField2
+      # ClientField3
+      ### @return ###
+      # ShopID
+      # RecurringID
+      # Amount
+      # Tax
+      # ChargeDay
+      # ChargeMonth
+      # ChargeStartDate
+      # ChargeStopDate
+      # NextChargeDate
+      # Method
+      # PrintStr
+      def register_recurring_accounttrans(options)
+        name = "RegisterRecurringAccounttrans.idPass"
+        required = [:recurring_id, :amount, :print_str]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      ### @param ###
+      # RecurringID
+      ### @return ###
+      # ShopID
+      # RecurringID
+      # Amount
+      # Tax
+      # ChargeDay
+      # ChargeMonth
+      # ChargeStartDate
+      # ChargeStopDate
+      # NextChargeDate
+      # Method
+      # SiteID
+      # MemberID
+      # CardNo
+      # Expire
+      # PrintStr
+      def unregister_recurring(options)
+        name = "UnregisterRecurring.idPass"
+        required = [:recurring_id]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      ### @param ###
+      # RecurringID
+      # Amount
+      # Tax
+      ### @return ###
+      # ShopID
+      # RecurringID
+      # Amount
+      # Tax
+      # ChargeDay
+      # ChargeMonth
+      # ChargeStartDate
+      # ChargeStopDate
+      # NextChargeDate
+      # Method
+      # SiteID
+      # MemberID
+      # CardNo
+      # Expire
+      # PrintStr
+      def change_recurring(options)
+        name = "ChangeRecurring.idPass"
+        required = [:recurring_id, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      ### @param ###
+      # RecurringID
+      ### @return ###
+      # ShopID
+      # RecurringID
+      # Amount
+      # Tax
+      # ChargeDay
+      # ChargeMonth
+      # ChargeStartDate
+      # ChargeStopDate
+      # NextChargeDate
+      # Method
+      # SiteID
+      # MemberID
+      # CardNo
+      # Expire
+      # PrintStr
+      def search_recurring(options)
+        name = "SearchRecurring.idPass"
+        required = [:recurring_id]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      ### @param ###
+      # RecurringID
+      ### @return ###
+      # Method (RECURRING_CREDIT)
+      # ShopID
+      # RecurringID
+      # OrderID
+      # ChargeDate
+      # Status
+      # Amount
+      # Tax
+      # NextChargeDate
+      # AccessID
+      # AccessPass
+      # Forward
+      # ApprovalNo
+      # ChargeErrCode
+      # ChargeErrInfo
+      # ProcessDate
+      #
+      # Method (RECURRING_ACCOUNTTRANS)
+      # SiteID
+      # MemberID
+      # ShopID
+      # Amount
+      # Tax
+      # PrintStr
+      # RecurringID
+      # Status
+      # Result
+      # ChargeErrCode
+      # ChargeErrInfo
+      def search_recurring_result(options)
+        name = "SearchRecurringResult.idPass"
+        required = [:recurring_id]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       private
 
         def api_call(name, args = {}, verb = "post", options = {})
