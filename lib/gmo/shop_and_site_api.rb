@@ -101,6 +101,73 @@ module GMO
         post_request name, options
       end
 
+      ### @params ###
+      # RecurringID
+      # Amount
+      # Tax
+      # ChargeDay
+      # ChargeMonth
+      # ChargeStartDate
+      # ChargeStopDate
+      # MemberID
+      # ClientField1
+      # ClientField2
+      # ClientField3
+      ### @return ###
+      # ShopID
+      # RecurringID
+      # Amount
+      # Tax
+      # ChargeDay
+      # ChargeMonth
+      # ChargeStartDate
+      # ChargeStopDate
+      # NextChargeDate
+      # Method
+      # SiteID
+      # MemberID
+      # CardNo
+      # Expire
+      def register_recurring_credit(options)
+        name = "RegisterRecurringCredit.idPass"
+        required = [:recurring_id, :amount, :charge_day, :member_id]
+        options[:regist_type] = 1
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      ### @param ###
+      # RecurringID
+      # Amount
+      # Tax
+      # ChargeMonth
+      # ChargeStartDate
+      # ChargeStopDate
+      # MemberID
+      # PrintStr
+      # ClientField1
+      # ClientField2
+      # ClientField3
+      ### @return ###
+      # ShopID
+      # RecurringID
+      # Amount
+      # Tax
+      # ChargeDay
+      # ChargeMonth
+      # ChargeStartDate
+      # ChargeStopDate
+      # NextChargeDate
+      # Method
+      # MemberID
+      # PrintStr
+      def register_recurring_accounttrans(options)
+        name = "RegisterRecurringAccounttrans.idPass"
+        required = [:recurring_id, :amount, :member_id, :print_str]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       private
 
         def api_call(name, args = {}, verb = "post", options = {})
