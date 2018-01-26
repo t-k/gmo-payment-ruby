@@ -175,6 +175,27 @@ describe "GMO::Payment::ShopAPI" do
       }.should raise_error("Required access_id, access_pass, order_id, card_no, expire were not provided.")
     end
 
+    it "doesn't require card info if token is present", :vcr do
+      lambda {
+        order_id = generate_id
+        result = @service.entry_tran({
+          :order_id => order_id,
+          :job_cd => "AUTH",
+          :amount => 100
+        })
+        access_id = result["AccessID"]
+        access_pass = result["AccessPass"]
+        result = @service.exec_tran({
+          :order_id      => order_id,
+          :access_id     => access_id,
+          :access_pass   => access_pass,
+          :method        => 1,
+          :pay_times     => 1,
+          :token         => "onetimetokenfromgmo"
+        })
+      }.should_not raise_error("Required card_no, expire were not provided.")
+    end
+
     context "parameter contains Japanese characters" do
       before { require "kconv" unless defined?(Kconv) }
 

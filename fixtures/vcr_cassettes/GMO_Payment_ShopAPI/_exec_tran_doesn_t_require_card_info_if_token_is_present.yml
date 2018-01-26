@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://<HOST>/payment/EntryTran.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=1516092147&JobCd=AUTH&Amount=100&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 16 Jan 2018 08:42:28 GMT
+      Content-Type:
+      - text/plain;charset=Windows-31J
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: AccessID=fda0ae7f80d8f8855cb9f2229e22117a&AccessPass=a2a2b20bc81475e33573af93ece908cf
+    http_version: 
+  recorded_at: Tue, 16 Jan 2018 08:42:28 GMT
+- request:
+    method: post
+    uri: https://<HOST>/payment/ExecTran.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=1516092147&AccessID=fda0ae7f80d8f8855cb9f2229e22117a&AccessPass=a2a2b20bc81475e33573af93ece908cf&Method=1&PayTimes=1&Token=onetimetokenfromgmo&ClientFieldFlag=0&DeviceCategory=0&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 16 Jan 2018 08:42:28 GMT
+      Content-Type:
+      - text/plain;charset=Windows-31J
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: ErrCode=EX1&ErrInfo=EX1000301
+    http_version: 
+  recorded_at: Tue, 16 Jan 2018 08:42:28 GMT
+recorded_with: VCR 4.0.0
