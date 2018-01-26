@@ -1,20 +1,23 @@
 # CHANGELOG
 
-## master
+## 0.4.0
 
 * Multipayment API
-  * Add end points to manage brandtoken [#22](https://github.com/t-k/gmo-payment-ruby/pull/22) ([@jagdeepsingh](https://github.com/JagdeepSingh))
-  * Add end points to make payments and refunds using brandtoken [#22](https://github.com/t-k/gmo-payment-ruby/pull/22) ([@jagdeepsingh](https://github.com/JagdeepSingh))
+  * Add end points to manage brandtoken [#22](https://github.com/t-k/gmo-payment-ruby/pull/22) (Thanks [@jagdeepsingh](https://github.com/JagdeepSingh))
+  * Add end points to make payments and refunds using brandtoken [#22](https://github.com/t-k/gmo-payment-ruby/pull/22) (Thanks [@jagdeepsingh](https://github.com/JagdeepSingh))
 
 * RemittanceAPI
-  * Add support to register payment accounts [#20](https://github.com/t-k/gmo-payment-ruby/pull/20) ([@jagdeepsingh](https://github.com/JagdeepSingh))
-  * Add support to register deposits [#20](https://github.com/t-k/gmo-payment-ruby/pull/20) ([@jagdeepsingh](https://github.com/JagdeepSingh))
-  * Add support to register mail deposits [#20](https://github.com/t-k/gmo-payment-ruby/pull/20) ([@jagdeepsingh](https://github.com/JagdeepSingh))
+  * Add support to register payment accounts [#20](https://github.com/t-k/gmo-payment-ruby/pull/20) (Thanks [@jagdeepsingh](https://github.com/JagdeepSingh))
+  * Add support to register deposits [#20](https://github.com/t-k/gmo-payment-ruby/pull/20) (Thanks [@jagdeepsingh](https://github.com/JagdeepSingh))
+  * Add support to register mail deposits [#20](https://github.com/t-k/gmo-payment-ruby/pull/20) (Thanks [@jagdeepsingh](https://github.com/JagdeepSingh))
 
-* Add error messages to GMO API response along with error code and info [#20](https://github.com/t-k/gmo-payment-ruby/pull/20) ([@jagdeepsingh](https://github.com/JagdeepSingh))
+* Add error messages to GMO API response along with error code and info [#20](https://github.com/t-k/gmo-payment-ruby/pull/20) (Thanks [@jagdeepsingh](https://github.com/JagdeepSingh))
 
 * SiteAPI
-  * Add support to search card detail by member_id [#21](https://github.com/t-k/gmo-payment-ruby/pull/21) ([@tkiha](https://github.com/tkiha))
+  * Add support to search card detail by member_id [#21](https://github.com/t-k/gmo-payment-ruby/pull/21) (Thanks  [@tkiha](https://github.com/tkiha))
+
+* ShopAPI
+  * Add token payment support #23 (Thanks @k0uki)
 
 ## 0.3.0
  * ShopAPI
