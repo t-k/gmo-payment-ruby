@@ -468,6 +468,34 @@ module GMO
         post_request name, options
       end
 
+      ### @params ###
+      # AccessID
+      # AccessPass
+      # OrderID
+      ### @return ###
+      # OrderID
+      # Status
+      def cancel_cvs(options = {})
+        name = "CvsCancel.idPass"
+        required = [:access_id, :access_pass, :order_id]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      ### @params ###
+      # AccessID
+      # AccessPass
+      # OrderID
+      ### @return ###
+      # OrderID
+      # Status
+      def cancel_pay_easy(options = {})
+        name = "PayEasyCancel.idPass"
+        required = [:access_id, :access_pass, :order_id]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       private
 
         def api_call(name, args = {}, verb = "post", options = {})
