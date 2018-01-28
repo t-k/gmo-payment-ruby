@@ -619,6 +619,19 @@ module GMO
         post_request name, options
       end
 
+      # AccessID
+      # AccessPass
+      # OrderID
+      ### @return ###
+      # OrderID
+      # Status
+      def cancel_cvs(options = {})
+        name = "CvsCancel.idPass"
+        required = [:access_id, :access_pass, :order_id]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       ### @param ###
       # RecurringID
       ### @return ###
@@ -654,6 +667,20 @@ module GMO
       def search_recurring_result(options)
         name = "SearchRecurringResult.idPass"
         required = [:recurring_id]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      ### @params ###
+      # AccessID
+      # AccessPass
+      # OrderID
+      ### @return ###
+      # OrderID
+      # Status
+      def cancel_pay_easy(options = {})
+        name = "PayEasyCancel.idPass"
+        required = [:access_id, :access_pass, :order_id]
         assert_required_options(required, options)
         post_request name, options
       end
