@@ -46,7 +46,7 @@ module GMO
     end
 
     class APIError < Error
-      def initialize(error_info = {}, locale = :en)
+      def initialize(error_info = {}, locale = ::GMO::Const::DEFAULT_LOCALE)
         self.error_info = error_info
         self.locale = locale
         self.response_body = "ErrCode=#{error_info["ErrCode"]}&ErrInfo=#{error_info["ErrInfo"]}"

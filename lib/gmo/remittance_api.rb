@@ -18,7 +18,7 @@ module GMO
         @shop_id   = options[:shop_id]
         @shop_pass = options[:shop_pass]
         @host      = options[:host]
-        @locale    = options.fetch(:locale, :en)
+        @locale    = options.fetch(:locale, GMO::Const::DEFAULT_LOCALE)
         unless @shop_id && @shop_pass && @host
           raise ArgumentError, "Initialize must receive a hash with :shop_id, :shop_pass and either :host! (received #{options.inspect})"
         end
