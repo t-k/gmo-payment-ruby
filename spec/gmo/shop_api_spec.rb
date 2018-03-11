@@ -14,12 +14,14 @@ describe "GMO::Payment::ShopAPI" do
       :site_pass => SPEC_CONF["site_pass"],
       :shop_id   => SPEC_CONF["shop_id"],
       :shop_pass => SPEC_CONF["shop_pass"],
-      :host      => SPEC_CONF["host"]
+      :host      => SPEC_CONF["host"],
+      :locale    => :ja
     })
     @service ||= GMO::Payment::ShopAPI.new({
       :shop_id   => SPEC_CONF["shop_id"],
       :shop_pass => SPEC_CONF["shop_pass"],
-      :host      => SPEC_CONF["host"]
+      :host      => SPEC_CONF["host"],
+      :locale    => :ja
     })
   end
 

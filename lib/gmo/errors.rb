@@ -14,14 +14,14 @@ module GMO
 
     private
 
-      def error_message(info)
-        ::GMO::Const::API_ERROR_MESSAGES[:en][info] || info
+      def error_message(info, locale)
+        ::GMO::Const::API_ERROR_MESSAGES[locale][info] || info
       end
   end
 
   module Payment
     class Error < ::GMO::GMOError
-      attr_accessor :error_info, :response_body
+      attr_accessor :error_info, :response_body, :locale, :error_messages
 
       def initialize(response_body = "", error_info = nil)
         if response_body &&  response_body.is_a?(String)
@@ -46,8 +46,9 @@ module GMO
     end
 
     class APIError < Error
-      def initialize(error_info = {})
+      def initialize(error_info = {}, locale = ::GMO::Const::DEFAULT_LOCALE)
         self.error_info = error_info
+        self.locale = locale
         self.response_body = "ErrCode=#{error_info["ErrCode"]}&ErrInfo=#{error_info["ErrInfo"]}"
         set_error_messages
         message = self.response_body
@@ -57,10 +58,9 @@ module GMO
       private
 
         def set_error_messages
-          error_messages = self.error_info['ErrInfo'].to_s.split(ERROR_INFO_SEPARATOR)
-                                                     .map { |e| error_message(e) || e }
-                                                     .join(ERROR_INFO_SEPARATOR)
-          self.response_body += "&ErrMessage=#{error_messages}"
+          self.error_messages = self.error_info['ErrInfo'].to_s.split(ERROR_INFO_SEPARATOR)
+                                                     .map { |e| error_message(e, locale) || e }
+          self.response_body += "&ErrMessage=#{self.error_messages.join(ERROR_INFO_SEPARATOR)}"
         end
     end
 

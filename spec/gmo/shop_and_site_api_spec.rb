@@ -8,17 +8,23 @@ describe "GMO::Payment::ShopAndSiteAPI" do
       :shop_pass => SPEC_CONF["shop_pass"],
       :site_id   => SPEC_CONF["site_id"],
       :site_pass => SPEC_CONF["site_pass"],
-      :host      => SPEC_CONF["host"]
+      :host      => SPEC_CONF["host"],
+      :locale    => :ja
+
     })
     @shop_api ||= GMO::Payment::ShopAPI.new({
       :shop_id   => SPEC_CONF["shop_id"],
       :shop_pass => SPEC_CONF["shop_pass"],
-      :host      => SPEC_CONF["host"]
+      :host      => SPEC_CONF["host"],
+      :locale    => :ja
+
     })
     @site_api ||= GMO::Payment::SiteAPI.new({
       :site_id   => SPEC_CONF["site_id"],
       :site_pass => SPEC_CONF["site_pass"],
-      :host      => SPEC_CONF["host"]
+      :host      => SPEC_CONF["host"],
+      :locale    => :ja
+
     })
   end
 
