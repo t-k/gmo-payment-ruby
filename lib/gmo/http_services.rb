@@ -73,6 +73,9 @@ module GMO
               http.open_timeout = options[:timeout]
               http.read_timeout = options[:timeout]
             end
+            if ENV['GMO_HTTP_DEBUG']
+              http.set_debug_output($stdout)
+            end
             http
           end
 
