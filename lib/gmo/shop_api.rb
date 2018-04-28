@@ -173,10 +173,9 @@ module GMO
         #   "ClientFieldFlag" => client_field_flg
         # }
 
-
         required = [:access_id, :access_pass]
         append_required = []
-        append_required += [:card_seq] if append_required.empty? && !options[:card_seq].nil?
+        append_required += [:card_seq, :site_id, :site_pass] if append_required.empty? && !options[:card_seq].nil?
         append_required += [:token]    if append_required.empty? && !options[:token].nil?
         append_required += [:order_id, :card_no, :expire] if append_required.empty?
         required.push(*append_required)
