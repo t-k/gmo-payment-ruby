@@ -185,4 +185,14 @@ describe "GMO::Payment::ShopAndSiteAPI" do
       result["NextChargeDate"].nil?.should_not be true
     end
   end
+
+  describe "#unregister_recurring" do
+    it "success unregister", :vcr do
+      recurring_id = generate_id
+      result = @service.unregister_recurring({
+        recurring_id: recurring_id
+      })
+      result["Method"].should == "RECURRING_CREDIT"
+    end
+  end
 end

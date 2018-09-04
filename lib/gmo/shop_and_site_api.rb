@@ -158,6 +158,41 @@ module GMO
         post_request name, options
       end
 
+      ### @params ###
+      # ShopID
+      # ShopPass
+      # RecurringID
+      ### @return ###
+      # ShopID
+      # RecurringID
+      # Amount
+      # Tax
+      # ChargeDay
+      # ChargeMonth
+      # ChargeStartDate
+      # ChargeStopDate
+      # NextChargeDate
+      # Method
+      # SiteID
+      # MemberID
+      # CardNo
+      # Expire
+      # PrintStr
+      # ErrCode
+      # ErrInfo
+      ### example ###
+      # gmo.unregister_recurring({
+      #   recurring_id: "1535964921"
+      # })
+      # => {"ShopID"=>"tshop0001", "RecurringID"=>"1536039145", "Amount"=>"100", "Tax"=>"0", "ChargeDay"=>"31", "ChargeMonth"=>"01|02|03|04|05|06|07|08|09|10|11|12", "ChargeStartDate"=>"20180905", "ChargeStopDate"=>"", "NextChargeDate"=>"", "Method"=>"RECURRING_CREDIT", "CardNo"=>"", "Expire"=>"", "SiteID"=>"tsite0001", "MemberID"=>"mem1001", "PrintStr"=>""}
+      def unregister_recurring(options = {})
+        name = "UnregisterRecurring.idPass"
+        options.merge!(site_id: @site_id, site_pass: @site_pass)
+        required = [:recurring_id]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       private
 
         def api_call(name, args = {}, verb = "post", options = {})
