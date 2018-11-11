@@ -83,6 +83,7 @@ module GMO
       :pa_res                => "PaRes",
       :pay_times             => "PayTimes",
       :pay_type              => "PayType",
+      :payment_type          => "PaymentType",
       :payment_term_day      => "PaymentTermDay",
       :payment_term_sec      => "PaymentTermSec",
       :receipts_disp_1       => "ReceiptsDisp1",
