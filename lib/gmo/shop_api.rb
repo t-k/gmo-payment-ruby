@@ -83,7 +83,7 @@ module GMO
         post_request name, options
       end
 
-      # 【あおぞら銀行バーチャル口座決済】
+      # 【あおぞら銀行決済】
       #  20.1.2.1. 取引登録
       #  これ以降の決済取引で必要となる取引IDと取引パスワードの発行を行い、取引を開始します。
       def entry_tran_aozora(options = {})
@@ -220,7 +220,7 @@ module GMO
         post_request name, options
       end
 
-      # 【あおぞら銀行バーチャル口座決済】
+      # 【あおぞら銀行決済】
       # 20.1.2.2. 決済実行
       def exec_tran_aozora(options = {})
         name = "ExecTranGANB.idPass"
