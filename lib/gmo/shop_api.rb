@@ -224,7 +224,7 @@ module GMO
       # 20.1.2.2. 決済実行
       def exec_tran_aozora(options = {})
         name = "ExecTranGANB.idPass"
-        required = [:access_id, :access_pass, :order_id, :TradeDays]
+        required = [:access_id, :access_pass, :order_id, :tradedays]
         assert_required_options(required, options)
         post_request name, options
       end
