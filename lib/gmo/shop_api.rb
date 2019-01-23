@@ -83,6 +83,16 @@ module GMO
         post_request name, options
       end
 
+      # 【あおぞら銀行決済】
+      #  20.1.2.1. 取引登録
+      #  これ以降の決済取引で必要となる取引IDと取引パスワードの発行を行い、取引を開始します。
+      def entry_tran_aozora(options = {})
+        name = "EntryTranGANB.idPass"
+        required = [:order_id, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       ### @params ###
       # OrderID
       # JobCd
@@ -206,6 +216,15 @@ module GMO
       def exec_tran_linepay(options = {})
         name = "ExecTranLinepay.idPass"
         required = [:access_id, :access_pass, :order_id, :ret_url, :error_rcv_url, :product_name]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      # 【あおぞら銀行決済】
+      # 20.1.2.2. 決済実行
+      def exec_tran_aozora(options = {})
+        name = "ExecTranGANB.idPass"
+        required = [:access_id, :access_pass, :order_id, :tradedays]
         assert_required_options(required, options)
         post_request name, options
       end
