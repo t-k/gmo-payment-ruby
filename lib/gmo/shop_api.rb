@@ -199,7 +199,7 @@ module GMO
       # お客様が入力した情報で後続の決済センターと通信を行い決済を実施し、結果を返します。
       def cvs_cancel(options = {})
         name = "CvsCancel.idPass"
-        required = [:access_id, :access_pass, :order_id, :shop_id, :shop_pass]
+        required = [:access_id, :access_pass, :order_id]
         assert_required_options(required, options)
         post_request name, options
       end
