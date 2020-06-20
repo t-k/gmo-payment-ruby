@@ -1,0 +1,63 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://<HOST>/payment/EntryTranCvs.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=1362106772&Amount=100&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 01 Mar 2013 02:59:32 GMT
+      Connection:
+      - close
+      Content-Type:
+      - text/plain;charset=Windows-31J
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: AccessID=3618be802c7ac572414274731e50cb6c&AccessPass=4099664bd4b110800e09805539d1d7b5
+    http_version:
+  recorded_at: Fri, 01 Mar 2013 02:59:33 GMT
+- request:
+    method: post
+    uri: https://<HOST>/payment/CvsCancel.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=1365660033&AccessID=3618be802c7ac572414274731e50cb6c&AccessPass=4099664bd4b110800e09805539d1d7b5&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 11 Apr 2013 06:00:33 GMT
+      Connection:
+      - close
+      Content-Type:
+      - text/plain;charset=Windows-31J
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: US-ASCII
+      string: OrderID=1365660033&Status=CANCEL
+    http_version:
+  recorded_at: Thu, 11 Apr 2013 06:00:33 GMT
+recorded_with: VCR 2.4.0
