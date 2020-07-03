@@ -694,6 +694,32 @@ describe "GMO::Payment::ShopAPI" do
     end
   end
 
+  describe "#cvs_cancel" do
+    it "gets data about a transaction", :vcr do
+      order_id = generate_id
+      result = @service.entry_tran_cvs({
+        :order_id => order_id,
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      result = @service.cvs_cancel({
+        :order_id => order_id,
+        :access_id => access_id,
+        :access_pass => access_pass,
+      })
+
+      result["OrderID"].nil?.should_not be_truthy
+      result["Status"].nil?.should_not be_truthy
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.cvs_cancel()
+      }.should raise_error("Required access_id, access_pass, order_id were not provided.")
+    end
+  end
+
   describe "#search_trade" do
     it "gets data about order", :vcr do
       order_id = @order_id
