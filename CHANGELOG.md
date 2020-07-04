@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.5.0
+* Support CvsCancel API  [#34](https://github.com/t-k/gmo-payment-ruby/pull/34) (Thanks [@mogulla3](https://github.com/mogulla3 ))
+* Fix typo [#29](https://github.com/t-k/gmo-payment-ruby/pull/29) (Thanks [@nishio-dens](https://github.com/nishio-dens))
+* Support PaymentType of INPUT_PARAMS [#28](https://github.com/t-k/gmo-payment-ruby/pull/28) (Thanks [@johnny-miyake](https://github.com/johnny-miyake))
+
 ## 0.4.0
 
 * Multipayment API
