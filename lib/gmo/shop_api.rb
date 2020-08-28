@@ -108,6 +108,20 @@ module GMO
         post_request name, options
       end
 
+      def entry_tran_bank(options = {})
+        name = "EntryTranGANB.idPass"
+        required = [:order_id, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      def entry_tran_pay_pal(options = {})
+        name = "EntryTranPaypal.idPass"
+        required = [:order_id, :job_cd, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       ## 2.2.2.2.決済実行
       # 指定されたサイトに会員を登録します。
       # return
@@ -253,6 +267,21 @@ module GMO
         assert_required_options(required, options)
         post_request name, options
       end
+
+      def exec_tran_bank(options = {})
+        name = "ExecTranGANB.idPass"
+        required = [:access_id, :access_pass, :order_id]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      def exec_tran_pay_pal(options = {})
+        name = "ExecTranPaypal.idPass"
+        required = [:access_id, :access_pass, :order_id, :item_name, :redirect_url]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+      
 
       ## 2.14.2.1.決済変更
       # 仮売上の決済に対して実売上を行います。尚、実行時に仮売上時との金額チェックを行います。
