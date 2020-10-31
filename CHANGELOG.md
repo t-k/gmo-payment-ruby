@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.5.1
+* Add more error codes [#37](https://github.com/t-k/gmo-payment-ruby/pull/37) (Thanks [@jagdeepsingh](https://github.com/jagdeepsingh))
+
 ## 0.5.0
 * Support CvsCancel API  [#34](https://github.com/t-k/gmo-payment-ruby/pull/34) (Thanks [@mogulla3](https://github.com/mogulla3 ))
 * Fix typo [#29](https://github.com/t-k/gmo-payment-ruby/pull/29) (Thanks [@nishio-dens](https://github.com/nishio-dens))
