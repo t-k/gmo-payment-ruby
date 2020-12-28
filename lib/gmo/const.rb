@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GMO
   module Const
     DEFAULT_LOCALE = :en
@@ -68,6 +70,7 @@ module GMO
       :inquiry_data          => "InquiryData",
       :inquiry_id            => "InquiryID",
       :item_code             => "ItemCode",
+      :item_id               => "ItemId",
       :item_name             => "ItemName",
       :job_cd                => "JobCd",
       :last_month_free_flag  => "LastMonthFreeFlag",

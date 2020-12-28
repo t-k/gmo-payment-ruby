@@ -108,6 +108,31 @@ module GMO
         post_request name, options
       end
 
+      ### @params ###
+      # OrderID
+      # JobCd
+      # Amount
+      # ItemCode
+      # Tax
+      ### @return ###
+      # AccessID
+      # AccessPass
+      ### example ###
+      # gmo.entry_tran_rakuten_id({
+      #   order_id: "ord12345",
+      #   job_cd: "AUTH",
+      #   item_code: "1000001",
+      #   tax: "0001001",
+      #   amount: 100
+      # })
+      # => {"AccessID"=>"139f8ec33a07c55f406937c52ce4473d", "AccessPass"=>"2689b204d2c17192fa35f9269fa7e744"}
+      def entry_tran_rakuten_id(options = {})
+        name = "EntryTranRakutenId.idPass"
+        required = [:order_id, :job_cd, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       ## 2.2.2.2.決済実行
       # 指定されたサイトに会員を登録します。
       # return
@@ -206,6 +231,15 @@ module GMO
       def exec_tran_linepay(options = {})
         name = "ExecTranLinepay.idPass"
         required = [:access_id, :access_pass, :order_id, :ret_url, :error_rcv_url, :product_name]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      # 【楽天ペイ決済】
+      # 18.1.2.2. 決済実行
+      def exec_tran_rakuten_id(options = {})
+        name = "ExecTranRakutenId.idPass"
+        required = [:access_id, :access_pass, :order_id]
         assert_required_options(required, options)
         post_request name, options
       end

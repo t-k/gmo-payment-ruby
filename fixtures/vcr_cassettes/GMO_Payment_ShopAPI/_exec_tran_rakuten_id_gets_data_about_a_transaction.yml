@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://<HOST>/payment/EntryTranRakutenId.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=<TOKEN>609222947&JobCd=CAPTURE&Amount=<TOKEN>00&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=<TOKEN>.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 29 Dec 2020 06:22:28 GMT
+      Content-Type:
+      - text/plain;charset=Windows-3<TOKEN>J
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: OrderID=<TOKEN>609222947&AccessID=a890<TOKEN><TOKEN><TOKEN>530f250c<TOKEN>3e3c884ae273060a&AccessPass=55fff26783<TOKEN>070a<TOKEN>040edd36f73b26ec
+  recorded_at: Tue, 29 Dec 2020 06:22:28 GMT
+- request:
+    method: post
+    uri: https://<HOST>/payment/ExecTranRakutenId.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=<TOKEN>609222947&AccessID=a890<TOKEN><TOKEN><TOKEN>530f250c<TOKEN>3e3c884ae273060a&AccessPass=55fff26783<TOKEN>070a<TOKEN>040edd36f73b26ec&RetURL=https%3A%2F%2Fexample.com%2Fpath%2Fto%2Freturn%2Fsuccess&ErrorRcvURL=https%3A%2F%2Fexample.com%2Fpath%2Fto%2Freturn%2Ffailure&ItemId=000<TOKEN>&ItemName=%8Dw%93%FC%82%B7%82%E9%8F%A4%95i%96%BC&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=<TOKEN>.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 29 Dec 2020 06:22:28 GMT
+      Content-Type:
+      - text/plain;charset=Windows-3<TOKEN>J
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: AccessID=a890<TOKEN><TOKEN><TOKEN>530f250c<TOKEN>3e3c884ae273060a&Token=givwPbv44WyJuP66kQHXNHJ99gPQ6Yh/I5NrE0wMHxWwBS7yYvxSiC0zeMVH+O4F&StartURL=https://<HOST>/payment/RakutenIdStart.idPass&StartLimitDate=2020<TOKEN>229<TOKEN>52428
+  recorded_at: Tue, 29 Dec 2020 06:22:28 GMT
+recorded_with: VCR 6.0.0
