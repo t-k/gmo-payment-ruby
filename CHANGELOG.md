@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.2
+* Support d払い/ドコモ払い(docomo payment), 楽天ペイ(Rakuten payment) [#42](https://github.com/t-k/gmo-payment-ruby/pull/42) (Thanks [@valda](https://github.com/valda))
+* Add more G-series error codes [#41](https://github.com/t-k/gmo-payment-ruby/pull/41) (Thanks [@ermaac](https://github.com/ermaac))
+
 ## 0.5.1
 * Add more error codes [#37](https://github.com/t-k/gmo-payment-ruby/pull/37) (Thanks [@jagdeepsingh](https://github.com/jagdeepsingh))
 
