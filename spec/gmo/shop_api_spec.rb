@@ -276,6 +276,26 @@ describe "GMO::Payment::ShopAPI" do
     end
   end
 
+  describe "#secure_tran" do
+    it "gets data about a transaction", :vcr do
+      params = File.read("fixtures/vcr_cassettes/GMO_Payment_ShopAPI/secure_tran_request_params.yml")
+      params = YAML.load(params)
+
+      result = @service.secure_tran({
+        :pa_res => params["pa_res"],
+        :md     => params["md"]
+      })
+      result["OrderID"].nil?.should_not be_truthy
+      result["Forward"].nil?.should_not be_truthy
+      result["Method"].nil?.should_not be_truthy
+      result["PayTimes"].nil?.should_not be_truthy
+      result["Approve"].nil?.should_not be_truthy
+      result["TranID"].nil?.should_not be_truthy
+      result["TranDate"].nil?.should_not be_truthy
+      result["CheckString"].nil?.should_not be_truthy
+    end
+  end
+
   describe "#exec_tran_cvs" do
     it "gets data about a transaction", :vcr do
       order_id = generate_id

@@ -231,6 +231,14 @@ module GMO
         post_request name, options
       end
 
+      # 2.2.2.4 認証後決済実行
+      def secure_tran(options = {})
+        name = "SecureTran.idPass"
+        required = [:pa_res, :md]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       # 【コンビニ払い】
       # 2.1.2.2. 決済実行
       # お客様が入力した情報で後続の決済センターと通信を行い決済を実施し、結果を返します。
