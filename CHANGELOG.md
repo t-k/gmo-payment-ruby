@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.5.3
+* Support 認証後決済実行 [#45](https://github.com/t-k/gmo-payment-ruby/pull/45) (Thanks [@darren987469](https://github.com/darren987469))
+* Support SearchType of INPUT_PARAMS [#47](https://github.com/t-k/gmo-payment-ruby/pull/47) (Thanks [@nkuroda](https://github.com/nkuroda))
+* Drop ruby 2.0.0 [#48](https://github.com/t-k/gmo-payment-ruby/pull/48)
+
 ## 0.5.2
 * Support d払い/ドコモ払い(docomo payment), 楽天ペイ(Rakuten payment) [#42](https://github.com/t-k/gmo-payment-ruby/pull/42) (Thanks [@valda](https://github.com/valda))
 * Add more G-series error codes [#41](https://github.com/t-k/gmo-payment-ruby/pull/41) (Thanks [@ermaac](https://github.com/ermaac))
