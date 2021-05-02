@@ -140,7 +140,8 @@ module GMO
       :delivery_place_phone  => "DeliveryPlacePhone",
       :lang_cd               => "LangCd",
       :user_info             => "UserInfo",
-      :package_name          => "PackageName"
+      :package_name          => "PackageName",
+      :search_type           => "SearchType"
     }.freeze
 
     API_ERROR_MESSAGES_EN = {
