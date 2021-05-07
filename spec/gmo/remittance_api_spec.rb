@@ -469,7 +469,7 @@ describe "GMO::Payment::RemittanceAPI" do
     it "gets data about a mail deposit", :vcr do
       result = do_api_call
       result["Deposit_ID"].nil?.should_not be_truthy
-      result["Mail_Address"].nil?.should_not be_truthy
+      result["Mail_Address"].should eq('anyutzy+test@demo.com')
       result["Shop_Mail_Address"].nil?.should_not be_truthy
       result["Account_Name"].nil?.should_not be_truthy
       result["Amount"].nil?.should_not be_truthy
