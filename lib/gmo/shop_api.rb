@@ -691,6 +691,30 @@ module GMO
         post_request name, options
       end
 
+      ###################################################
+      # 3DS2.0 対応
+      ###################################################
+
+      # 4.3.1.7 3DS2.0認証実行(Tds2Auth)
+      # DS2.0認証を実行します。
+      # 3DS2.0認証初期化URL(RedirectUrl)のコールバックを受けたタイミングで本処理を実行してください。
+      def tds2_auth(options = {})
+        name = "Tds2Auth.idPass"
+        required = [:access_id, :access_pass, :tds2_param]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      # 4.3.1.8 3DS2.0認証結果取得(Tds2Result)
+      # 3DS2.0認証の最終的な認証結果を取得します。
+      # 3DS2.0認証チャレンジURL(ChallengeUrl)のコールバックを受けたタイミングで本処理を実行してください。
+      def tds2_result(options = {})
+        name = "Tds2Result.idPass"
+        required = [:access_id, :access_pass]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       private
 
         def api_call(name, args = {}, verb = "post", options = {})
