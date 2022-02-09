@@ -139,7 +139,7 @@ module GMO
       :remit_method_bank     => "Remit_Method_Bank",
       :remit_method_sevenatm => "Remit_Method_Sevenatm",
       :reserve_no            => "ReserveNo",
-      :ret_url               => "RetURL",
+      :ret_url               => "RetUrl",
       :security_code         => "SecurityCode",
       :select_key            => "Select_Key",
       :seq_mode              => "SeqMode",
