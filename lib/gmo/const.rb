@@ -158,6 +158,8 @@ module GMO
       :suica_add_info_4      => "SuicaAddInfo4",
       :tax                   => "Tax",
       :td_flag               => "TdFlag",
+      :tds2_type             => "Tds2Type",
+      :td_required           => "TdRequired",
       :td_tenant_name        => "TdTenantName",
       :tds2_ch_acc_change    => "Tds2ChAccChange",
       :tds2_ch_acc_date      => "Tds2ChAccDate",
