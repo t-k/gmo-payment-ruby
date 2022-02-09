@@ -156,6 +156,8 @@ module GMO
       :suica_add_info_4      => "SuicaAddInfo4",
       :tax                   => "Tax",
       :td_flag               => "TdFlag",
+      :tds2_type             => "Tds2Type",
+      :td_required           => "TdRequired",
       :td_tenant_name        => "TdTenantName",
       :tel_no                => "TelNo",
       :token                 => "Token",
