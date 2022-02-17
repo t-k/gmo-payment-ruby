@@ -715,6 +715,15 @@ module GMO
         post_request name, options
       end
 
+      # 4.3.1.12 3DS2.0認証後決済実行(SecureTran2)
+      # 3DS2.0サービスの結果を解析し、その情報を使用してカード会社と通信を行い決済を実施して結果を返します。
+      def secure_tran_2(options = {})
+        name = "SecureTran2.idPass"
+        required = [:access_id, :access_pass]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       private
 
         def api_call(name, args = {}, verb = "post", options = {})
