@@ -41,6 +41,12 @@ module GMO
         # "ACS=1&ACSUrl=url" => { "ACS" => "1", ACSUrl => "url" }
         key_values = result.body.to_s.split('&').map { |str| str.split('=', 2) }.flatten
         response = Hash[*key_values]
+        # Transform the redirect_url
+        # "ACS=2&RedirectUrl=https://manage.tds2gw.gmopg.jp/api/v2/brw/callback?transId=6e48e31f-2940-48e1-a702- ebba2f3373ee&t=dccc8a7ed85372c9accff576bff59b3a" => { "ACS" => "2", RedirectUrl => "https://manage.tds2gw.gmopg.jp/api/v2/brw/callback?transId=6e48e31f-2940-48e1-a702- ebba2f3373ee&t=dccc8a7ed85372c9accff576bff59b3a" }
+        if response['RedirectUrl'].present? && response['t'].present? && response.keys.index('RedirectUrl') + 1 == response.keys.index('t')
+          response['RedirectUrl'] = response['RedirectUrl'] + '&t=' + response['t']
+          response.delete('t')
+        end
         # converting to UTF-8
         body = response = Hash[response.map { |k,v| [k, NKF.nkf('-w',v)] }]
         # Check for errors if provided a error_checking_block
