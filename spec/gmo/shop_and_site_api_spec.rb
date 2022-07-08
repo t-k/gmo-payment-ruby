@@ -171,4 +171,28 @@ describe "GMO::Payment::ShopAndSiteAPI" do
     end
   end
 
+  describe "#register_recurring_credit" do
+    it "got data", :vcr do
+      recurring_id = generate_id
+      member_id = 'mem1001'
+      result = @service.register_recurring_credit({
+        :recurring_id  => recurring_id,
+        :amount        => 100,
+        :charge_day    => 31,
+        :regist_type   => GMO::Const::RECURRING_REGIST_TYPE[:member_id],
+        :member_id     => member_id,
+      })
+      result["NextChargeDate"].nil?.should_not be true
+    end
+  end
+
+  describe "#unregister_recurring" do
+    it "success unregister", :vcr do
+      recurring_id = generate_id
+      result = @service.unregister_recurring({
+        recurring_id: recurring_id
+      })
+      result["Method"].should == "RECURRING_CREDIT"
+    end
+  end
 end

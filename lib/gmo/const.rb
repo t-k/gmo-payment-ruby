@@ -14,6 +14,12 @@ module GMO
       apple_pay: 'APay'
     }.freeze
 
+    RECURRING_REGIST_TYPE = {
+      member_id:   '1',
+      card_number: '2',
+      order_id:    '3'
+    }
+
     INPUT_PARAMS = {
       :access_id             => "AccessID",
       :access_pass           => "AccessPass",
@@ -38,6 +44,10 @@ module GMO
       :card_no               => "CardNo",
       :card_pass             => "CardPass",
       :card_seq              => "CardSeq",
+      :charge_day            => "ChargeDay",
+      :charge_month          => "ChargeMonth",
+      :charge_start_date     => "ChargeStartDate",
+      :charge_stop_date      => "ChargeStopDate",
       :client_field_1        => "ClientField1",
       :client_field_2        => "ClientField2",
       :client_field_3        => "ClientField3",
@@ -102,7 +112,9 @@ module GMO
       :receipts_disp_11      => "ReceiptsDisp11",
       :receipts_disp_12      => "ReceiptsDisp12",
       :receipts_disp_13      => "ReceiptsDisp13",
+      :recurring_id          => "RecurringID",
       :redirect_url          => "RedirectURL",
+      :regist_type           => "RegistType",
       :register_disp_1       => "RegisterDisp1",
       :register_disp_2       => "RegisterDisp2",
       :register_disp_3       => "RegisterDisp3",
@@ -122,6 +134,7 @@ module GMO
       :shop_pass             => "ShopPass",
       :site_id               => "SiteID",
       :site_pass             => "SitePass",
+      :src_order_id          => "SrcOrderID",
       :suica_add_info_1      => "SuicaAddInfo1",
       :suica_add_info_2      => "SuicaAddInfo2",
       :suica_add_info_3      => "SuicaAddInfo3",
