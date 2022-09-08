@@ -174,6 +174,24 @@ describe "GMO::Payment::ShopAPI" do
     end
   end
 
+  describe "#entry_tran_virtualaccount" do
+    it "gets data about a transaction", :vcr do
+      order_id = @order_id
+      result = @service.entry_tran_virtualaccount({
+        :order_id => order_id,
+        :amount => 100
+      })
+      result["AccessID"].nil?.should_not be true
+      result["AccessPass"].nil?.should_not be true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.entry_tran_virtualaccount()
+      }.should raise_error('Required order_id, amount were not provided.')
+    end
+  end
+
   describe "#exec_tran" do
     it "gets data about a transaction", :vcr do
       order_id = generate_id
@@ -467,6 +485,39 @@ describe "GMO::Payment::ShopAPI" do
       lambda {
         result = @service.exec_tran_docomo()
       }.should raise_error("Required access_id, access_pass, order_id were not provided.")
+    end
+  end
+
+  describe "#exec_tran_virtualaccount" do
+    it "gets data about a transaction", :vcr do
+      order_id = generate_id
+      result = @service.entry_tran_virtualaccount({
+        :order_id => order_id,
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      result = @service.exec_tran_virtualaccount({
+        :order_id      => order_id,
+        :access_id     => access_id,
+        :access_pass   => access_pass,
+        :trade_days    => 14
+      })
+      result["AccessID"].nil?.should_not be_truthy
+      result["BankCode"].nil?.should_not be_truthy
+      result["BankName"].nil?.should_not be_truthy
+      result["BranchCode"].nil?.should_not be_truthy
+      result["BranchName"].nil?.should_not be_truthy
+      result["AccountType"].nil?.should_not be_truthy
+      result["AccountNumber"].nil?.should_not be_truthy
+      result["AvailableDate"].nil?.should_not be_truthy
+      result["TradeCode"].nil?.should_not be_truthy
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.exec_tran_virtualaccount()
+      }.should raise_error("Required access_id, access_pass, order_id, trade_days were not provided.")
     end
   end
 

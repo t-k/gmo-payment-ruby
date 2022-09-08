@@ -154,7 +154,11 @@ module GMO
       :lang_cd               => "LangCd",
       :user_info             => "UserInfo",
       :package_name          => "PackageName",
-      :search_type           => "SearchType"
+      :search_type           => "SearchType",
+      :trade_days            => "TradeDays",
+      :trade_reason          => "TradeReason",
+      :trade_client_name     => "TradeClientName",
+      :trade_client_mail_address => "TradeClientMailAddress"
     }.freeze
 
     API_ERROR_MESSAGES_EN = {
