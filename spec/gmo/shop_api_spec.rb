@@ -192,6 +192,42 @@ describe "GMO::Payment::ShopAPI" do
     end
   end
 
+  describe "#entry_tran_suica" do
+    it "gets data about a transaction", :vcr do
+      order_id = @order_id
+      result = @service.entry_tran_suica({
+        :order_id => order_id,
+        :amount => 100
+      })
+      result["AccessID"].nil?.should_not be true
+      result["AccessPass"].nil?.should_not be true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.entry_tran_suica()
+      }.should raise_error('Required order_id, amount were not provided.')
+    end
+  end
+
+  describe "#entry_tran_edy" do
+    it "gets data about a transaction", :vcr do
+      order_id = @order_id
+      result = @service.entry_tran_edy({
+        :order_id => order_id,
+        :amount => 100
+      })
+      result["AccessID"].nil?.should_not be true
+      result["AccessPass"].nil?.should_not be true
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.entry_tran_edy()
+      }.should raise_error('Required order_id, amount were not provided.')
+    end
+  end
+
   describe "#exec_tran" do
     it "gets data about a transaction", :vcr do
       order_id = generate_id
@@ -518,6 +554,77 @@ describe "GMO::Payment::ShopAPI" do
       lambda {
         result = @service.exec_tran_virtualaccount()
       }.should raise_error("Required access_id, access_pass, order_id, trade_days were not provided.")
+    end
+  end
+
+  describe "#exec_tran_suica" do
+    it "gets data about a transaction", :vcr do
+      order_id = generate_id
+      client_field_1 = "client_field1"
+      result = @service.entry_tran_suica({
+        :order_id => order_id,
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      result = @service.exec_tran_suica({
+        :order_id         => order_id,
+        :access_id        => access_id,
+        :access_pass      => access_pass,
+        :item_name        => '購入する商品名',
+        :mail_address     => 'test@example.com',
+        :client_field_1   => client_field_1,
+        :client_field_flg => 1
+      })
+      result["OrderID"].nil?.should_not be_truthy
+      result["SuicaOrderNo"].nil?.should_not be_truthy
+      result["ReceiptNo"].nil?.should_not be_truthy
+      result["PaymentTerm"].nil?.should_not be_truthy
+      result["TranDate"].nil?.should_not be_truthy
+      result["CheckString"].nil?.should_not be_truthy
+      (result["ClientField1"] == client_field_1).should be_truthy
+      result["ClientField3"].nil?.should_not be_truthy
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.exec_tran_suica()
+      }.should raise_error("Required access_id, access_pass, order_id, item_name, mail_address were not provided.")
+    end
+  end
+
+  describe "#exec_tran_edy" do
+    it "gets data about a transaction", :vcr do
+      order_id = generate_id
+      client_field_1 = "client_field1"
+      result = @service.entry_tran_edy({
+        :order_id => order_id,
+        :amount => 100
+      })
+      access_id = result["AccessID"]
+      access_pass = result["AccessPass"]
+      result = @service.exec_tran_edy({
+        :order_id         => order_id,
+        :access_id        => access_id,
+        :access_pass      => access_pass,
+        :mail_address     => 'test@example.com',
+        :client_field_1   => client_field_1,
+        :client_field_flg => 1
+      })
+      result["OrderID"].nil?.should_not be_truthy
+      result["ReceiptNo"].nil?.should_not be_truthy
+      result["EdyOrderNo"].nil?.should_not be_truthy
+      result["PaymentTerm"].nil?.should_not be_truthy
+      result["TranDate"].nil?.should_not be_truthy
+      result["CheckString"].nil?.should_not be_truthy
+      (result["ClientField1"] == client_field_1).should be_truthy
+      result["ClientField3"].nil?.should_not be_truthy
+    end
+
+    it "got error if missing options", :vcr do
+      lambda {
+        result = @service.exec_tran_edy()
+      }.should raise_error("Required access_id, access_pass, order_id, mail_address were not provided.")
     end
   end
 
