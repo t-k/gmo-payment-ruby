@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.4
+* Support 銀行振込(バーチャル口座)決済, モバイルSuica, 楽天Edy決済 [#53](https://github.com/t-k/gmo-payment-ruby/pull/53) (Thanks [@valda](https://github.com/valda))
+* Support 継続課金 [#31](https://github.com/t-k/gmo-payment-ruby/pull/31) (Thanks [@yalab](https://github.com/yalab))
+
 ## 0.5.3
 * Support 認証後決済実行 [#45](https://github.com/t-k/gmo-payment-ruby/pull/45) (Thanks [@darren987469](https://github.com/darren987469))
 * Support SearchType of INPUT_PARAMS [#47](https://github.com/t-k/gmo-payment-ruby/pull/47) (Thanks [@nkuroda](https://github.com/nkuroda))
