@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://<HOST>/payment/EntryTranEdy.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=<TOKEN>662970040&Amount=<TOKEN>00&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=<TOKEN>.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, <TOKEN>2 Sep 2022 08:07:20 GMT
+      Content-Type:
+      - text/plain;charset=Windows-3<TOKEN>J
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: AccessID=<TOKEN>e85e402df4ae23036f6de940c4eb2d7&AccessPass=<TOKEN>6440b8df892<TOKEN>f<TOKEN>0a2dba3<TOKEN>cb2<TOKEN>03805
+  recorded_at: Mon, 12 Sep 2022 08:07:20 GMT
+- request:
+    method: post
+    uri: https://<HOST>/payment/ExecTranEdy.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=<TOKEN>662970040&AccessID=<TOKEN>e85e402df4ae23036f6de940c4eb2d7&AccessPass=<TOKEN>6440b8df892<TOKEN>f<TOKEN>0a2dba3<TOKEN>cb2<TOKEN>03805&MailAddress=test%40example.com&ClientField<TOKEN>=client_field<TOKEN>&ClientFieldFlag=<TOKEN>&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=<TOKEN>.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, <TOKEN>2 Sep 2022 08:07:23 GMT
+      Content-Type:
+      - text/plain;charset=Windows-3<TOKEN>J
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: OrderID=<TOKEN>662970040&ReceiptNo=EDY<TOKEN>662970042705&EdyOrderNo=<TOKEN>662970040-2209<TOKEN>204852<TOKEN>&PaymentTerm=20220922<TOKEN>70722&TranDate=202209<TOKEN>2<TOKEN>70722&CheckString=8db002858a8d3b8<TOKEN>eaf4b3<TOKEN>e7a2c<TOKEN>d20&ClientField<TOKEN>=client_field<TOKEN>&ClientField2=&ClientField3=
+  recorded_at: Mon, 12 Sep 2022 08:07:23 GMT
+recorded_with: VCR 6.0.0
