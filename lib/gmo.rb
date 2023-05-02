@@ -42,7 +42,7 @@ module GMO
         key_values = result.body.to_s.split('&').map { |str| str.split('=', 2) }.flatten
         response = Hash[*key_values]
         # converting to UTF-8
-        body = response = Hash[response.map { |k,v| [k, NKF.nkf('-w',v)] }]
+        body = response = Hash[response.map { |k,v| [k, NKF.nkf('-S -w',v)] }]
         # Check for errors if provided a error_checking_block
         yield(body) if error_checking_block
         # Return result
