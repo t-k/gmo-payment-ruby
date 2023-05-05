@@ -1,7 +1,7 @@
 GMO
 ====
-[![Gem Version](https://badge.fury.io/rb/gmo.png)](https://rubygems.org/gems/gmo)
-[![Build Status](https://travis-ci.org/t-k/gmo-payment-ruby.png)](https://travis-ci.org/t-k/gmo-payment-ruby)
+[![Gem Version](https://badge.fury.io/rb/gmo.svg)](https://badge.fury.io/rb/gmo)
+[![Ruby](https://github.com/t-k/gmo-payment-ruby/actions/workflows/ruby.yml/badge.svg?branch=master)](https://github.com/t-k/gmo-payment-ruby/actions/workflows/ruby.yml)
 
 GMO is a Ruby client library for the GMO Payment Platform, supporting the PG Multi Payment API, exec transactions, register users, and so on.
 
