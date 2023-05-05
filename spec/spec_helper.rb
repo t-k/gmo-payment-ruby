@@ -11,13 +11,10 @@ end
 require 'gmo'
 require 'rspec'
 require 'vcr'
+require 'pry'
 require 'support/config_loader'
 require 'support/factory'
 require 'support/vcr'
-
-if RUBY_VERSION < '1.9.0'
-  require 'support/encoding'
-end
 
 RSpec.configure do |config|
   config.mock_with :rspec
