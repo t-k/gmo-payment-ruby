@@ -5,11 +5,10 @@ group :development do
 end
 
 group :development, :test do
-  if RUBY_VERSION >= "1.9.3"
-    gem 'guard'
-    gem 'guard-rspec'
-  end
+  gem 'guard'
+  gem 'guard-rspec'
   gem 'simplecov'
+  gem "pry"
 
   if RUBY_PLATFORM =~ /darwin/
     gem "ruby_gntp"
