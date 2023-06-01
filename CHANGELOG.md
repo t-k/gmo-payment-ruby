@@ -1,4 +1,6 @@
 # CHANGELOG
+## 0.5.5
+- Enhanced encoding handling to prevent misjudgments during UTF-8 conversion [#57](https://github.com/t-k/gmo-payment-ruby/pull/57) (Thanks [@y-yagi](https://github.com/y-yagi))
 
 ## 0.5.4
 * Support 銀行振込(バーチャル口座)決済, モバイルSuica, 楽天Edy決済 [#53](https://github.com/t-k/gmo-payment-ruby/pull/53) (Thanks [@valda](https://github.com/valda))
