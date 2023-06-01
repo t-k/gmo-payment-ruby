@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/EntryTranDocomo.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=<TOKEN>6092250<TOKEN>4&JobCd=CAPTURE&Amount=<TOKEN>00&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -29,14 +29,14 @@ http_interactions:
       Connection:
       - close
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: AccessID=980a<TOKEN>cf8<TOKEN>a58ea7<TOKEN>2828f82b5cab36b4&AccessPass=30e<TOKEN>87<TOKEN>76420ef72d743e<TOKEN>923f60c228
   recorded_at: Tue, 29 Dec 2020 06:56:54 GMT
 - request:
     method: post
     uri: https://<HOST>/payment/ExecTranDocomo.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=<TOKEN>6092250<TOKEN>4&AccessID=980a<TOKEN>cf8<TOKEN>a58ea7<TOKEN>2828f82b5cab36b4&AccessPass=30e<TOKEN>87<TOKEN>76420ef72d743e<TOKEN>923f60c228&RetURL=https%3A%2F%2Fexample.com%2Fpath%2Fto%2Freturn%2Fsuccess&ErrorRcvURL=https%3A%2F%2Fexample.com%2Fpath%2Fto%2Freturn%2Ffailure&ItemId=000<TOKEN>&ItemName=%8Dw%93%FC%82%B7%82%E9%8F%A4%95i%96%BC&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -61,7 +61,7 @@ http_interactions:
       Connection:
       - close
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: AccessID=980a<TOKEN>cf8<TOKEN>a58ea7<TOKEN>2828f82b5cab36b4&Token=MUPNG5Kkc3cF3W2yFjT6DXACIf+qn<TOKEN>h7bqaBFFxarXKwBS7yYvxSiC0zeMVH+O4F&StartURL=https://<HOST>/payment/DocomoStart.idPass&StartLimitDate=2020<TOKEN>229<TOKEN>55854
   recorded_at: Tue, 29 Dec 2020 06:56:55 GMT
 recorded_with: VCR 6.0.0

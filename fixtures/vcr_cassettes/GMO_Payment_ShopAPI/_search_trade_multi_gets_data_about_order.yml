@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/SearchTradeMulti.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=1362106772&PayType=0&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept:

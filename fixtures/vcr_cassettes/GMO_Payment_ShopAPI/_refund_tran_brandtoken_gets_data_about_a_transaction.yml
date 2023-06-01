@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/EntryTranBrandtoken.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=<SHOP_PASS>502<SHOP_PASS>90462&JobCd=CAPTURE&Amount=<SHOP_PASS>000&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -31,7 +31,7 @@ http_interactions:
       Content-Language:
       - ja-JP
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: AccessID=<SHOP_PASS>da06<SHOP_PASS>87345d6<SHOP_PASS>3ce206f4cd05bc5322&AccessPass=45a2<SHOP_PASS>e63323c3795d26e22338eaa6b7f
     http_version:
   recorded_at: Tue, 08 Aug 2017 11:07:43 GMT
@@ -39,7 +39,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/ExecTranBrandtoken.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=<SHOP_PASS>502<SHOP_PASS>78987&AccessID=<SHOP_PASS>da06<SHOP_PASS>87345d6<SHOP_PASS>3ce206f4cd05bc5322&AccessPass=45a2<SHOP_PASS>e63323c3795d26e22338eaa6b7f&TokenType=APay&Token=base64encodedtoken&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -66,7 +66,7 @@ http_interactions:
       Content-Language:
       - ja-JP
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: Status=CAPTURE&OrderID=597ae8c36<SHOP_PASS>20b23a3c000<SHOP_PASS>4e&Forward=2a99663&Approve=5487394&TranID=<SHOP_PASS>70728<SHOP_PASS>634<SHOP_PASS><SHOP_PASS><SHOP_PASS><SHOP_PASS><SHOP_PASS><SHOP_PASS><SHOP_PASS><SHOP_PASS><SHOP_PASS><SHOP_PASS><SHOP_PASS><SHOP_PASS>77<SHOP_PASS>2<SHOP_PASS>6&TranDate=20<SHOP_PASS>70728<SHOP_PASS>63453&ClientField<SHOP_PASS>=&ClientField2=&ClientField3=
     http_version:
   recorded_at: Tue, 08 Aug 2017 07:56:28 GMT
@@ -74,7 +74,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/RefundTranBrandtoken.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: AccessID=<SHOP_PASS>da06<SHOP_PASS>87345d6<SHOP_PASS>3ce206f4cd05bc5322&AccessPass=45a2<SHOP_PASS>e63323c3795d26e22338eaa6b7f&OrderID=<SHOP_PASS>502<SHOP_PASS>9055<SHOP_PASS>&Amount=<SHOP_PASS>000&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -101,7 +101,7 @@ http_interactions:
       Content-Language:
       - ja-JP
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: AccessID=139f8ec33a07c55f406937c52ce4473d&AccessPass=2689b204d2c17192fa35f9269fa7e744&Status=RETURN&Forward=2a99663&Approve=5537883&TranID=1707311620111111111111771220&TranDate=20170731162256
     http_version:
   recorded_at: Tue, 08 Aug 2017 11:09:12 GMT

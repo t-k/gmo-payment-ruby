@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/TradedBrandtoken.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=<SHOP_PASS>502<SHOP_PASS>90974&MemberID=<SHOP_PASS>502<SHOP_PASS>90974&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>&SiteID=<SITE_ID>&SitePass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -32,7 +32,7 @@ http_interactions:
       Content-Language:
       - ja-JP
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: TokenSeq=0&CardNoToken=*************<SHOP_PASS><SHOP_PASS><SHOP_PASS>&Forward=2a99663
     http_version:
   recorded_at: Tue, 08 Aug 2017 11:16:15 GMT
@@ -40,7 +40,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/SearchBrandtoken.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: MemberID=<SHOP_PASS>502<SHOP_PASS>9<SHOP_PASS><SHOP_PASS><SHOP_PASS>7&SeqMode=0&SiteID=<SITE_ID>&SitePass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -67,7 +67,7 @@ http_interactions:
       Content-Language:
       - ja-JP
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: TokenSeq=0&DefaultFlag=0&CardName=&CardNoToken=*************111&Expire=2212&HolderName=&DeleteFlag=0
     http_version:
   recorded_at: Tue, 08 Aug 2017 11:18:38 GMT

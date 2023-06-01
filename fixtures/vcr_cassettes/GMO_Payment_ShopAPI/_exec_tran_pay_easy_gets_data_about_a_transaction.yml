@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/EntryTranPayEasy.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=1448105474&Amount=100&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -29,7 +29,7 @@ http_interactions:
       Connection:
       - close
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: AccessID=eb18bcc94bd6027929b2cb401b5eff9b&AccessPass=e79f0cbfb6b00343beb85eb8df873277
     http_version: 
   recorded_at: Sat, 21 Nov 2015 11:31:15 GMT
@@ -37,7 +37,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/ExecTranPayEasy.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=1448105474&AccessID=eb18bcc94bd6027929b2cb401b5eff9b&AccessPass=e79f0cbfb6b00343beb85eb8df873277&CustomerName=%83y%83C%91%BE%98Y&CustomerKana=%83y%83C%83%5E%83%8D%83E&TelNo=0300000001&ReceiptsDisp11=RSpec+Helpdesk&ReceiptsDisp12=0300000001&ReceiptsDisp13=00%3A00-00%3A15&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -62,7 +62,7 @@ http_interactions:
       Connection:
       - close
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=1448105474&CustID=WNT05476383&BkCode=58021&ConfNo=3769&EncryptReceiptNo=LB7OigJvPDmbWxAqB8OY&PaymentTerm=20151201235959&TranDate=20151121203100&CheckString=6a7c5cb87d1857e9b9088d65480545e3
     http_version: 
   recorded_at: Sat, 21 Nov 2015 11:31:16 GMT

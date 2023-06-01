@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/EntryTranSuica.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=<TOKEN>662969936&Amount=<TOKEN>00&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -29,14 +29,14 @@ http_interactions:
       Connection:
       - close
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: AccessID=288a3a<TOKEN>5032a<TOKEN>25e723dad49<TOKEN>5d3b28a&AccessPass=d2dea7b2b94eab5ab3bddcfbd9cf58bc
   recorded_at: Mon, 12 Sep 2022 08:05:37 GMT
 - request:
     method: post
     uri: https://<HOST>/payment/ExecTranSuica.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=<TOKEN>662969936&AccessID=288a3a<TOKEN>5032a<TOKEN>25e723dad49<TOKEN>5d3b28a&AccessPass=d2dea7b2b94eab5ab3bddcfbd9cf58bc&ItemName=%8Dw%93%FC%82%B7%82%E9%8F%A4%95i%96%BC&MailAddress=test%40example.com&ClientField<TOKEN>=client_field<TOKEN>&ClientFieldFlag=<TOKEN>&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -61,7 +61,7 @@ http_interactions:
       Connection:
       - close
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=<TOKEN>662969936&SuicaOrderNo=<TOKEN>662969936-2209<TOKEN>2052836&ReceiptNo=SCA93925<TOKEN>&PaymentTerm=20220922<TOKEN>70637&TranDate=202209<TOKEN>2<TOKEN>70539&CheckString=d<TOKEN>fca947cffe2aa892<TOKEN>7f3fcbb403d02&ClientField<TOKEN>=client_field<TOKEN>&ClientField2=&ClientField3=
   recorded_at: Mon, 12 Sep 2022 08:05:39 GMT
 recorded_with: VCR 6.0.0

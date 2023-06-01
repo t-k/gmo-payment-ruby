@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/EntryTranLinepay.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=1467366014&JobCd=CAPTURE&Amount=100&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -29,7 +29,7 @@ http_interactions:
       Connection:
       - close
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=1467366014&AccessID=2352c8be3fd34b2e75ce3fd2b19c1cd2&AccessPass=06561ea4bbb6200b172a58457c88776f
     http_version: 
   recorded_at: Fri, 01 Jul 2016 09:40:14 GMT
@@ -37,7 +37,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/ExecTranLinepay.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=1467366014&AccessID=2352c8be3fd34b2e75ce3fd2b19c1cd2&AccessPass=06561ea4bbb6200b172a58457c88776f&RetURL=https%3A%2F%2Fexample.com%2Fpath%2Fto%2Freturn%2Fsuccess&ErrorRcvURL=https%3A%2F%2Fexample.com%2Fpath%2Fto%2Freturn%2Ffailure&ProductName=%8Dw%93%FC%82%B7%82%E9%8F%A4%95i%96%BC&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -62,7 +62,7 @@ http_interactions:
       Connection:
       - close
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: Start=1&AccessID=2352c8be3fd34b2e75ce3fd2b19c1cd2&Token=5eUT14IYmsZRnCs/S/RYxKrphuf29PTylubWI8BbbUuwBS7yYvxSiC0zeMVH+O4F&StartURL=https://<HOST>/payment/LinepayStart.idPass
     http_version: 
   recorded_at: Fri, 01 Jul 2016 09:40:14 GMT

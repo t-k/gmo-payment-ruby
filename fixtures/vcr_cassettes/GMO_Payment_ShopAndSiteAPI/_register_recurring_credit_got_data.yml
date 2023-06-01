@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/RegisterRecurringCredit.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: RecurringID=<TOKEN>53596492<TOKEN>&Amount=<TOKEN>00&ChargeDay=3<TOKEN>&RegistType=<TOKEN>&MemberID=smama_development_user_<TOKEN>&SiteID=<SITE_ID>&SitePass=<SITE_PASS>&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -29,7 +29,7 @@ http_interactions:
       Connection:
       - close
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: ShopID=<SHOP_ID>&RecurringID=<TOKEN>53596492<TOKEN>&Amount=<TOKEN>00&Tax=0&ChargeDay=3<TOKEN>&ChargeMonth=0<TOKEN>|02|03|04|05|06|07|08|09|<TOKEN>0|<TOKEN><TOKEN>|<TOKEN>2&ChargeStartDate=20<TOKEN>80904&ChargeStopDate=&NextChargeDate=20<TOKEN>80930&Method=RECURRING_CREDIT&CardNo=&Expire=&SiteID=<SITE_ID>&MemberID=smama_development_user_<TOKEN>
     http_version: 
   recorded_at: Mon, 03 Sep 2018 08:55:22 GMT

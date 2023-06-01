@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/EntryTran.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=1366160239&JobCd=AUTH&Amount=100&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -27,7 +27,7 @@ http_interactions:
       Transfer-Encoding:
       - chunked
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: AccessID=68334b323b78058c0ecbbaa996b80ca1&AccessPass=8499e4c83fbd277577f6ce2d95e86868
     http_version: 
   recorded_at: Wed, 17 Apr 2013 00:57:19 GMT
@@ -35,7 +35,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/ExecTran.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=1366160239&AccessID=68334b323b78058c0ecbbaa996b80ca1&AccessPass=8499e4c83fbd277577f6ce2d95e86868&Method=1&PayTimes=1&CardNo=4111111111111111&Expire=1405&ClientField1=%81%60%81%7C%81%91%81%92%81%CA%81%7C%81a%87%40%82%D9%82%B0%82%D9%82%B0hogehoge&ClientFieldFlag=1&DeviceCategory=0&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:

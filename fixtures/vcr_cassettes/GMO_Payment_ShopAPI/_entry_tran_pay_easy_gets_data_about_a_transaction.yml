@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/EntryTranPayEasy.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=1448103619&Amount=100&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -29,7 +29,7 @@ http_interactions:
       Connection:
       - close
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: AccessID=282b61afb9cabee8e72d49db77c08e2f&AccessPass=9c4883358947a15683f8a63f5fc7aef4
     http_version: 
   recorded_at: Sat, 21 Nov 2015 11:00:19 GMT

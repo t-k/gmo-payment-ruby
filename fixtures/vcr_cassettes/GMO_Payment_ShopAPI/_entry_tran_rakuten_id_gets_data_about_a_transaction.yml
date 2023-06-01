@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/EntryTranRakutenId.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=<TOKEN>609222<TOKEN>40&JobCd=AUTH&Amount=<TOKEN>00&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -29,7 +29,7 @@ http_interactions:
       Connection:
       - close
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=<TOKEN>609222<TOKEN>40&AccessID=8e9d8824c386409e247eb<TOKEN>badf34ff68&AccessPass=c963<TOKEN>bd080cebf5c0869feef<TOKEN>a638ddb
   recorded_at: Tue, 29 Dec 2020 06:09:00 GMT
 recorded_with: VCR 6.0.0

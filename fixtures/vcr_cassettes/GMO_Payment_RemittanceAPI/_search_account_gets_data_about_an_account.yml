@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<REMITTANCE_HOST>/api/AccountSearch.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: Bank_ID=bank0000<SHOP_PASS>&Shop_ID=<REMITTANCE_SHOP_ID>&Shop_Pass=<REMITTANCE_SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -31,7 +31,7 @@ http_interactions:
       X-Frame-Options:
       - SAMEORIGIN
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: Bank_ID=bank12345&Delete_Flag=0&Bank_Name=みずほ銀行&Bank_Code=0001&Branch_Name=札幌支店&Branch_Code=813&Account_Type=1&Account_Number=0012345&Account_Name=An Yutzy&Free=&Branch_Code_Jpbank=&Account_Number_Jpbank=
     http_version:
   recorded_at: Mon, 01 May 2017 05:58:21 GMT
