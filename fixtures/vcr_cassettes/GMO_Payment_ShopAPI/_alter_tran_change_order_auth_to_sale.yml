@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/EntryTran.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=1362106775&JobCd=AUTH&Amount=100&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept:
@@ -33,7 +33,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/ExecTran.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: AccessID=675a12f12bb3bbf57aeb67acabfccecf&AccessPass=63144577f7f84c800fa2001cb7495f34&OrderID=1362106775&Method=1&PayTimes=1&CardNo=4111111111111111&Expire=1405&HttpAccept=null&HttpUserAgent=null&DeviceCategory=0&ClientField1=null&ClientField2=null&ClientField3=null&ClientFieldFlag=0&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept:
@@ -62,7 +62,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/AlterTran.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: AccessID=675a12f12bb3bbf57aeb67acabfccecf&AccessPass=63144577f7f84c800fa2001cb7495f34&JobCd=SALES&Amount=100&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept:

@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/EntryTranVirtualaccount.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=<TOKEN>66262<TOKEN>552&Amount=<TOKEN>00&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -29,14 +29,14 @@ http_interactions:
       Connection:
       - close
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=<TOKEN>66262<TOKEN>552&AccessID=dda76d2bb678f82<TOKEN>ad3e4a7ded59d5b0&AccessPass=fdeccc446bb3320f48259062055ad926
   recorded_at: Thu, 08 Sep 2022 07:19:13 GMT
 - request:
     method: post
     uri: https://<HOST>/payment/ExecTranVirtualaccount.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=<TOKEN>66262<TOKEN>552&AccessID=dda76d2bb678f82<TOKEN>ad3e4a7ded59d5b0&AccessPass=fdeccc446bb3320f48259062055ad926&TradeDays=<TOKEN>4&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:

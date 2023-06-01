@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/EntryTranEdy.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=<TOKEN>662969828&Amount=<TOKEN>00&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -29,7 +29,7 @@ http_interactions:
       Connection:
       - close
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: AccessID=63bff23f2cb9bfc9c528fd82f03<TOKEN>d04e&AccessPass=509ced83bb0acd48c958f3baff94452<TOKEN>
   recorded_at: Mon, 12 Sep 2022 08:03:49 GMT
 recorded_with: VCR 6.0.0

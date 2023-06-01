@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/ExecTran.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: AccessID=null&AccessPass=null&OrderID=null&Method=null&PayTimes=null&CardNo=null&Expire=null&HttpAccept=null&HttpUserAgent=null&DeviceCategory=0&ClientField1=null&ClientField2=null&ClientField3=null&ClientFieldFlag=0&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept:

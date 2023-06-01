@@ -653,7 +653,7 @@ describe "GMO::Payment::ShopAPI" do
       result["Approve"].nil?.should_not be true
       result["TranID"].nil?.should_not be true
       result["TranDate"].nil?.should_not be true
-      (result["ClientField1"] == client_field_1).should be true
+      result["ClientField1"].should eq client_field_1
       result["ClientField2"].nil?.should_not be true
       result["ClientField3"].nil?.should_not be true
     end
@@ -669,7 +669,6 @@ describe "GMO::Payment::ShopAPI" do
 
       it "should correctly handle Japanese", :vcr do
         order_id = generate_id
-        client_field_1 = "〜−¢£¬−‖①ほげほげhogehoge"
         result = @service.entry_tran_brandtoken({
           :order_id => order_id,
           :job_cd => "AUTH",
@@ -683,7 +682,7 @@ describe "GMO::Payment::ShopAPI" do
           :access_pass => access_pass,
           :token_type  => :apple_pay,
           :token       => 'base64encodedtoken',
-          :client_field_1 => client_field_1
+          :client_field_1 => 'ｶｿｳｼﾃﾝ'
         })
         result["Status"].nil?.should_not be true
         result["OrderID"].nil?.should_not be true
@@ -691,8 +690,8 @@ describe "GMO::Payment::ShopAPI" do
         result["Approve"].nil?.should_not be true
         result["TranID"].nil?.should_not be true
         result["TranDate"].nil?.should_not be true
-        (result["ClientField1"] == client_field_1).should be true
-        (result["ClientField1"].encoding.to_s == "UTF-8").should be true
+        result["ClientField1"].should eq "カソウシテン"
+        result["ClientField1"].encoding.name.should eq "UTF-8"
         result["ClientField2"].nil?.should_not be true
         result["ClientField3"].nil?.should_not be true
       end

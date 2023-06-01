@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/EntryTranDocomo.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=<TOKEN>6092250<TOKEN>3&JobCd=AUTH&Amount=<TOKEN>00&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -29,7 +29,7 @@ http_interactions:
       Connection:
       - close
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: AccessID=bcda2c8fbc952<TOKEN>5dd37ad8f2a37<TOKEN>facf&AccessPass=fd3<TOKEN>337495ade97b96<TOKEN>2bb7cb9228b58
   recorded_at: Tue, 29 Dec 2020 06:56:54 GMT
 recorded_with: VCR 6.0.0

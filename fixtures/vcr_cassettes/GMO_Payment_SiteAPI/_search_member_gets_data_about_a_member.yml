@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/SaveMember.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: MemberID=1362106992&MemberName=John+Smith&SiteID=<SITE_ID>&SitePass=<SITE_PASS>
     headers:
       Accept:
@@ -33,7 +33,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/SearchMember.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: MemberID=1362106992&SiteID=<SITE_ID>&SitePass=<SITE_PASS>
     headers:
       Accept:

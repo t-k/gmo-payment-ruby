@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://pt0<SHOP_PASS>.mul-pay.jp/payment/SearchCardDetail.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: MemberID=50292464&SeqMode=0&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:

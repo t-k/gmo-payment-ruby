@@ -4,7 +4,7 @@ http_interactions:
     method: post
     uri: https://<HOST>/payment/EntryTranLinepay.idPass
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=1467366013&JobCd=CAPTURE&Amount=100&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
     headers:
       Accept-Encoding:
@@ -29,7 +29,7 @@ http_interactions:
       Connection:
       - close
     body:
-      encoding: UTF-8
+      encoding: Windows-31J
       string: OrderID=1467366013&AccessID=2eb607a4a86106c53f8748e59de5d41b&AccessPass=3fb30254d3e3e6b4efbfe6eedda7196d
     http_version: 
   recorded_at: Fri, 01 Jul 2016 09:40:14 GMT
