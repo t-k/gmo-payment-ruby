@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://<HOST>/payment/EntryTranGANB.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=1696418445&Amount=100&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 04 Oct 2023 11:20:50 GMT
+      Content-Type:
+      - text/plain;charset=Shift_JIS
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: OrderID=1696418445&AccessID=ef73b56f6daf8fb36fa8e0a2133a0613&AccessPass=f9e832b3b9c886b70d98c5e857571033
+  recorded_at: Wed, 04 Oct 2023 11:20:45 GMT
+- request:
+    method: post
+    uri: https://<HOST>/payment/ExecTranGANB.idPass
+    body:
+      encoding: UTF-8
+      string: OrderID=1696418445&AccessID=ef73b56f6daf8fb36fa8e0a2133a0613&AccessPass=f9e832b3b9c886b70d98c5e857571033&ClientField1=%89%C1%96%BF%93X%8E%A9%97R%8D%80%96%DA1%82%C5%82%B7%81B&ClientField2=%89%C1%96%BF%93X%8E%A9%97R%8D%80%96%DA2%82%C5%82%B7%81B&ClientField3=%89%C1%96%BF%93X%8E%A9%97R%8D%80%96%DA3%82%C5%82%B7%81B&=irai%40example.com&TradeDays=3&TradeReason=%8E%E6%88%F8%8E%96%97R%82%C5%82%B7%81B&TradeClientName=%88%CB%97%8A%89%D4%8Eq&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 04 Oct 2023 11:21:05 GMT
+      Content-Type:
+      - text/plain;charset=Shift_JIS
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - close
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        QWNjZXNzSUQ9ZWY3M2I1NmY2ZGFmOGZiMzZmYThlMGEyPFRPS0VOPjMzYTA2PFRPS0VOPjMmQmFua0NvZGU9MDM8VE9LRU4+MCZCYW5rTmFtZT283i200bUtsbW/3tfIwsQmQnJhbmNoQ29kZT01MDMmQnJhbmNoTmFtZT22v7O8w90mQWNjb3VudFR5cGU9PFRPS0VOPiZBY2NvdW50TnVtYmVyPTg5Mjk2OTYmQWNjb3VudEhvbGRlck5hbWU9w73EvK6vzN8mQXZhaWxhYmxlRGF0ZT0yMDIzPFRPS0VOPjAwNw==
+  recorded_at: Wed, 04 Oct 2023 11:21:00 GMT
+recorded_with: VCR 6.1.0

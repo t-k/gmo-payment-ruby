@@ -83,6 +83,16 @@ module GMO
         post_request name, options
       end
 
+      # 【銀行振込（バーチャル口座 あおぞら）】
+      #  取引登録
+      #  オーダーIDを指定して取引を登録します。
+      def entry_tran_ganb(options = {})
+        name = "EntryTranGANB.idPass"
+        required = [:order_id, :amount]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       # 【LINE Pay決済】
       #  20.1.2.1. 取引登録
       #  これ以降の決済取引で必要となる取引IDと取引パスワードの発行を行い、取引を開始します。
@@ -338,6 +348,16 @@ module GMO
       def exec_tran_paypal(options = {})
         name = "ExecTranPaypal.idPass"
         required = [:access_id, :access_pass, :order_id, :item_name, :redirect_url]
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      # 【銀行振込（バーチャル口座 あおぞら）】
+      # 決済実行
+      # 登録された取引に対してバーチャル口座を発行します。
+      def exec_tran_ganb(options = {})
+        name = "ExecTranGANB.idPass"
+        required = [:access_id, :access_pass, :order_id]
         assert_required_options(required, options)
         post_request name, options
       end
