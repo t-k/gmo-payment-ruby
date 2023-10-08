@@ -38,9 +38,16 @@ module GMO
           raise GMO::Payment::ServerError.new(result.body, error_detail)
         end
         # Transform the body to Hash
-        # "ACS=1&ACSUrl=url" => { "ACS" => "1", ACSUrl => "url" }
-        key_values = result.body.to_s.split('&').map { |str| str.split('=', 2) }.flatten
-        response = Hash[*key_values]
+        if /\.json\Z/ =~ path
+          # Parse the body as JSON
+          parsed_result = ::JSON.parse(result.body)
+          response = parsed_result.is_a?(Array) ? parsed_result[0] : parsed_result
+        else
+          # Parse the body as Query string
+          # "ACS=1&ACSUrl=url" => { "ACS" => "1", ACSUrl => "url" }
+          key_values = result.body.to_s.split('&').map { |str| str.split('=', 2) }.flatten
+          response = Hash[*key_values]
+        end
         # converting to UTF-8
         body = response = Hash[response.map { |k,v| [k, NKF.nkf('-S -w',v)] }]
         # Check for errors if provided a error_checking_block
