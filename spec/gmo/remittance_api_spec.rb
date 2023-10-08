@@ -525,4 +525,69 @@ describe "GMO::Payment::RemittanceAPI" do
     end
   end
 
+  describe "#create_link_redirect_url" do
+    subject(:do_api_call) { @service.create_link_redirect_url(options) }
+
+    context 'with valid options', :vcr do
+      let(:deposit_id) { "dep00001" }
+      let(:options) do
+        {
+          deposit_id: deposit_id,
+          call_back_url: "https://example.com/callback",
+          amount: "1000",
+          auth_code: "auth00005",
+          auth_code_2: "auth00002",
+          auth_code_3: "auth00003",
+          remit_method_bank: "1",
+          remit_method_sevenatm: "1",
+          sevenatm_payment_term_day: "15",
+          remit_method_amazongift: "1",
+          remit_method_aupay: "1",
+          bank_id: "bank_id00001",
+          client_name: "リンクユーアールエル",
+        }
+      end
+
+      it "gets data about link redirect url" do
+        result = do_api_call
+        expect(result["Deposit_ID"]).to eq(deposit_id)
+        expect(result["Redirect_Url"]).not_to be_nil
+        expect(result["Method"]).to eq("1")
+      end
+    end
+
+    context "with invalid options", :vcr do
+      let(:options) { {} }
+
+      it "got error" do
+        expect { do_api_call }.to raise_error("Required deposit_id, call_back_url, amount, auth_code were not provided.")
+      end
+    end
+  end
+
+  describe "#cancel_link_redirect_url" do
+    subject (:do_api_call) { @service.cancel_link_redirect_url(options) }
+
+    before { @service.create_link_redirect_url(deposit_id: deposit_id, call_back_url: 'https://example.com/callback', amount: '100', auth_code: 'AUTH001') }
+
+    context 'with valid options', :vcr do
+      let(:options) { { deposit_id: deposit_id } }
+      let(:deposit_id) { "dep00001" }
+
+      it "gets data about a link edirect url" do
+        result = do_api_call
+        expect(result["Deposit_ID"]).not_to be_nil
+        expect(result["Method"]).to eq "2"
+      end
+    end
+
+    context "with invalid options", :vcr do
+      let(:options) { {} }
+      let(:deposit_id) { "dep00001" }
+
+      it "got error" do
+        expect { do_api_call }.to raise_error("Required deposit_id were not provided.")
+      end
+    end
+  end
 end

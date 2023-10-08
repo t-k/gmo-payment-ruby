@@ -325,6 +325,57 @@ module GMO
         post_request name, options
       end
 
+      #########
+      # Deposit_ID
+      # Call_Back_Url
+      # Amount
+      # Auth_Code
+      # Auth_Code2
+      # Auth_Code3
+      # Remit_Method_Bank
+      # Remit_Method_Sevenatm
+      # Sevenatm_Payment_Term_Day
+      # Remit_Method_Amazongift
+      # Remit_Method_Aup ay
+      # Bank_ID
+      # Client_Name
+      ### @return ###
+      # Deposit_ID
+      # Redirect_Url
+      # Method
+      ### example ###
+      # gmo.create_link_redirect_url({
+      #   deposit_id: 'dep00001',
+      #   call_back_url: 'https://XXXX/XXXX/XXXX/XXXX',
+      #   amount: '1000',
+      #   auth_code: 'auth00001',
+      # })
+      # {"Deposit_ID"=>"dep00001", "Redirect_Url"=>"https://XXXX/XXXX/XXXX/XXXX", "Method"=>"1"}
+      def create_link_redirect_url(options = {})
+        name = "/api/shop/LinkRedirectUrl.json"
+        required = %i(deposit_id call_back_url amount auth_code)
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
+      #########
+      # Deposit_ID
+      ### @return ###
+      # Deposit_ID
+      # Method
+      ### example ###
+      # gmo.cancel_link_redirect_url({
+      #   deposit_id: 'dep00001',
+      # })
+      # {"Deposit_ID"=>"dep00001", "Method"=>"2"}
+      def cancel_link_redirect_url(options = {})
+        name = "/api/shop/LinkRedirectUrl.json"
+        required = %i(deposit_id)
+        options[:method] = 2
+        assert_required_options(required, options)
+        post_request name, options
+      end
+
       private
 
         def api_call(name, args = {}, verb = "post", options = {})
