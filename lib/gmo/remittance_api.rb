@@ -254,10 +254,6 @@ module GMO
       # Auth_Code2
       # Auth_Code3
       # Remit_Method_Bank
-      # Remit_Method_Sevenatm
-      # Sevenatm_Payment_Term_Day
-      # Remit_Method_Amazongift
-      # Remit_Method_Aupay
       # Mail_Template_Free1
       # Mail_Template_Free2
       # Mail_Template_Free3
