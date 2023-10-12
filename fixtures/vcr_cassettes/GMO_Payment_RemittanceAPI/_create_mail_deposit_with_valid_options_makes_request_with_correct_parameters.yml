@@ -5,7 +5,7 @@ http_interactions:
     uri: https://<REMITTANCE_HOST>/api/MailDepositRegistration.idPass
     body:
       encoding: UTF-8
-      string: Deposit_ID=dep00001&Mail_Address=anyutzy%40demo.com&Amount=1000&Mail_Deposit_Account_Name=An+Yutzy&Expire=5&Shop_Mail_Address=anyutzy%40demo.com&Method=1&Shop_ID=<REMITTANCE_SHOP_ID>&Shop_Pass=<REMITTANCE_SHOP_PASS>
+      string: Deposit_ID=dep00001&Mail_Address=anyutzy%40demo.com&Amount=1000&Mail_Deposit_Account_Name=An+Yutzy&Expire=5&Shop_Mail_Address=anyutzy%40demo.com&Auth_Code=auth00001&Auth_Code2=auth00002&Auth_Code3=auth00003&Remit_Method_Bank=1&Mail_Template_Free1=mail_template_free_1&Mail_Template_Free2=mail_template_free_2&Mail_Template_Free3=mail_template_free_3&Mail_Template_Number=1&Bank_ID=bank_id00001&Select_Key=select00001&Client_Name=%83C%83%89%83C%83j%83%93%83%5E%83%8D%83E&Method=1&Shop_ID=<REMITTANCE_SHOP_ID>&Shop_Pass=<REMITTANCE_SHOP_PASS>
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -21,7 +21,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Wed, 11 Oct 2023 11:31:28 GMT
+      - Thu, 12 Oct 2023 07:13:06 GMT
       Content-Type:
       - text/plain;charset=windows-31j
       Content-Length:
@@ -42,6 +42,6 @@ http_interactions:
       - max-age=63072000
     body:
       encoding: UTF-8
-      string: Deposit_ID=dep00001&Method=1&Amount=1000&Expire=20231017
-  recorded_at: Wed, 11 Oct 2023 11:31:28 GMT
+      string: Deposit_ID=dep00001&Method=1&Amount=1000&Expire=20231018
+  recorded_at: Thu, 12 Oct 2023 07:13:06 GMT
 recorded_with: VCR 6.1.0
