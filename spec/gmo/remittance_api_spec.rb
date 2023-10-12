@@ -452,7 +452,7 @@ describe "GMO::Payment::RemittanceAPI" do
       let(:options) { {} }
 
       it "got error" do
-        expect { do_api_call }.to raise_error("Required deposit_id, deposit_email, amount, deposit_account_name, expire, deposit_shop_email were not provided.")
+        expect { do_api_call }.to raise_error("Required deposit_id, deposit_email, amount, expire, deposit_shop_email were not provided.")
       end
     end
   end

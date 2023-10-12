@@ -283,7 +283,7 @@ module GMO
       def create_mail_deposit(options = {})
         name = "/api/MailDepositRegistration.idPass"
         options[:method] = 1
-        required = %i(deposit_id deposit_email amount deposit_account_name expire deposit_shop_email)
+        required = %i(deposit_id deposit_email amount expire deposit_shop_email)
         assert_required_options(required, options)
         post_request name, options
       end
