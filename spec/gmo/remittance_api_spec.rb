@@ -376,54 +376,76 @@ describe "GMO::Payment::RemittanceAPI" do
   end
 
   describe "#create_mail_deposit" do
-    let(:do_api_call) {
-      @service.create_mail_deposit({
-        :deposit_id           => "dep00001",
-        :deposit_email        => "anyutzy@demo.com",
-        :amount               => 1000,
-        :deposit_account_name => "An Yutzy",
-        :expire               => 5,
-        :deposit_shop_email   => "anyutzy@demo.com"
-      })
-    }
+    subject(:do_api_call) { @service.create_mail_deposit(options) }
 
-    it "gets data about a mail deposit", :vcr do
-      result = do_api_call
-      result["Deposit_ID"].nil?.should_not be_truthy
-      result["Method"].nil?.should_not be_truthy
-      result["Amount"].nil?.should_not be_truthy
-      result["Expire"].nil?.should_not be_truthy
-    end
+    context 'with valid options', :vcr do
+      let(:options) do
+        {
+          :deposit_id           => "dep00001",
+          :deposit_email        => "anyutzy@demo.com",
+          :amount               => 1000,
+          :deposit_account_name => "An Yutzy",
+          :expire               => 5,
+          :deposit_shop_email   => "anyutzy@demo.com",
+          :auth_code            => "auth00001",
+          :auth_code_2          => "auth00002",
+          :auth_code_3          => "auth00003",
+          :remit_method_bank    => "1",
+          :mail_template_free_1 => "mail_template_free_1",
+          :mail_template_free_2 => "mail_template_free_2",
+          :mail_template_free_3 => "mail_template_free_3",
+          :mail_template_number => 1,
+          :bank_id              => "bank_id00001",
+          :select_key           => "select00001",
+          :client_name          => "イライニンタロウ",
+        }
+      end
 
-    context 'with all required options' do
-      let(:response) { OpenStruct.new(status: 200, body: nil ) }
-      before { allow(GMO).to receive(:make_request) { response } }
+      before { allow(GMO).to receive(:make_request).and_call_original }
 
-      it "makes request with correct parameters", :vcr do
+      it "gets data about a mail deposit" do
+        result = do_api_call
+        expect(result["Deposit_ID"]).to eq options[:deposit_id]
+        expect(result["Method"]).to eq "1"
+        expect(result["Amount"]).to eq options[:amount].to_s
+        expect(result["Expire"]).not_to be_nil
+      end
+
+      it "makes request with correct parameters" do
+        do_api_call
         path = "/api/MailDepositRegistration.idPass"
         args = {
-          "Deposit_ID"                => "dep00001",
-          "Mail_Address"              => "anyutzy@demo.com",
-          "Amount"                    => 1000,
-          "Mail_Deposit_Account_Name" => "An Yutzy",
-          "Expire"                    => 5,
-          "Shop_Mail_Address"         => "anyutzy@demo.com",
+          "Deposit_ID"                => options[:deposit_id],
+          "Mail_Address"              => options[:deposit_email],
+          "Amount"                    => options[:amount],
+          "Mail_Deposit_Account_Name" => options[:deposit_account_name],
+          "Expire"                    => options[:expire],
+          "Shop_Mail_Address"         => options[:deposit_shop_email],
+          "Auth_Code"                 => options[:auth_code],
+          "Auth_Code2"                => options[:auth_code_2],
+          "Auth_Code3"                => options[:auth_code_3],
+          "Remit_Method_Bank"         => options[:remit_method_bank],
+          "Mail_Template_Free1"       => options[:mail_template_free_1],
+          "Mail_Template_Free2"       => options[:mail_template_free_2],
+          "Mail_Template_Free3"       => options[:mail_template_free_3],
+          "Mail_Template_Number"      => options[:mail_template_number],
+          "Bank_ID"                   => options[:bank_id],
+          "Select_Key"                => options[:select_key],
+          "Client_Name"               => options[:client_name],
           "Method"                    => 1,
           "Shop_ID"                   => @service.shop_id,
           "Shop_Pass"                 => @service.shop_pass
         }
-        verb = "post"
-        options = { :host => @service.host }
-        expect(GMO).to receive(:make_request).with(path, args, verb, options)
+        expect(GMO).to have_received(:make_request).with(path, args, "post", { :host => @service.host })
       end
-
-      after { do_api_call }
     end
 
-    it "got error if missing options", :vcr do
-      lambda {
-        result = @service.create_mail_deposit()
-      }.should raise_error("Required deposit_id, deposit_email, amount, deposit_account_name, expire, deposit_shop_email were not provided.")
+    context "with invalid options" do
+      let(:options) { {} }
+
+      it "got error" do
+        expect { do_api_call }.to raise_error("Required deposit_id, deposit_email, amount, expire, deposit_shop_email were not provided.")
+      end
     end
   end
 
