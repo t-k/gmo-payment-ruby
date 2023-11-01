@@ -40,7 +40,12 @@ module GMO
 
           http.start do |h|
             response = if verb == "post"
-              h.post(path, encode_params(args))
+              if /\.json\Z/ =~ path
+                headers = { "Content-Type" => "application/json" }
+                h.post(path, args.to_json, headers)
+              else
+                h.post(path, encode_params(args))
+              end
             else
               h.get("#{path}?#{encode_params(args)}")
             end

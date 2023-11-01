@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://<REMITTANCE_HOST>/api/shop/LinkRedirectUrl.json
+    body:
+      encoding: UTF-8
+      string: '{"Deposit_ID":"dep00001","Amount":"1000","Auth_Code":"auth00001","Call_Back_Url":"https://example.com/callback","Shop_ID":"<REMITTANCE_SHOP_ID>","Shop_Pass":"<REMITTANCE_SHOP_PASS>"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 06 Oct 2023 10:30:26 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Content-Length:
+      - "177"
+      Connection:
+      - close
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - no-cache, no-store
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      Content-Disposition:
+      - attachment;filename="LinkRedirectUrl.json"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - "1; mode=block"
+      Strict-Transport-Security:
+      - max-age=63072000
+    body:
+      encoding: UTF-8
+      string: '{"Redirect_Url":"https://<REMITTANCE_HOST>/mail/mail-deposit?token=cfd81440aef67210b6f3eccf3cb8e7d7020013d67108ca4d13d1ca897fb0d0f6","Deposit_ID":"dep00001","Method":"1"}'
+  recorded_at: Fri, 06 Oct 2023 10:30:26 GMT
+recorded_with: VCR 6.1.0
