@@ -1,4 +1,10 @@
 # CHANGELOG
+## 0.5.6
+- Support PayPal決済 [#63](https://github.com/t-k/gmo-payment-ruby/pull/63)
+- Support 銀行振込（バーチャル口座 あおぞら）[#64](https://github.com/t-k/gmo-payment-ruby/pull/64)
+- Update 送金サービス リンクタイプURL取得 [#65](https://github.com/t-k/gmo-payment-ruby/pull/65)
+- Update 送金サービス メール送金指示 [#66](https://github.com/t-k/gmo-payment-ruby/pull/66)
+
 ## 0.5.5
 - Enhanced encoding handling to prevent misjudgments during UTF-8 conversion [#57](https://github.com/t-k/gmo-payment-ruby/pull/57) (Thanks [@y-yagi](https://github.com/y-yagi))
 
