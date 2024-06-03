@@ -23,6 +23,7 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency "rack"
   gem.add_runtime_dependency "multi_json"
+  gem.add_runtime_dependency "nkf"
   gem.add_development_dependency "rspec", "~> 3"
   gem.add_development_dependency "rake"
   gem.add_development_dependency "vcr"
