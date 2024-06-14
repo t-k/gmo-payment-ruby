@@ -1,4 +1,7 @@
 # CHANGELOG
+## 0.5.7
+- Added `nkf` as a dependency. This fixes the warning that appears with Ruby 3.3.0 and later versions. [#67](https://github.com/t-k/gmo-payment-ruby/pull/69)
+
 ## 0.5.6
 - Support PayPal決済 [#63](https://github.com/t-k/gmo-payment-ruby/pull/63)
 - Support 銀行振込（バーチャル口座 あおぞら）[#64](https://github.com/t-k/gmo-payment-ruby/pull/64)
