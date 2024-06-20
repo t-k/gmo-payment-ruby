@@ -125,6 +125,7 @@ module GMO
       :tax                   => "Tax",
       :td_flag               => "TdFlag",
       :td_tenant_name        => "TdTenantName",
+      :tds2_email            => "Tds2Email",
       :tel_no                => "TelNo",
       :token                 => "Token",
       :token_seq             => "TokenSeq",
