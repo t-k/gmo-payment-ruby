@@ -1,6 +1,7 @@
 # Encoding: UTF-8
 
 require "spec_helper"
+require "ostruct"
 
 describe "GMO::Payment::RemittanceAPI" do
 
