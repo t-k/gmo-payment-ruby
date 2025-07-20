@@ -70,7 +70,7 @@ module GMO
       # gmo.post_request("EntryTran.idPass", {:foo => "bar"})
       # POST /EntryTran.idPass with params foo=bar
       def post_request(name, args = {}, options = {})
-        args = associate_options_to_gmo_params args
+        args = associate_options_to_gmo_params(name, args)
         api_call(name, args, "post", options)
       end
       alias :post! :post_request
@@ -82,8 +82,9 @@ module GMO
           raise ArgumentError, "Required #{missing.join(', ')} were not provided." unless missing.empty?
         end
 
-        def associate_options_to_gmo_params(options)
-          Hash[options.map { |k, v| [GMO::Const::INPUT_PARAMS[k], v] }]
+        def associate_options_to_gmo_params(api_method_name, options)
+          params = GMO::Const.input_params(api_method_name)
+          Hash[options.map { |k, v| [params[k], v] }]
         end
 
         def api_call(*args)

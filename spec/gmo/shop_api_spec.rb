@@ -328,6 +328,28 @@ describe "GMO::Payment::ShopAPI" do
       }.should_not raise_error("Required card_no, expire were not provided.")
     end
 
+    it "converts ret_url to RetUrl for ExecTran.idPass" do
+      # Test that ret_url is converted to RetUrl by associate_options_to_gmo_params
+      actual_params = nil
+      allow(@service).to receive(:api_call) do |name, args, method, options|
+        actual_params = args
+        {}
+      end
+
+      @service.exec_tran({
+        :order_id      => "test_order",
+        :access_id     => "test_access",
+        :access_pass   => "test_pass",
+        :method        => 1,
+        :pay_times     => 1,
+        :card_no       => "4111111111111111",
+        :expire        => "1405",
+        :ret_url       => "https://example.com/3d-secure-callback"
+      })
+
+      expect(actual_params).to include("RetUrl" => "https://example.com/3d-secure-callback")
+    end
+
     context "parameter contains Japanese characters" do
       before { require "kconv" unless defined?(Kconv) }
 
