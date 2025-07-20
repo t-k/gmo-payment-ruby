@@ -20,7 +20,7 @@ module GMO
       order_id:    '3'
     }
 
-    INPUT_PARAMS = {
+    BASE_INPUT_PARAMS = {
       :access_id             => "AccessID",
       :access_pass           => "AccessPass",
       :account_name          => "Account_Name",
@@ -175,6 +175,21 @@ module GMO
       :trade_client_name     => "TradeClientName",
       :trade_client_mail_address => "TradeClientMailAddress"
     }.freeze
+
+    # NOTE: 決済方法によってはcaseに揺らぎがあるのでここで上書きする
+    PAYMENT_SPECIFIC_PARAMS = {
+      "ExecTran.idPass" => {
+        ret_url: "RetUrl" # NOTE: 3Dセキュア認証後にお戻しする加盟店様側のURLになります。
+      },
+    }.freeze
+
+    def self.input_params(api_method_name)
+      if PAYMENT_SPECIFIC_PARAMS.key?(api_method_name)
+        BASE_INPUT_PARAMS.dup.merge!(PAYMENT_SPECIFIC_PARAMS[api_method_name])
+      else
+        BASE_INPUT_PARAMS
+      end
+    end
 
     API_ERROR_MESSAGES_EN = {
       '000' => 'Token acquisition completed normally',
