@@ -1,4 +1,12 @@
 # CHANGELOG
+## 0.5.8
+- クレジットカード決済の3Dセキュア2.0に対応 [#76](https://github.com/t-k/gmo-payment-ruby/pull/76)
+  - 3DS2.0認証実行 (`tds2_auth`)
+  - 3DS2.0認証結果取得 (`tds2_result`)
+  - 認証後決済実行 (`secure_tran_2`)
+- Ruby 3.4のサポートを追加 [#74](https://github.com/t-k/gmo-payment-ruby/pull/74) (Thanks [@y-yagi](https://github.com/y-yagi))
+- `ostruct`を明示的な依存関係として追加 [#74](https://github.com/t-k/gmo-payment-ruby/pull/74) (Thanks [@y-yagi](https://github.com/y-yagi))
+
 ## 0.5.7
 - Added `nkf` as a dependency. This fixes the warning that appears with Ruby 3.3.0 and later versions. [#67](https://github.com/t-k/gmo-payment-ruby/pull/69)
 
