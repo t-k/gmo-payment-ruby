@@ -1192,4 +1192,94 @@ describe "GMO::Payment::ShopAPI" do
     end
   end
 
+  describe "#exec_tran with 3DS2.0" do
+    it "returns 3DS2.0 challenge flow response", :vcr do
+      result = @service.exec_tran({
+        :access_id => "test_access_7ed782e0e10604b31258e0d69ee3e887",
+        :access_pass => "test_pass_7be5e8786e2e959d7b48ad708634dc7e",
+        :order_id => "TEST_3DS_20250724231518",
+        :method => 1,
+        :pay_times => "",
+        :card_no => "4111111111111111",
+        :expire => "2512",
+        :member_id => "TEST_MEMBER_5df458bc",
+        :card_seq => 0,
+        :tds_type => 2,
+        :tds2_type => 2,
+        :call_back_url => "https://example.com/callback",
+        :tds2_ret_url => "https://example.com/3ds/return"
+      })
+
+      result["OrderID"].should == "<ORDER_ID>"
+      result["Forward"].should == "<FORWARD>"
+      result["Method"].should == "1"
+      result["TranID"].should == "<TRAN_ID>"
+      result["TranDate"].should == "<TRAN_DATE>"
+      result["Tds2TransResult"].should == "C"
+      result["Tds2TransResultReason"].should == "01"
+      result["Tds2ChallengeUrl"].should include("/payment/Tds2Challenge")
+      result["Tds2TransID"].should == "<TDS2_TRANS_ID>"
+    end
+  end
+
+  describe "#tds2_auth" do
+    it "executes 3DS2.0 authentication", :vcr do
+      result = @service.tds2_auth({
+        :access_id => "test_access_7ed782e0e10604b31258e0d69ee3e887",
+        :access_pass => "test_pass_7be5e8786e2e959d7b48ad708634dc7e",
+        :tds2_param => "dummy_tds2_param"
+      })
+
+      result["OrderID"].should == "<ORDER_ID>"
+      result["Forward"].should == "<FORWARD>"
+      result["Method"].should == "1"
+      result["PayTimes"].should == ""
+      result["Approve"].should == ""
+      result["TranID"].should == "<TRAN_ID>"
+      result["TranDate"].should == "<TRAN_DATE>"
+      result["CheckString"].should == "<CHECK_STRING>"
+      result["Tds2TransResult"].should == "Y"  # Authentication successful
+      result["Tds2TransResultReason"].should == ""
+      result["Tds2ChallengeUrl"].should_not be_nil
+      result["Tds2ChallengeUrl"].should include("/payment/Tds2Challenge")
+    end
+  end
+
+  describe "#tds2_result" do
+    it "gets 3DS2.0 authentication result", :vcr do
+      result = @service.tds2_result({
+        :access_id => "test_access_7ed782e0e10604b31258e0d69ee3e887",
+        :access_pass => "test_pass_7be5e8786e2e959d7b48ad708634dc7e"
+      })
+
+      result["OrderID"].should == "<ORDER_ID>"
+      result["Forward"].should == "<FORWARD>"
+      result["Method"].should == "1"
+      result["PayTimes"].should == ""
+      result["Approve"].should == ""
+      result["TranID"].should == "<TRAN_ID>"
+      result["TranDate"].should == "<TRAN_DATE>"
+      result["CheckString"].should == "<CHECK_STRING>"
+      result["Tds2TransResult"].should == "Y"  # Authentication successful
+      result["Tds2TransResultReason"].should == ""
+    end
+  end
+
+  describe "#secure_tran_2" do
+    it "completes payment after 3DS2.0 challenge verification", :vcr do
+      result = @service.secure_tran_2({
+        :access_id => "test_access_7ed782e0e10604b31258e0d69ee3e887",
+        :access_pass => "test_pass_7be5e8786e2e959d7b48ad708634dc7e"
+      })
+
+      result["OrderID"].should == "<ORDER_ID>"
+      result["Forward"].should == "<FORWARD>"
+      result["Method"].should == "1"
+      result["PayTimes"].should == ""
+      result["Approve"].should == "<APPROVE>"
+      result["TranID"].should == "<TRAN_ID>"
+      result["TranDate"].should == "<TRAN_DATE>"
+      result["CheckString"].should == "<CHECK_STRING>"
+    end
+  end
 end

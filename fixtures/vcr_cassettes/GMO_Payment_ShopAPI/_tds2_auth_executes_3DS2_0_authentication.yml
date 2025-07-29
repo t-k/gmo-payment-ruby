@@ -1,0 +1,33 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://<HOST>/payment/Tds2Auth.idPass
+    body:
+      encoding: UTF-8
+      string: AccessID=<ACCESS_ID>&AccessPass=<ACCESS_PASS>&Tds2Param=<TDS2_PARAM>&ShopID=<SHOP_ID>&ShopPass=<SHOP_PASS>
+    headers:
+      Accept:
+      - "*/*"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - text/plain; charset=shift_jis
+      Date:
+      - Thu, 24 Jul 2025 23:15:18 GMT
+      Server:
+      - Apache
+    body:
+      encoding: UTF-8
+      string: OrderID=<ORDER_ID>&Forward=<FORWARD>&Method=1&PayTimes=&Approve=&TranID=<TRAN_ID>&TranDate=<TRAN_DATE>&CheckString=<CHECK_STRING>&Tds2TransResult=Y&Tds2TransResultReason=&Tds2ChallengeUrl=https://<HOST>/payment/Tds2Challenge?tds2TransID=<TDS2_TRANS_ID>
+  recorded_at: Thu, 24 Jul 2025 23:15:18 GMT
+recorded_with: VCR 6.3.1
