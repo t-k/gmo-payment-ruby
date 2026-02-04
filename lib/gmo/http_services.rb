@@ -44,7 +44,8 @@ module GMO
                 headers = { "Content-Type" => "application/json" }
                 h.post(path, args.to_json, headers)
               else
-                h.post(path, encode_params(args))
+                headers = { "Content-Type" => "application/x-www-form-urlencoded" }
+                h.post(path, encode_params(args), headers)
               end
             else
               h.get("#{path}?#{encode_params(args)}")
