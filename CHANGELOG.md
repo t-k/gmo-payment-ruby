@@ -1,4 +1,7 @@
 # CHANGELOG
+## 0.5.9
+- net-http 0.7.0+でcontent typeを明示的に設定する必要がある問題を修正 [#79](https://github.com/t-k/gmo-payment-ruby/pull/79) (Thanks [@johnnyshields](https://github.com/johnnyshields))
+
 ## 0.5.8
 - クレジットカード決済の3Dセキュア2.0に対応 [#76](https://github.com/t-k/gmo-payment-ruby/pull/76)
   - 3DS2.0認証実行 (`tds2_auth`)
